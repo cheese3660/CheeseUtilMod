@@ -33,13 +33,13 @@ namespace CheeseUtilMod.Client
             {
                 current_width = addressSize;
             }
-            float baseOutputX = (-current_width / 2f) + 0.5f;
+            float baseOutputX = (-current_width / 2f) + 1f;
             //Generate all the outputs
             for (int i = 0; i < dataSize; i++)
             {
                 outputs.Add(new ComponentOutput
                 {
-                    Position = new Vector3(baseOutputX, 1f, 1f),
+                    Position = new Vector3(baseOutputX, 1f, 1.5f),
                     Rotation = new Vector3(90f, 0f, 0f),
                 });
                 baseOutputX += 1;
@@ -61,30 +61,31 @@ namespace CheeseUtilMod.Client
                 Length = 0.6f
             });
             //Data input pins
-            float baseInputX = (-current_width / 2f) + 0.5f;
+            float baseInputX = (-current_width / 2f) + 1f;
             for (int i = 0; i < dataSize; i++)
             {
                 inputs.Add(new ComponentInput
                 {
-                    Position = new Vector3(baseInputX, 0.5f, -1f),
+                    Position = new Vector3(baseInputX, 0.5f, -0.5f),
                     Rotation = new Vector3(-90f, 0f, 0f),
                     Length = 0.6f
                 });
                 baseInputX += 1;
             }
             //Address pins
-            baseInputX = (-current_width / 2f) + 0.5f;
+            baseInputX = (-current_width / 2f) + 1f;
             for (int i = 0; i < addressSize; i++)
             {
                 inputs.Add(new ComponentInput
                 {
-                    Position = new Vector3(baseInputX, 1.5f, -1f),
+                    Position = new Vector3(baseInputX, 1.5f, -0.5f),
                     Rotation = new Vector3(-90f, 0f, 0f),
                     Length = 0.6f
                 });
                 baseInputX += 1;
             }
             prefabBlock.Scale = new Vector3(current_width, 2f, 2f);
+            prefabBlock.Position = new Vector3(0.5f, 0f, 0.5f);
             placingRules.GridPlacingDimensions = new Vector2Int((int)current_width, 2);
             return new ComponentVariant
             {
