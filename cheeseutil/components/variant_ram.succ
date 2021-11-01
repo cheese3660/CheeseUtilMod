@@ -1,6 +1,0 @@
-VariantRam:
-    column: "Chips"
-    category: "Advanced"
-    prefab: dynamic
-    logicCode: CheeseUtilMod.Components.VariantRam
-    placingRules: dynamic

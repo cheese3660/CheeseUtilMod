@@ -1,0 +1,83 @@
+Ram4aX1b:
+    column: "Memory"
+    category: "1Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram4aX1b
+    placingRules: dynamic
+
+Ram8aX1b:
+    column: "Memory"
+    category: "1Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram8aX1b
+    placingRules: dynamic
+
+Ram16aX1b:
+    column: "Memory"
+    category: "1Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram16aX1b
+    placingRules: dynamic
+
+Ram4aX4b:
+    column: "Memory"
+    category: "4Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram4aX4b
+    placingRules: dynamic
+
+Ram8aX4b:
+    column: "Memory"
+    category: "4Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram8aX4b
+    placingRules: dynamic
+
+Ram16aX4b:
+    column: "Memory"
+    category: "4Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram16aX4b
+    placingRules: dynamic
+
+Ram4aX8b:
+    column: "Memory"
+    category: "8Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram4aX8b
+    placingRules: dynamic
+
+Ram8aX8b:
+    column: "Memory"
+    category: "8Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram8aX8b
+    placingRules: dynamic
+
+Ram16aX8b:
+    column: "Memory"
+    category: "8Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram16aX8b
+    placingRules: dynamic
+
+Ram4aX16b:
+    column: "Memory"
+    category: "16Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram4aX16b
+    placingRules: dynamic
+
+Ram8aX16b:
+    column: "Memory"
+    category: "16Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram8aX16b
+    placingRules: dynamic
+
+Ram16aX16b:
+    column: "Memory"
+    category: "16Bit"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.Ram16aX16b
+    placingRules: dynamic

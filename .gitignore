@@ -1,0 +1,9 @@
+lib/
+obj/
+**Cheese Util Mod.csproj
+**Cheese Util Mod.csproj.user
+**Cheese Util Mod.sln
+**genereferences.py
+**references.txt
+**bin
+.vs/
