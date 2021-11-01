@@ -1,0 +1,17 @@
+﻿SevenSeg1x2:
+    column: "Displays"
+    category: "SevenSeg"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+
+SevenSeg2x4:
+    column: "Displays"
+    category: "SevenSeg"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+
+SevenSeg4x8:
+    column: "Displays"
+    category: "SevenSeg"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
