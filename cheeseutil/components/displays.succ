@@ -15,3 +15,21 @@ SevenSeg4x8:
     category: "SevenSeg"
     prefab: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+
+Hex1x2:
+    column: "Displays"
+    category: "Hex"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.HexDisplay
+
+Hex2x4:
+    column: "Displays"
+    category: "Hex"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.HexDisplay
+
+Hex4x8:
+    column: "Displays"
+    category: "Hex"
+    prefab: dynamic
+    clientCode: CheeseUtilMod.Client.HexDisplay

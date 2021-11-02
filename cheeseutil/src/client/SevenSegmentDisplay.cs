@@ -1,13 +1,21 @@
 ﻿using LogicWorld.Rendering.Components;
 using JimmysUnityUtilities;
+using LogicWorld.ClientCode;
 
 namespace CheeseUtilMod.Client
 {
-    class SevenSegmentDisplay : ComponentClientCode
+    class SevenSegmentDisplay : ComponentClientCode<SevenSegmentDisplay.IData>, IColorableClientCode
     {
+        public Color24 Color { get => Data.color; set => Data.color = value; }
+
+        public string ColorsFileKey => "SevenSegments";
+
+
+        public float MinColorValue => 0.0f;
+
         protected override void DataUpdate()
         {
-            base.QueueFrameUpdate();
+            QueueFrameUpdate();
         }
         protected override void FrameUpdate()
         {
@@ -16,13 +24,23 @@ namespace CheeseUtilMod.Client
                 bool set = GetInputState(i);
                 if (set)
                 {
-                    SetBlockColor(Color24.Amber, i);
+                    SetBlockColor(Data.color, i);
                 } else
                 {
                     SetBlockColor(Color24.Black, i);
                 }
             }
             base.FrameUpdate();
+        }
+
+        protected override void SetDataDefaultValues()
+        {
+            Data.color = Color24.Amber;
+        }
+
+        public interface IData
+        {
+            Color24 color { get; set; }
         }
     }
 }

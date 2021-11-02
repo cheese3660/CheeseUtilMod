@@ -29,8 +29,8 @@ namespace CheeseUtilMod.Client
          * 5   3
          *  444
          */
-        private static float segmentWidth = 0.2f; //0.1 at a normal 1x2 scale
-        private static float segmentHeight = 0.7f; //0.8 at a normal 1x2 scale
+        private static float segmentWidth = 0.17f; //0.17 at a normal 1x2 scale
+        private static float segmentHeight = 0.7f; //0.7 at a normal 1x2 scale
 
         //Contains X and Y along display
         private static Vector2[][] sevenSegSegmentLocationsAndScales = new Vector2[][]
@@ -38,10 +38,10 @@ namespace CheeseUtilMod.Client
             new Vector2[]{new Vector2(0.00f, 1.80f), new Vector2(segmentHeight, segmentWidth) }, //1
             new Vector2[]{new Vector2(0.40f, 1.10f), new Vector2(segmentWidth, segmentHeight) }, //2
             new Vector2[]{new Vector2(0.40f, 0.20f), new Vector2(segmentWidth, segmentHeight) }, //3
-            new Vector2[]{new Vector2(0.00f, 0.00f), new Vector2(segmentHeight, segmentWidth) }, //4
-            new Vector2[]{new Vector2(-0.40f, 0.20f), new Vector2(segmentWidth, segmentHeight) }, //5
-            new Vector2[]{new Vector2(-0.40f, 1.10f), new Vector2(segmentWidth, segmentHeight) }, //6
-            new Vector2[]{new Vector2(0.00f, 0.90f), new Vector2(segmentHeight, segmentWidth) }, //7
+            new Vector2[]{new Vector2(0.00f, 0.03f), new Vector2(segmentHeight, segmentWidth) }, //4
+            new Vector2[]{new Vector2(-0.37f, 0.20f), new Vector2(segmentWidth, segmentHeight) }, //5
+            new Vector2[]{new Vector2(-0.37f, 1.10f), new Vector2(segmentWidth, segmentHeight) }, //6
+            new Vector2[]{new Vector2(0.00f, 0.90f), new Vector2(segmentHeight, 0.2f) }, //7
         };
 
 
@@ -70,48 +70,30 @@ namespace CheeseUtilMod.Client
             blocks.Add(
                     new Block
                     {
-                        RawColor = new Color24(127, 127, 127),
+                        RawColor = Color24.Black,
                         Position = new Vector3(0, 0, -0.125f),
                         Scale = new Vector3(scale, 2f * scale, 0.25f)
                     }
                 );
             List<ComponentInput> inputs = new List<ComponentInput>();
-            if (!hex)
+            float currentX = 0.166666666666666666666666f;
+            float currentY = 0.166666666666666666666666f;
+            for (int i = 0; i < identifier.InputCount; i++)
             {
-                for (int i = 0; i < 7; i++)
+                inputs.Add(new ComponentInput
                 {
-                    var loc = sevenSegSegmentLocationsAndScales[i][0];
-                    var sca = sevenSegSegmentLocationsAndScales[i][1];
-                    var x = loc.x * scale;
-                    var y = (loc.y + sca.y/2) * scale;
-                    var z = 0f;
-                    var len = 0.5f;
-                    //Now round by 75% towards y=1, x=0.0
-                    if (y > 1)
-                    {
-                        y -= (y - 1) * 0.25f;
-                    } else if (y < 1)
-                    {
-                        y += (1 - y) * 0.25f;
-                    }
-                    x *= 0.75f;
-                    inputs.Add(new ComponentInput
-                    {
-                        Position = new Vector3(x, y, z),
-                        Rotation = new Vector3(90f, 0f, 0f),
-                        Length = len
-                    });
-                }
-            } else
-            {
-                if (scale == 1)
+                    Position = new Vector3(currentX - (scale/2f), currentY, 0f),
+                    Rotation = new Vector3(90f, 0f, 0f),
+                    Length = 0.5f
+                });
+                currentX += 0.33333333333333333333f;
+                if (currentX >= scale)
                 {
-
-                } else
-                {
-
+                    currentX = 0.16666666666666666f;
+                    currentY += 0.3333333333333333f;
                 }
             }
+
             return new ComponentVariant
             {
                 VariantPlacingRules = placingRules,

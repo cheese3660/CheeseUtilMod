@@ -1,0 +1,16 @@
+﻿BCD4:
+    column: "Utility"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.BCD4
+BCD8:
+    column: "Utility"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.BCD8
+BCD16:
+    column: "Utility"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.BCD16
+BCD32:
+    column: "Utility"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.BCD32
