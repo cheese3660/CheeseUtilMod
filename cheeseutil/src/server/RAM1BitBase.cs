@@ -1,8 +1,11 @@
 ﻿using LogicAPI.Server.Components;
+using System;
+using System.Text;
+using CheeseUtilMod.Server;
 
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM1BitBase : LogicComponent
+    public abstract class RAM1BitBase : LogicComponent, FileLoadable
     {
         public override bool HasPersistentValues
         {
@@ -15,11 +18,17 @@ namespace CheeseUtilMod.Components
         public abstract int addressLines { get; }
         private static int PEG_CS = 0;
         private static int PEG_W = 1;
-        private static int PEG_D = 2;
+        private static int PEG_L = 2;
+        private static int PEG_D = 3;
         private byte[] memory;
         protected override void Initialize()
         {
             memory = new byte[(1 << addressLines)/8];
+            CheeseUtilServer.fileLoadables.Add(this);
+        }
+        public override void Dispose()
+        {
+            CheeseUtilServer.fileLoadables.Remove(this);
         }
         private int getPegShifted(int peg, int shift)
         {
@@ -31,7 +40,7 @@ namespace CheeseUtilMod.Components
             int address = 0;
             for (int i = 0; i < addressLines; i++)
             {
-                address |= getPegShifted(i + 2 + 1, i);
+                address |= getPegShifted(i + 3 + 1, i);
             }
             int byteAddress = address / 8;
             int bitIndex = address % 8;
@@ -65,5 +74,21 @@ namespace CheeseUtilMod.Components
             if (data != null)
                 memory = data;
         }
+        public void Load(byte[] filedata, LICC.LineWriter writer)
+        {
+            if (base.Inputs[PEG_L].On)
+            {
+                var max_index = (1 << addressLines) / 8;
+                if (filedata.Length < max_index)
+                {
+                    max_index = filedata.Length;
+                }
+                for (int i = 0; i < max_index; i++)
+                {
+                    memory[i] = filedata[i];
+                }
+            }
+        }
     }
+
 }

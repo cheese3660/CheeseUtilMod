@@ -1,8 +1,11 @@
 ﻿using LogicAPI.Server.Components;
+using System;
+using System.Text;
 
+using CheeseUtilMod.Server;
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM4BitBase : LogicComponent
+    public abstract class RAM4BitBase : LogicComponent, FileLoadable
     {
         public override bool HasPersistentValues
         {
@@ -15,16 +18,22 @@ namespace CheeseUtilMod.Components
         public abstract int addressLines { get; }
         private static int PEG_CS = 0;
         private static int PEG_W = 1;
-        private static int PEG_D0 = 2;
-        private static int PEG_D1 = 3;
-        private static int PEG_D2 = 4;
-        private static int PEG_D3 = 5;
+        private static int PEG_L = 2;
+        private static int PEG_D0 = 3;
+        private static int PEG_D1 = 4;
+        private static int PEG_D2 = 5;
+        private static int PEG_D3 = 6;
 
 
         private byte[] memory;
         protected override void Initialize()
         {
             memory = new byte[(1 << addressLines) / 2];
+            CheeseUtilServer.fileLoadables.Add(this);
+        }
+        public override void Dispose()
+        {
+            CheeseUtilServer.fileLoadables.Remove(this);
         }
         private int getPegShifted(int peg, int shift)
         {
@@ -36,7 +45,7 @@ namespace CheeseUtilMod.Components
             int address = 0;
             for (int i = 0; i < addressLines; i++)
             {
-                address |= getPegShifted(i + 2 + 4, i);
+                address |= getPegShifted(i + 3 + 4, i);
             }
             int byteAddress = address / 2;
             int nibbleIndex = address % 2;
@@ -76,6 +85,21 @@ namespace CheeseUtilMod.Components
         {
             if (data != null)
                 memory = data;
+        }
+        public void Load(byte[] filedata, LICC.LineWriter writer)
+        {
+            if (base.Inputs[PEG_L].On)
+            {
+                var max_index = (1 << addressLines) / 2;
+                if (filedata.Length < max_index)
+                {
+                    max_index = filedata.Length;
+                }
+                for (int i = 0; i < max_index; i++)
+                {
+                    memory[i] = filedata[i];
+                }
+            }
         }
     }
 }

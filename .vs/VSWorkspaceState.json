@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\cheeseutil",
-    "\\cheeseutil\\src",
-    "\\cheeseutil\\src\\server"
+    "\\cheeseutil"
   ],
-  "PreviewInSolutionExplorer": false
+  "SelectedNode": "\\genreference.py",
+  "PreviewInSolutionExplorer": true
 }

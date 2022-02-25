@@ -1,9 +1,11 @@
-﻿using LogicAPI.Server.Components;
+﻿using LICC;
+using LogicAPI.Server.Components;
 using System;
-
+using System.Text;
+using CheeseUtilMod.Server;
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM16BitBase : LogicComponent
+    public abstract class RAM16BitBase : LogicComponent, FileLoadable
     {
         public override bool HasPersistentValues
         {
@@ -16,11 +18,17 @@ namespace CheeseUtilMod.Components
         public abstract int addressLines { get; }
         private static int PEG_CS = 0;
         private static int PEG_W = 1;
+        private static int PEG_L = 2;
 
         private ushort[] memory;
         protected override void Initialize()
         {
             memory = new ushort[(1 << addressLines)];
+            CheeseUtilServer.fileLoadables.Add(this);
+        }
+        public override void Dispose()
+        {
+            CheeseUtilServer.fileLoadables.Remove(this);
         }
         private int getPegShifted(int peg, int shift)
         {
@@ -32,14 +40,14 @@ namespace CheeseUtilMod.Components
             int address = 0;
             for (int i = 0; i < addressLines; i++)
             {
-                address |= getPegShifted(i + 2 + 16, i);
+                address |= getPegShifted(i + 3 + 16, i);
             }
             if (base.Inputs[PEG_W].On)
             {
                 int data = 0;
                 for (int i = 0; i < 16; i++)
                 {
-                    data |= getPegShifted(i + 2, i);
+                    data |= getPegShifted(i + 3, i);
                 }
                 memory[address] = (ushort)data;
             }
@@ -51,7 +59,8 @@ namespace CheeseUtilMod.Components
                     base.Outputs[i].On = (data & 1) == 1;
                     data >>= 1;
                 }
-            } else
+            }
+            else
             {
 
                 for (int i = 0; i < 16; i++)
@@ -80,6 +89,28 @@ namespace CheeseUtilMod.Components
             {
                 memory = new ushort[data.Length / 2];
                 Buffer.BlockCopy(data, 0, memory, 0, data.Length);
+            }
+        }
+        public void Load(byte[] filedata, LineWriter writer)
+        {
+            writer.WriteLine("Attempting to load file into RAM component");
+            if (base.Inputs[PEG_L].On)
+            {
+                writer.WriteLine("Starting write into memory!");
+                var max_index = (1 << addressLines);
+                if (filedata.Length/2 < max_index)
+                {
+                    max_index = filedata.Length/2;
+                }
+                writer.WriteLine($"Writing {max_index} shorts!");
+                for (int i = 0; i < max_index; i++)
+                {
+                    ushort lo = filedata[i*2];
+                    ushort hi = filedata[i*2+1];
+                    ushort val = (ushort)(lo | (hi << 8));
+                    writer.WriteLine($"{i} = {val}");
+                    memory[i] = val;
+                }
             }
         }
     }

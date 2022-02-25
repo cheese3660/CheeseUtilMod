@@ -1,0 +1,2425 @@
+﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E342EF4C-56C4-4CD9-849B-BDA2B140D2B8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <NoStandardLibraries>false</NoStandardLibraries>
+    <AssemblyName>ClassLibrary</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="Accessibility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Accessibility.dll</HintPath>
+    </Reference>
+    <Reference Include="AgileObjects.NetStandardPolyfills">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\AgileObjects.NetStandardPolyfills.dll</HintPath>
+    </Reference>
+    <Reference Include="AgileObjects.ReadableExpressions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\AgileObjects.ReadableExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr4.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Antlr4.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-console-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-console-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-datetime-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-datetime-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-debug-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-debug-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-errorhandling-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-errorhandling-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-file-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-file-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-file-l1-2-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-file-l1-2-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-file-l2-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-file-l2-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-handle-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-handle-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-heap-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-heap-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-interlocked-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-interlocked-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-libraryloader-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-libraryloader-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-localization-l1-2-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-localization-l1-2-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-memory-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-memory-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-namedpipe-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-namedpipe-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-processenvironment-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-processenvironment-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-processthreads-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-processthreads-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-processthreads-l1-1-1">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-processthreads-l1-1-1.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-profile-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-profile-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-rtlsupport-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-rtlsupport-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-string-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-string-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-synch-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-synch-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-synch-l1-2-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-synch-l1-2-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-sysinfo-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-sysinfo-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-timezone-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-timezone-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-core-util-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-core-util-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-conio-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-conio-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-convert-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-convert-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-environment-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-environment-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-filesystem-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-filesystem-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-heap-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-heap-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-locale-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-locale-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-math-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-math-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-multibyte-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-multibyte-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-private-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-private-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-process-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-process-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-runtime-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-runtime-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-stdio-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-stdio-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-string-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-string-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-time-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-time-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="api-ms-win-crt-utility-l1-1-0">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\api-ms-win-crt-utility-l1-1-0.dll</HintPath>
+    </Reference>
+    <Reference Include="Ben.Demystifier">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ben.Demystifier.dll</HintPath>
+    </Reference>
+    <Reference Include="Boo.Lang">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Boo.Lang.dll</HintPath>
+    </Reference>
+    <Reference Include="BouncyCastle.Crypto">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ClassImpl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ClassImpl.dll</HintPath>
+    </Reference>
+    <Reference Include="clrcompression">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\clrcompression.dll</HintPath>
+    </Reference>
+    <Reference Include="clretwrc">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\clretwrc.dll</HintPath>
+    </Reference>
+    <Reference Include="clrjit">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\clrjit.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandLine">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="coreclr">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\coreclr.dll</HintPath>
+    </Reference>
+    <Reference Include="Dawn.Guard">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Dawn.Guard.dll</HintPath>
+    </Reference>
+    <Reference Include="dbgshim">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\dbgshim.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DOTween.dll</HintPath>
+    </Reference>
+    <Reference Include="DOTween.Modules">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\DOTween.Modules.dll</HintPath>
+    </Reference>
+    <Reference Include="Facepunch.Steamworks">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Facepunch.Steamworks.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyInput">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FancyInput.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyInput.Rebinding">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FancyInput.Rebinding.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyInput.Rendering">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FancyInput.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyPantsConsole">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FancyPantsConsole.dll</HintPath>
+    </Reference>
+    <Reference Include="FancyPantsConsole.Interfaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\FancyPantsConsole.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Freezable">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Freezable.dll</HintPath>
+    </Reference>
+    <Reference Include="GameDataAccess">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\GameDataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="Google.Protobuf">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core.Api">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Grpc.Core.Api.dll</HintPath>
+    </Reference>
+    <Reference Include="Grpc.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Grpc.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="hostfxr">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\hostfxr.dll</HintPath>
+    </Reference>
+    <Reference Include="hostpolicy">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\hostpolicy.dll</HintPath>
+    </Reference>
+    <Reference Include="InterSUCC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\InterSUCC.dll</HintPath>
+    </Reference>
+    <Reference Include="Ionic.Zip.Unity">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ionic.Zip.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="JetBrains.Annotations">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\JetBrains.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="JimmysUnityUtilities">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\JimmysUnityUtilities.dll</HintPath>
+    </Reference>
+    <Reference Include="KinematicCharacterController">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\KinematicCharacterController.dll</HintPath>
+    </Reference>
+    <Reference Include="KnifeOutline">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\KnifeOutline.dll</HintPath>
+    </Reference>
+    <Reference Include="LICC.Console">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LICC.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="LICC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LICC.dll</HintPath>
+    </Reference>
+    <Reference Include="Lidgren.Network">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Lidgren.Network.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LightInject.dll</HintPath>
+    </Reference>
+    <Reference Include="LightInject.Microsoft.DependencyInjection">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LightInject.Microsoft.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicAPI.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicAPI.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicAPI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicAPI.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicAPI.Server">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicAPI.Server.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicLocalization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicLocalization.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicLog">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicLog.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicScript">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicScript.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicSettings.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicSettings.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicSettings.Internal">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicSettings.Internal.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicSynth">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicSynth.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicUI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicUI.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Audio">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Audio.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Building">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Building.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.BuildingManagement">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.BuildingManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.CameraCode">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.CameraCode.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Chat">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Chat.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.CheatCodes">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.CheatCodes.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.ClientCode">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.ClientCode.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.ClientWorldStuff">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.ClientWorldStuff.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Environments">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Environments.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.GameStates">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.GameStates.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Graphics">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Input">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Input.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Interfaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Interfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Messages">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Messages.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Modding.Assets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Modding.Assets.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Modding.Compilation">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Modding.Compilation.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Modding">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Modding.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Models">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Networking">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Online">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Online.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Outlines">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Outlines.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Physics">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Physics.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Players">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Players.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.References">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.References.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Remoting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Remoting.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Rendering">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Rendering.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.SharedCode">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.SharedCode.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.UI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.UnityBullshit">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.UnityBullshit.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Utilities">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Utilities.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.Worlds">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LogicWorld.Worlds.dll</HintPath>
+    </Reference>
+    <Reference Include="LWRPAmbientOcclusion">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\LWRPAmbientOcclusion.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagePack.Annotations">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\MessagePack.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="MessagePack">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\MessagePack.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Connections.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.Connections.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Connections.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.Http.Connections.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.Http.Features">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.Http.Features.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Client.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.SignalR.Client.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.SignalR.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.SignalR.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNetCore.SignalR.Protocols.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.AspNetCore.SignalR.Protocols.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Scripting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.CSharp.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.CSharp.Workspaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.CSharp.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Scripting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.Scripting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeAnalysis.Workspaces">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CodeAnalysis.Workspaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.DiaSymReader.Native.amd64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.DiaSymReader.Native.amd64.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.CommandLine">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.CommandLine.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.EnvironmentVariables">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.EnvironmentVariables.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.FileExtensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.FileExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.UserSecrets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Configuration.UserSecrets.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.FileProviders.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileProviders.Physical">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.FileProviders.Physical.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.FileSystemGlobbing">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.FileSystemGlobbing.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Hosting.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Hosting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Configuration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Console">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Debug">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.EventLog">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.EventSource">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Logging.EventSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options.ConfigurationExtensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Options.ConfigurationExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.VisualBasic.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.VisualBasic.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Win32.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Win32.Registry">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Microsoft.Win32.Registry.dll</HintPath>
+    </Reference>
+    <Reference Include="Minis">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Minis.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Data.Sqlite">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Mono.Data.Sqlite.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Posix">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Mono.Posix.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.WebBrowser">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Mono.WebBrowser.dll</HintPath>
+    </Reference>
+    <Reference Include="mscordaccore">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscordaccore.dll</HintPath>
+    </Reference>
+    <Reference Include="mscordaccore_amd64_amd64_4.700.21.51404">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscordaccore_amd64_amd64_4.700.21.51404.dll</HintPath>
+    </Reference>
+    <Reference Include="mscordbi">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscordbi.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorlib">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorrc.debug">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscorrc.debug.dll</HintPath>
+    </Reference>
+    <Reference Include="mscorrc">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\mscorrc.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NaughtyAttributes.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="NaughtyAttributes.Test">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\NaughtyAttributes.Test.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\netstandard.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json.Unity">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Novell.Directory.Ldap">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Novell.Directory.Ldap.dll</HintPath>
+    </Reference>
+    <Reference Include="OBJImport">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\OBJImport.dll</HintPath>
+    </Reference>
+    <Reference Include="RtMidi.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\RtMidi.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="SamsBlur">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SamsBlur.dll</HintPath>
+    </Reference>
+    <Reference Include="sc.stylizedwater2.runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\sc.stylizedwater2.runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="SECCS">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SECCS.dll</HintPath>
+    </Reference>
+    <Reference Include="Server">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Server.dll</HintPath>
+    </Reference>
+    <Reference Include="Shapes2D">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Shapes2D.dll</HintPath>
+    </Reference>
+    <Reference Include="Simple360Render">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Simple360Render.dll</HintPath>
+    </Reference>
+    <Reference Include="SUCC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\SUCC.dll</HintPath>
+    </Reference>
+    <Reference Include="System.AppContext">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.AppContext.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Buffers">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Concurrent">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Collections.Concurrent.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Immutable">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Collections.Immutable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.NonGeneric">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Collections.NonGeneric.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Collections.Specialized">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Collections.Specialized.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Composition">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.Composition.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.DataAnnotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.EventBasedAsync">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.EventBasedAsync.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.TypeConverter">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ComponentModel.TypeConverter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Convention">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Composition.Convention.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Hosting">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Composition.Hosting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Composition.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.TypedParts">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Composition.TypedParts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Console">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Console.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Common">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Data.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Data.DataSetExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Design">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Contracts">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.Contracts.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Debug">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.Debug.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.EventLog">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.EventLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.FileVersionInfo">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.FileVersionInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Process">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.Process.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.StackTrace">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.TextWriterTraceListener">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.TextWriterTraceListener.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tools">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.Tools.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.TraceSource">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.TraceSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.Tracing">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Diagnostics.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.DirectoryServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Design">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Drawing.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Drawing.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Drawing.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Dynamic.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Dynamic.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.EnterpriseServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Calendars">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Globalization.Calendars.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Globalization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Globalization.Extensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.Brotli">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Compression.Brotli.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.FileSystem">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Compression.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression.ZipFile">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Compression.ZipFile.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.AccessControl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.FileSystem.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.FileSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.DriveInfo">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.FileSystem.DriveInfo.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.FileSystem.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.FileSystem.Watcher">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.FileSystem.Watcher.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.IsolatedStorage">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.IsolatedStorage.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.MemoryMappedFiles">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.MemoryMappedFiles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipelines">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Pipelines.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipes.AccessControl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Pipes.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Pipes">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.Pipes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.UnmanagedMemoryStream">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.IO.UnmanagedMemoryStream.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Expressions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Linq.Expressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Parallel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Linq.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Linq.Queryable">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Linq.Queryable.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Memory">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.HttpListener">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.HttpListener.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Mail">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Mail.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NameResolution">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.NameResolution.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.NetworkInformation">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.NetworkInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Ping">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Ping.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Requests">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Requests.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Security">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.ServicePoint">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.ServicePoint.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Sockets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.Sockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebClient">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.WebClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebHeaderCollection">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.WebHeaderCollection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebProxy">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.WebProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.WebSockets.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.WebSockets">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Net.WebSockets.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics.Vectors">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ObjectModel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Private.CoreLib">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Private.CoreLib.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Private.DataContractSerialization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Private.DataContractSerialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Private.Uri">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Private.Uri.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Private.Xml">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Private.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Private.Xml.Linq">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Private.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reactive">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reactive.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.DispatchProxy">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.DispatchProxy.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Emit.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.ILGeneration">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Emit.ILGeneration.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Emit.Lightweight">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Emit.Lightweight.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Extensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Metadata">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Metadata.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Reflection.TypeExtensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Reflection.TypeExtensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Reader">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Resources.Reader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.ResourceManager">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Resources.ResourceManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Resources.Writer">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Resources.Writer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.VisualC">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.CompilerServices.VisualC.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Extensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Handles">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Handles.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.InteropServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.RuntimeInformation">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.InteropServices.RuntimeInformation.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.InteropServices.WindowsRuntime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.InteropServices.WindowsRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Intrinsics">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Intrinsics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Loader">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Loader.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Numerics">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Numerics.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.Formatters.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Formatters.Soap">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.Formatters.Soap.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization.Xml">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.Serialization.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.WindowsRuntime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.WindowsRuntime.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.WindowsRuntime.UI.Xaml">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Runtime.WindowsRuntime.UI.Xaml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.AccessControl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.AccessControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Claims">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Claims.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Algorithms">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.Algorithms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Cng">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.Cng.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Csp">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.Csp.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Encoding">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.OpenSsl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.OpenSsl.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.Primitives">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Cryptography.X509Certificates">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Cryptography.X509Certificates.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Principal.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.Principal.Windows">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.Principal.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Security.SecureString">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Security.SecureString.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Internals">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ServiceModel.Internals.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceModel.Web">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ServiceModel.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ServiceProcess">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ServiceProcess.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.CodePages">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Encoding.CodePages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Encoding.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encoding.Extensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Encoding.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Encodings.Web">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Encodings.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.Json">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Text.RegularExpressions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Text.RegularExpressions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Channels">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Channels.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Overlapped">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Overlapped.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Dataflow">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Tasks.Dataflow.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Tasks.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Parallel">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Tasks.Parallel.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Thread">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Thread.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.ThreadPool">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.ThreadPool.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Timer">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Threading.Timer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Transactions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Transactions.Local">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Transactions.Local.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Web.ApplicationServices.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.HttpUtility">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Web.HttpUtility.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Windows.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Windows.Forms.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.ReaderWriter">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.ReaderWriter.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Serialization">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XDocument">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlDocument">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.XmlDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XmlSerializer">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.XmlSerializer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.XPath.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.XPath.XDocument">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\System.Xml.XPath.XDocument.dll</HintPath>
+    </Reference>
+    <Reference Include="ThreadNinja">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ThreadNinja.dll</HintPath>
+    </Reference>
+    <Reference Include="TrueColorConsole">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\TrueColorConsole.dll</HintPath>
+    </Reference>
+    <Reference Include="TypeFinder">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\TypeFinder.dll</HintPath>
+    </Reference>
+    <Reference Include="ucrtbase">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\ucrtbase.dll</HintPath>
+    </Reference>
+    <Reference Include="UIShapes">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UIShapes.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.InputSystem">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.InputSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Postprocessing.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.Postprocessing.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Csg">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProBuilder.Csg.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProBuilder.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.KdTree">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProBuilder.KdTree.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Poly2Tri">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProBuilder.Poly2Tri.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProBuilder.Stl">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProBuilder.Stl.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ProGrids">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.ProGrids.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Websocket.Client">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Websocket.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\WindowsBase.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include=".vs\CheeseUtilMod2\v17\.suo" />
+    <None Include=".vs\ProjectSettings.json" />
+    <None Include=".vs\slnx.sqlite" />
+    <None Include=".vs\UtilMod\v16\.suo" />
+    <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="cheeseutil\components\displays.succ" />
+    <None Include="cheeseutil\components\memory.succ" />
+    <None Include="cheeseutil\components\utility.succ" />
+    <None Include="cheeseutil\languages\English\English_components.succ" />
+    <None Include="cheeseutil\Manifest.succ" />
+    <None Include="lib\Server.deps.json" />
+    <None Include="lib\Server.runtimeconfig.json" />
+    <None Include="lib\SOS_README.md" />
+    <None Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="cheeseutil\src\client\BCD16.cs" />
+    <Compile Include="cheeseutil\src\client\BCD32.cs" />
+    <Compile Include="cheeseutil\src\client\BCD4.cs" />
+    <Compile Include="cheeseutil\src\client\BCD8.cs" />
+    <Compile Include="cheeseutil\src\client\Bin2BCDPrefabBase.cs" />
+    <Compile Include="cheeseutil\src\client\CheeseUtilClient.cs" />
+    <Compile Include="cheeseutil\src\client\Hex1x2.cs" />
+    <Compile Include="cheeseutil\src\client\Hex2x4.cs" />
+    <Compile Include="cheeseutil\src\client\Hex4x8.cs" />
+    <Compile Include="cheeseutil\src\client\HexDisplay.cs" />
+    <Compile Include="cheeseutil\src\client\Ram16aX16b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram16aX1b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram16aX4b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram16aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram4aX16b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram4aX1b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram4aX4b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram4aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram8aX16b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram8aX1b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram8aX4b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram8aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\RamPrefabBase.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSeg1x2.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSeg2x4.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSeg4x8.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSegmentDisplay.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSegPrefabBase.cs" />
+    <Compile Include="cheeseutil\src\server\BCD16.cs" />
+    <Compile Include="cheeseutil\src\server\BCD32.cs" />
+    <Compile Include="cheeseutil\src\server\BCD4.cs" />
+    <Compile Include="cheeseutil\src\server\BCD8.cs" />
+    <Compile Include="cheeseutil\src\server\Bin2BCDBase.cs" />
+    <Compile Include="cheeseutil\src\server\CheeseUtilServer.cs" />
+    <Compile Include="cheeseutil\src\server\FileLoadable.cs" />
+    <Compile Include="cheeseutil\src\server\Ram16ax16b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram16aX1b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram16aX4b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram16aX8b.cs" />
+    <Compile Include="cheeseutil\src\server\RAM16BitBase.cs" />
+    <Compile Include="cheeseutil\src\server\RAM1BitBase.cs" />
+    <Compile Include="cheeseutil\src\server\Ram4aX16b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram4aX1b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram4aX4b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram4aX8b.cs" />
+    <Compile Include="cheeseutil\src\server\RAM4BitBase.cs" />
+    <Compile Include="cheeseutil\src\server\Ram8aX16b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram8aX1b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram8aX4b.cs" />
+    <Compile Include="cheeseutil\src\server\Ram8aX8b.cs" />
+    <Compile Include="cheeseutil\src\server\RAM8BitBase.cs" />
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".gitignore" />
+    <Content Include="genreference.py" />
+    <Content Include="lib\Accessibility.dll" />
+    <Content Include="lib\AgileObjects.NetStandardPolyfills.dll" />
+    <Content Include="lib\AgileObjects.ReadableExpressions.dll" />
+    <Content Include="lib\Antlr4.Runtime.dll" />
+    <Content Include="lib\api-ms-win-core-console-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-datetime-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-debug-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-errorhandling-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-file-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-file-l1-2-0.dll" />
+    <Content Include="lib\api-ms-win-core-file-l2-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-handle-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-heap-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-interlocked-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-libraryloader-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-localization-l1-2-0.dll" />
+    <Content Include="lib\api-ms-win-core-memory-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-namedpipe-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-processenvironment-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-processthreads-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-processthreads-l1-1-1.dll" />
+    <Content Include="lib\api-ms-win-core-profile-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-rtlsupport-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-string-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-synch-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-synch-l1-2-0.dll" />
+    <Content Include="lib\api-ms-win-core-sysinfo-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-timezone-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-core-util-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-conio-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-convert-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-environment-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-filesystem-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-heap-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-locale-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-math-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-multibyte-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-private-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-process-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-runtime-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-stdio-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-string-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-time-l1-1-0.dll" />
+    <Content Include="lib\api-ms-win-crt-utility-l1-1-0.dll" />
+    <Content Include="lib\Ben.Demystifier.dll" />
+    <Content Include="lib\Boo.Lang.dll" />
+    <Content Include="lib\BouncyCastle.Crypto.dll" />
+    <Content Include="lib\ClassImpl.dll" />
+    <Content Include="lib\clrcompression.dll" />
+    <Content Include="lib\clretwrc.dll" />
+    <Content Include="lib\clrjit.dll" />
+    <Content Include="lib\CommandLine.dll" />
+    <Content Include="lib\coreclr.dll" />
+    <Content Include="lib\Dawn.Guard.dll" />
+    <Content Include="lib\dbgshim.dll" />
+    <Content Include="lib\DOTween.dll" />
+    <Content Include="lib\DOTween.Modules.dll" />
+    <Content Include="lib\Facepunch.Steamworks.dll" />
+    <Content Include="lib\FancyInput.dll" />
+    <Content Include="lib\FancyInput.Rebinding.dll" />
+    <Content Include="lib\FancyInput.Rendering.dll" />
+    <Content Include="lib\FancyPantsConsole.dll" />
+    <Content Include="lib\FancyPantsConsole.Interfaces.dll" />
+    <Content Include="lib\Freezable.dll" />
+    <Content Include="lib\GameDataAccess.dll" />
+    <Content Include="lib\Google.Protobuf.dll" />
+    <Content Include="lib\Grpc.Core.Api.dll" />
+    <Content Include="lib\Grpc.Core.dll" />
+    <Content Include="lib\hostfxr.dll" />
+    <Content Include="lib\hostpolicy.dll" />
+    <Content Include="lib\InterSUCC.dll" />
+    <Content Include="lib\InterSUCC.pdb" />
+    <Content Include="lib\Ionic.Zip.Unity.dll" />
+    <Content Include="lib\JetBrains.Annotations.dll" />
+    <Content Include="lib\JimmysUnityUtilities.dll" />
+    <Content Include="lib\JimmysUnityUtilities.pdb" />
+    <Content Include="lib\KinematicCharacterController.dll" />
+    <Content Include="lib\KnifeOutline.dll" />
+    <Content Include="lib\LICC.Console.dll" />
+    <Content Include="lib\LICC.Console.pdb" />
+    <Content Include="lib\LICC.dll" />
+    <Content Include="lib\LICC.pdb" />
+    <Content Include="lib\Lidgren.Network.dll" />
+    <Content Include="lib\Lidgren.Network.pdb" />
+    <Content Include="lib\LightInject.dll" />
+    <Content Include="lib\LightInject.Microsoft.DependencyInjection.dll" />
+    <Content Include="lib\log.txt" />
+    <Content Include="lib\LogicAPI.Client.dll" />
+    <Content Include="lib\LogicAPI.dll" />
+    <Content Include="lib\LogicAPI.pdb" />
+    <Content Include="lib\LogicAPI.Server.dll" />
+    <Content Include="lib\LogicAPI.Server.pdb" />
+    <Content Include="lib\LogicAPI.Server.xml" />
+    <Content Include="lib\LogicAPI.xml" />
+    <Content Include="lib\LogicLocalization.dll" />
+    <Content Include="lib\LogicLog.dll" />
+    <Content Include="lib\LogicLog.pdb" />
+    <Content Include="lib\LogicScript.dll" />
+    <Content Include="lib\LogicScript.pdb" />
+    <Content Include="lib\LogicScript.xml" />
+    <Content Include="lib\LogicSettings.Core.dll" />
+    <Content Include="lib\LogicSettings.Internal.dll" />
+    <Content Include="lib\LogicSynth.dll" />
+    <Content Include="lib\LogicUI.dll" />
+    <Content Include="lib\LogicWorld.Audio.dll" />
+    <Content Include="lib\LogicWorld.Building.dll" />
+    <Content Include="lib\LogicWorld.BuildingManagement.dll" />
+    <Content Include="lib\LogicWorld.CameraCode.dll" />
+    <Content Include="lib\LogicWorld.Chat.dll" />
+    <Content Include="lib\LogicWorld.CheatCodes.dll" />
+    <Content Include="lib\LogicWorld.ClientCode.dll" />
+    <Content Include="lib\LogicWorld.ClientWorldStuff.dll" />
+    <Content Include="lib\LogicWorld.dll" />
+    <Content Include="lib\LogicWorld.Environments.dll" />
+    <Content Include="lib\LogicWorld.GameStates.dll" />
+    <Content Include="lib\LogicWorld.Graphics.dll" />
+    <Content Include="lib\LogicWorld.Input.dll" />
+    <Content Include="lib\LogicWorld.Interfaces.dll" />
+    <Content Include="lib\LogicWorld.Messages.dll" />
+    <Content Include="lib\LogicWorld.Modding.Assets.dll" />
+    <Content Include="lib\LogicWorld.Modding.Compilation.dll" />
+    <Content Include="lib\LogicWorld.Modding.dll" />
+    <Content Include="lib\LogicWorld.Models.dll" />
+    <Content Include="lib\LogicWorld.Networking.dll" />
+    <Content Include="lib\LogicWorld.Online.dll" />
+    <Content Include="lib\LogicWorld.Outlines.dll" />
+    <Content Include="lib\LogicWorld.Physics.dll" />
+    <Content Include="lib\LogicWorld.Players.dll" />
+    <Content Include="lib\LogicWorld.References.dll" />
+    <Content Include="lib\LogicWorld.Remoting.dll" />
+    <Content Include="lib\LogicWorld.Rendering.dll" />
+    <Content Include="lib\LogicWorld.SharedCode.dll" />
+    <Content Include="lib\LogicWorld.SharedCode.pdb" />
+    <Content Include="lib\LogicWorld.UI.dll" />
+    <Content Include="lib\LogicWorld.UnityBullshit.dll" />
+    <Content Include="lib\LogicWorld.Utilities.dll" />
+    <Content Include="lib\LogicWorld.Worlds.dll" />
+    <Content Include="lib\LWRPAmbientOcclusion.dll" />
+    <Content Include="lib\MessagePack.Annotations.dll" />
+    <Content Include="lib\MessagePack.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.Connections.Abstractions.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.Http.Connections.Client.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.Http.Connections.Common.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.Http.Features.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.SignalR.Client.Core.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.SignalR.Client.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.SignalR.Common.dll" />
+    <Content Include="lib\Microsoft.AspNetCore.SignalR.Protocols.Json.dll" />
+    <Content Include="lib\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.CSharp.Workspaces.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="lib\Microsoft.CodeAnalysis.Workspaces.dll" />
+    <Content Include="lib\Microsoft.CSharp.dll" />
+    <Content Include="lib\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.Binder.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.CommandLine.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.EnvironmentVariables.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.FileExtensions.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.Json.dll" />
+    <Content Include="lib\Microsoft.Extensions.Configuration.UserSecrets.dll" />
+    <Content Include="lib\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
+    <Content Include="lib\Microsoft.Extensions.DependencyInjection.dll" />
+    <Content Include="lib\Microsoft.Extensions.FileProviders.Abstractions.dll" />
+    <Content Include="lib\Microsoft.Extensions.FileProviders.Physical.dll" />
+    <Content Include="lib\Microsoft.Extensions.FileSystemGlobbing.dll" />
+    <Content Include="lib\Microsoft.Extensions.Hosting.Abstractions.dll" />
+    <Content Include="lib\Microsoft.Extensions.Hosting.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.Configuration.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.Console.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.Debug.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.EventLog.dll" />
+    <Content Include="lib\Microsoft.Extensions.Logging.EventSource.dll" />
+    <Content Include="lib\Microsoft.Extensions.Options.ConfigurationExtensions.dll" />
+    <Content Include="lib\Microsoft.Extensions.Options.dll" />
+    <Content Include="lib\Microsoft.Extensions.Primitives.dll" />
+    <Content Include="lib\Microsoft.VisualBasic.Core.dll" />
+    <Content Include="lib\Microsoft.VisualBasic.dll" />
+    <Content Include="lib\Microsoft.Win32.Primitives.dll" />
+    <Content Include="lib\Microsoft.Win32.Registry.dll" />
+    <Content Include="lib\Minis.dll" />
+    <Content Include="lib\Mono.Data.Sqlite.dll" />
+    <Content Include="lib\Mono.Posix.dll" />
+    <Content Include="lib\Mono.Security.dll" />
+    <Content Include="lib\Mono.WebBrowser.dll" />
+    <Content Include="lib\mscordaccore.dll" />
+    <Content Include="lib\mscordaccore_amd64_amd64_4.700.21.51404.dll" />
+    <Content Include="lib\mscordbi.dll" />
+    <Content Include="lib\mscorlib.dll" />
+    <Content Include="lib\mscorrc.debug.dll" />
+    <Content Include="lib\mscorrc.dll" />
+    <Content Include="lib\NaughtyAttributes.Core.dll" />
+    <Content Include="lib\NaughtyAttributes.Test.dll" />
+    <Content Include="lib\netstandard.dll" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\Newtonsoft.Json.Unity.dll" />
+    <Content Include="lib\Novell.Directory.Ldap.dll" />
+    <Content Include="lib\OBJImport.dll" />
+    <Content Include="lib\RtMidi.Runtime.dll" />
+    <Content Include="lib\SamsBlur.dll" />
+    <Content Include="lib\sc.stylizedwater2.runtime.dll" />
+    <Content Include="lib\SECCS.dll" />
+    <Content Include="lib\SECCS.pdb" />
+    <Content Include="lib\Server.dll" />
+    <Content Include="lib\Server.exe" />
+    <Content Include="lib\Server.pdb" />
+    <Content Include="lib\Shapes2D.dll" />
+    <Content Include="lib\Simple360Render.dll" />
+    <Content Include="lib\SUCC.dll" />
+    <Content Include="lib\SUCC.pdb" />
+    <Content Include="lib\System.AppContext.dll" />
+    <Content Include="lib\System.Buffers.dll" />
+    <Content Include="lib\System.Collections.Concurrent.dll" />
+    <Content Include="lib\System.Collections.dll" />
+    <Content Include="lib\System.Collections.Immutable.dll" />
+    <Content Include="lib\System.Collections.NonGeneric.dll" />
+    <Content Include="lib\System.Collections.Specialized.dll" />
+    <Content Include="lib\System.ComponentModel.Annotations.dll" />
+    <Content Include="lib\System.ComponentModel.Composition.dll" />
+    <Content Include="lib\System.ComponentModel.DataAnnotations.dll" />
+    <Content Include="lib\System.ComponentModel.dll" />
+    <Content Include="lib\System.ComponentModel.EventBasedAsync.dll" />
+    <Content Include="lib\System.ComponentModel.Primitives.dll" />
+    <Content Include="lib\System.ComponentModel.TypeConverter.dll" />
+    <Content Include="lib\System.Composition.AttributedModel.dll" />
+    <Content Include="lib\System.Composition.Convention.dll" />
+    <Content Include="lib\System.Composition.Hosting.dll" />
+    <Content Include="lib\System.Composition.Runtime.dll" />
+    <Content Include="lib\System.Composition.TypedParts.dll" />
+    <Content Include="lib\System.Configuration.dll" />
+    <Content Include="lib\System.Console.dll" />
+    <Content Include="lib\System.Core.dll" />
+    <Content Include="lib\System.Data.Common.dll" />
+    <Content Include="lib\System.Data.DataSetExtensions.dll" />
+    <Content Include="lib\System.Data.dll" />
+    <Content Include="lib\System.Design.dll" />
+    <Content Include="lib\System.Diagnostics.Contracts.dll" />
+    <Content Include="lib\System.Diagnostics.Debug.dll" />
+    <Content Include="lib\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="lib\System.Diagnostics.EventLog.dll" />
+    <Content Include="lib\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="lib\System.Diagnostics.Process.dll" />
+    <Content Include="lib\System.Diagnostics.StackTrace.dll" />
+    <Content Include="lib\System.Diagnostics.TextWriterTraceListener.dll" />
+    <Content Include="lib\System.Diagnostics.Tools.dll" />
+    <Content Include="lib\System.Diagnostics.TraceSource.dll" />
+    <Content Include="lib\System.Diagnostics.Tracing.dll" />
+    <Content Include="lib\System.DirectoryServices.dll" />
+    <Content Include="lib\System.dll" />
+    <Content Include="lib\System.Drawing.Design.dll" />
+    <Content Include="lib\System.Drawing.dll" />
+    <Content Include="lib\System.Drawing.Primitives.dll" />
+    <Content Include="lib\System.Dynamic.Runtime.dll" />
+    <Content Include="lib\System.EnterpriseServices.dll" />
+    <Content Include="lib\System.Globalization.Calendars.dll" />
+    <Content Include="lib\System.Globalization.dll" />
+    <Content Include="lib\System.Globalization.Extensions.dll" />
+    <Content Include="lib\System.IO.Compression.Brotli.dll" />
+    <Content Include="lib\System.IO.Compression.dll" />
+    <Content Include="lib\System.IO.Compression.FileSystem.dll" />
+    <Content Include="lib\System.IO.Compression.ZipFile.dll" />
+    <Content Include="lib\System.IO.dll" />
+    <Content Include="lib\System.IO.FileSystem.AccessControl.dll" />
+    <Content Include="lib\System.IO.FileSystem.dll" />
+    <Content Include="lib\System.IO.FileSystem.DriveInfo.dll" />
+    <Content Include="lib\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="lib\System.IO.FileSystem.Watcher.dll" />
+    <Content Include="lib\System.IO.IsolatedStorage.dll" />
+    <Content Include="lib\System.IO.MemoryMappedFiles.dll" />
+    <Content Include="lib\System.IO.Pipelines.dll" />
+    <Content Include="lib\System.IO.Pipes.AccessControl.dll" />
+    <Content Include="lib\System.IO.Pipes.dll" />
+    <Content Include="lib\System.IO.UnmanagedMemoryStream.dll" />
+    <Content Include="lib\System.Linq.dll" />
+    <Content Include="lib\System.Linq.Expressions.dll" />
+    <Content Include="lib\System.Linq.Parallel.dll" />
+    <Content Include="lib\System.Linq.Queryable.dll" />
+    <Content Include="lib\System.Memory.dll" />
+    <Content Include="lib\System.Net.dll" />
+    <Content Include="lib\System.Net.Http.dll" />
+    <Content Include="lib\System.Net.HttpListener.dll" />
+    <Content Include="lib\System.Net.Mail.dll" />
+    <Content Include="lib\System.Net.NameResolution.dll" />
+    <Content Include="lib\System.Net.NetworkInformation.dll" />
+    <Content Include="lib\System.Net.Ping.dll" />
+    <Content Include="lib\System.Net.Primitives.dll" />
+    <Content Include="lib\System.Net.Requests.dll" />
+    <Content Include="lib\System.Net.Security.dll" />
+    <Content Include="lib\System.Net.ServicePoint.dll" />
+    <Content Include="lib\System.Net.Sockets.dll" />
+    <Content Include="lib\System.Net.WebClient.dll" />
+    <Content Include="lib\System.Net.WebHeaderCollection.dll" />
+    <Content Include="lib\System.Net.WebProxy.dll" />
+    <Content Include="lib\System.Net.WebSockets.Client.dll" />
+    <Content Include="lib\System.Net.WebSockets.dll" />
+    <Content Include="lib\System.Numerics.dll" />
+    <Content Include="lib\System.Numerics.Vectors.dll" />
+    <Content Include="lib\System.ObjectModel.dll" />
+    <Content Include="lib\System.Private.CoreLib.dll" />
+    <Content Include="lib\System.Private.DataContractSerialization.dll" />
+    <Content Include="lib\System.Private.Uri.dll" />
+    <Content Include="lib\System.Private.Xml.dll" />
+    <Content Include="lib\System.Private.Xml.Linq.dll" />
+    <Content Include="lib\System.Reactive.dll" />
+    <Content Include="lib\System.Reactive.xml" />
+    <Content Include="lib\System.Reflection.DispatchProxy.dll" />
+    <Content Include="lib\System.Reflection.dll" />
+    <Content Include="lib\System.Reflection.Emit.dll" />
+    <Content Include="lib\System.Reflection.Emit.ILGeneration.dll" />
+    <Content Include="lib\System.Reflection.Emit.Lightweight.dll" />
+    <Content Include="lib\System.Reflection.Extensions.dll" />
+    <Content Include="lib\System.Reflection.Metadata.dll" />
+    <Content Include="lib\System.Reflection.Primitives.dll" />
+    <Content Include="lib\System.Reflection.TypeExtensions.dll" />
+    <Content Include="lib\System.Resources.Reader.dll" />
+    <Content Include="lib\System.Resources.ResourceManager.dll" />
+    <Content Include="lib\System.Resources.Writer.dll" />
+    <Content Include="lib\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="lib\System.Runtime.CompilerServices.VisualC.dll" />
+    <Content Include="lib\System.Runtime.dll" />
+    <Content Include="lib\System.Runtime.Extensions.dll" />
+    <Content Include="lib\System.Runtime.Handles.dll" />
+    <Content Include="lib\System.Runtime.InteropServices.dll" />
+    <Content Include="lib\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="lib\System.Runtime.InteropServices.WindowsRuntime.dll" />
+    <Content Include="lib\System.Runtime.Intrinsics.dll" />
+    <Content Include="lib\System.Runtime.Loader.dll" />
+    <Content Include="lib\System.Runtime.Numerics.dll" />
+    <Content Include="lib\System.Runtime.Serialization.dll" />
+    <Content Include="lib\System.Runtime.Serialization.Formatters.dll" />
+    <Content Include="lib\System.Runtime.Serialization.Formatters.Soap.dll" />
+    <Content Include="lib\System.Runtime.Serialization.Json.dll" />
+    <Content Include="lib\System.Runtime.Serialization.Primitives.dll" />
+    <Content Include="lib\System.Runtime.Serialization.Xml.dll" />
+    <Content Include="lib\System.Runtime.WindowsRuntime.dll" />
+    <Content Include="lib\System.Runtime.WindowsRuntime.UI.Xaml.dll" />
+    <Content Include="lib\System.Security.AccessControl.dll" />
+    <Content Include="lib\System.Security.Claims.dll" />
+    <Content Include="lib\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="lib\System.Security.Cryptography.Cng.dll" />
+    <Content Include="lib\System.Security.Cryptography.Csp.dll" />
+    <Content Include="lib\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="lib\System.Security.Cryptography.OpenSsl.dll" />
+    <Content Include="lib\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="lib\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="lib\System.Security.dll" />
+    <Content Include="lib\System.Security.Principal.dll" />
+    <Content Include="lib\System.Security.Principal.Windows.dll" />
+    <Content Include="lib\System.Security.SecureString.dll" />
+    <Content Include="lib\System.ServiceModel.Internals.dll" />
+    <Content Include="lib\System.ServiceModel.Web.dll" />
+    <Content Include="lib\System.ServiceProcess.dll" />
+    <Content Include="lib\System.Text.Encoding.CodePages.dll" />
+    <Content Include="lib\System.Text.Encoding.dll" />
+    <Content Include="lib\System.Text.Encoding.Extensions.dll" />
+    <Content Include="lib\System.Text.Encodings.Web.dll" />
+    <Content Include="lib\System.Text.Json.dll" />
+    <Content Include="lib\System.Text.RegularExpressions.dll" />
+    <Content Include="lib\System.Threading.Channels.dll" />
+    <Content Include="lib\System.Threading.dll" />
+    <Content Include="lib\System.Threading.Overlapped.dll" />
+    <Content Include="lib\System.Threading.Tasks.Dataflow.dll" />
+    <Content Include="lib\System.Threading.Tasks.dll" />
+    <Content Include="lib\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="lib\System.Threading.Tasks.Parallel.dll" />
+    <Content Include="lib\System.Threading.Thread.dll" />
+    <Content Include="lib\System.Threading.ThreadPool.dll" />
+    <Content Include="lib\System.Threading.Timer.dll" />
+    <Content Include="lib\System.Transactions.dll" />
+    <Content Include="lib\System.Transactions.Local.dll" />
+    <Content Include="lib\System.ValueTuple.dll" />
+    <Content Include="lib\System.Web.ApplicationServices.dll" />
+    <Content Include="lib\System.Web.dll" />
+    <Content Include="lib\System.Web.HttpUtility.dll" />
+    <Content Include="lib\System.Web.Services.dll" />
+    <Content Include="lib\System.Windows.dll" />
+    <Content Include="lib\System.Windows.Forms.dll" />
+    <Content Include="lib\System.Xml.dll" />
+    <Content Include="lib\System.Xml.Linq.dll" />
+    <Content Include="lib\System.Xml.ReaderWriter.dll" />
+    <Content Include="lib\System.Xml.Serialization.dll" />
+    <Content Include="lib\System.Xml.XDocument.dll" />
+    <Content Include="lib\System.Xml.XmlDocument.dll" />
+    <Content Include="lib\System.Xml.XmlSerializer.dll" />
+    <Content Include="lib\System.Xml.XPath.dll" />
+    <Content Include="lib\System.Xml.XPath.XDocument.dll" />
+    <Content Include="lib\ThreadNinja.dll" />
+    <Content Include="lib\TrueColorConsole.dll" />
+    <Content Include="lib\TypeFinder.dll" />
+    <Content Include="lib\TypeFinder.pdb" />
+    <Content Include="lib\TypeFinder.xml" />
+    <Content Include="lib\ucrtbase.dll" />
+    <Content Include="lib\UIShapes.dll" />
+    <Content Include="lib\Unity.InputSystem.dll" />
+    <Content Include="lib\Unity.Postprocessing.Runtime.dll" />
+    <Content Include="lib\Unity.ProBuilder.Csg.dll" />
+    <Content Include="lib\Unity.ProBuilder.dll" />
+    <Content Include="lib\Unity.ProBuilder.KdTree.dll" />
+    <Content Include="lib\Unity.ProBuilder.Poly2Tri.dll" />
+    <Content Include="lib\Unity.ProBuilder.Stl.dll" />
+    <Content Include="lib\Unity.ProGrids.dll" />
+    <Content Include="lib\Unity.RenderPipeline.Universal.ShaderLibrary.dll" />
+    <Content Include="lib\Unity.RenderPipelines.Core.Runtime.dll" />
+    <Content Include="lib\Unity.RenderPipelines.Core.ShaderLibrary.dll" />
+    <Content Include="lib\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll" />
+    <Content Include="lib\Unity.RenderPipelines.Universal.Runtime.dll" />
+    <Content Include="lib\Unity.RenderPipelines.Universal.Shaders.dll" />
+    <Content Include="lib\Unity.TextMeshPro.dll" />
+    <Content Include="lib\UnityEngine.AccessibilityModule.dll" />
+    <Content Include="lib\UnityEngine.AIModule.dll" />
+    <Content Include="lib\UnityEngine.AndroidJNIModule.dll" />
+    <Content Include="lib\UnityEngine.AnimationModule.dll" />
+    <Content Include="lib\UnityEngine.ARModule.dll" />
+    <Content Include="lib\UnityEngine.AssetBundleModule.dll" />
+    <Content Include="lib\UnityEngine.AudioModule.dll" />
+    <Content Include="lib\UnityEngine.ClothModule.dll" />
+    <Content Include="lib\UnityEngine.ClusterInputModule.dll" />
+    <Content Include="lib\UnityEngine.ClusterRendererModule.dll" />
+    <Content Include="lib\UnityEngine.CoreModule.dll" />
+    <Content Include="lib\UnityEngine.CrashReportingModule.dll" />
+    <Content Include="lib\UnityEngine.DirectorModule.dll" />
+    <Content Include="lib\UnityEngine.dll" />
+    <Content Include="lib\UnityEngine.DSPGraphModule.dll" />
+    <Content Include="lib\UnityEngine.GameCenterModule.dll" />
+    <Content Include="lib\UnityEngine.GridModule.dll" />
+    <Content Include="lib\UnityEngine.HotReloadModule.dll" />
+    <Content Include="lib\UnityEngine.ImageConversionModule.dll" />
+    <Content Include="lib\UnityEngine.IMGUIModule.dll" />
+    <Content Include="lib\UnityEngine.InputLegacyModule.dll" />
+    <Content Include="lib\UnityEngine.InputModule.dll" />
+    <Content Include="lib\UnityEngine.JSONSerializeModule.dll" />
+    <Content Include="lib\UnityEngine.LocalizationModule.dll" />
+    <Content Include="lib\UnityEngine.ParticleSystemModule.dll" />
+    <Content Include="lib\UnityEngine.PerformanceReportingModule.dll" />
+    <Content Include="lib\UnityEngine.Physics2DModule.dll" />
+    <Content Include="lib\UnityEngine.PhysicsModule.dll" />
+    <Content Include="lib\UnityEngine.ProfilerModule.dll" />
+    <Content Include="lib\UnityEngine.ScreenCaptureModule.dll" />
+    <Content Include="lib\UnityEngine.SharedInternalsModule.dll" />
+    <Content Include="lib\UnityEngine.SpriteMaskModule.dll" />
+    <Content Include="lib\UnityEngine.SpriteShapeModule.dll" />
+    <Content Include="lib\UnityEngine.StreamingModule.dll" />
+    <Content Include="lib\UnityEngine.SubstanceModule.dll" />
+    <Content Include="lib\UnityEngine.SubsystemsModule.dll" />
+    <Content Include="lib\UnityEngine.TerrainModule.dll" />
+    <Content Include="lib\UnityEngine.TerrainPhysicsModule.dll" />
+    <Content Include="lib\UnityEngine.TextCoreModule.dll" />
+    <Content Include="lib\UnityEngine.TextRenderingModule.dll" />
+    <Content Include="lib\UnityEngine.TilemapModule.dll" />
+    <Content Include="lib\UnityEngine.TLSModule.dll" />
+    <Content Include="lib\UnityEngine.UI.dll" />
+    <Content Include="lib\UnityEngine.UIElementsModule.dll" />
+    <Content Include="lib\UnityEngine.UIModule.dll" />
+    <Content Include="lib\UnityEngine.UmbraModule.dll" />
+    <Content Include="lib\UnityEngine.UNETModule.dll" />
+    <Content Include="lib\UnityEngine.UnityAnalyticsModule.dll" />
+    <Content Include="lib\UnityEngine.UnityConnectModule.dll" />
+    <Content Include="lib\UnityEngine.UnityTestProtocolModule.dll" />
+    <Content Include="lib\UnityEngine.UnityWebRequestAssetBundleModule.dll" />
+    <Content Include="lib\UnityEngine.UnityWebRequestAudioModule.dll" />
+    <Content Include="lib\UnityEngine.UnityWebRequestModule.dll" />
+    <Content Include="lib\UnityEngine.UnityWebRequestTextureModule.dll" />
+    <Content Include="lib\UnityEngine.UnityWebRequestWWWModule.dll" />
+    <Content Include="lib\UnityEngine.VehiclesModule.dll" />
+    <Content Include="lib\UnityEngine.VFXModule.dll" />
+    <Content Include="lib\UnityEngine.VideoModule.dll" />
+    <Content Include="lib\UnityEngine.VRModule.dll" />
+    <Content Include="lib\UnityEngine.WindModule.dll" />
+    <Content Include="lib\UnityEngine.XRModule.dll" />
+    <Content Include="lib\Websocket.Client.dll" />
+    <Content Include="lib\WindowsBase.dll" />
+    <Content Include="references.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include=".vs\CheeseUtilMod\v17\" />
+    <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
+  <ProjectExtensions>
+    <VisualStudio AllowExistingFolder="true" />
+  </ProjectExtensions>
+</Project>
