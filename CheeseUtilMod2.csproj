@@ -29,6 +29,12 @@
     <WarningLevel>4</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -1872,7 +1878,7 @@
     <None Include="cheeseutil\components\memory.succ" />
     <None Include="cheeseutil\components\utility.succ" />
     <None Include="cheeseutil\languages\English\English_components.succ" />
-    <None Include="cheeseutil\Manifest.succ" />
+    <None Include="cheeseutil\manifest.succ" />
     <None Include="lib\Server.deps.json" />
     <None Include="lib\Server.runtimeconfig.json" />
     <None Include="lib\SOS_README.md" />
@@ -1885,6 +1891,7 @@
     <Compile Include="cheeseutil\src\client\BCD8.cs" />
     <Compile Include="cheeseutil\src\client\Bin2BCDPrefabBase.cs" />
     <Compile Include="cheeseutil\src\client\CheeseUtilClient.cs" />
+    <Compile Include="cheeseutil\src\client\Font.cs" />
     <Compile Include="cheeseutil\src\client\Hex1x2.cs" />
     <Compile Include="cheeseutil\src\client\Hex2x4.cs" />
     <Compile Include="cheeseutil\src\client\Hex4x8.cs" />
@@ -1907,6 +1914,8 @@
     <Compile Include="cheeseutil\src\client\SevenSeg4x8.cs" />
     <Compile Include="cheeseutil\src\client\SevenSegmentDisplay.cs" />
     <Compile Include="cheeseutil\src\client\SevenSegPrefabBase.cs" />
+    <Compile Include="cheeseutil\src\client\TextDisplay.cs" />
+    <Compile Include="cheeseutil\src\client\TextDisplayVariantInfo.cs" />
     <Compile Include="cheeseutil\src\server\BCD16.cs" />
     <Compile Include="cheeseutil\src\server\BCD32.cs" />
     <Compile Include="cheeseutil\src\server\BCD4.cs" />
@@ -1930,7 +1939,9 @@
     <Compile Include="cheeseutil\src\server\Ram8aX4b.cs" />
     <Compile Include="cheeseutil\src\server\Ram8aX8b.cs" />
     <Compile Include="cheeseutil\src\server\RAM8BitBase.cs" />
+    <Compile Include="cheeseutil\src\server\TextDisplay.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="cheeseutil\shared\ITextConsoleData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -2422,4 +2433,9 @@
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
+  <PropertyGroup>
+    <PreBuildEvent>rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil"
+Xcopy $(ProjectDir)\cheeseutil "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil" /E/H/C/I
+"C:\Program Files (x86)\Steam\steamapps\common\Logic World\Logic_World.exe"</PreBuildEvent>
+  </PropertyGroup>
 </Project>

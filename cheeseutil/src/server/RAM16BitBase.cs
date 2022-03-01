@@ -93,16 +93,13 @@ namespace CheeseUtilMod.Components
         }
         public void Load(byte[] filedata, LineWriter writer)
         {
-            writer.WriteLine("Attempting to load file into RAM component");
             if (base.Inputs[PEG_L].On)
             {
-                writer.WriteLine("Starting write into memory!");
                 var max_index = (1 << addressLines);
                 if (filedata.Length/2 < max_index)
                 {
                     max_index = filedata.Length/2;
                 }
-                writer.WriteLine($"Writing {max_index} shorts!");
                 for (int i = 0; i < max_index; i++)
                 {
                     ushort lo = filedata[i*2];
@@ -112,6 +109,7 @@ namespace CheeseUtilMod.Components
                     memory[i] = val;
                 }
             }
+            QueueLogicUpdate();
         }
     }
 }

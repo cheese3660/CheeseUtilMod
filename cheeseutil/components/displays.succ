@@ -33,3 +33,11 @@ Hex4x8:
     category: "Hex"
     prefab: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplay
+
+TextDisplay:
+    column: "Output"
+    category: "Displays"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.TextDisplay
+    clientCode: CheeseUtilMod.Client.TextDisplay
+    placingRules: dynamic

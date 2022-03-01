@@ -12,8 +12,8 @@ namespace CheeseUtilMod.Server
             Logger.Info("Cheese Util Mod - Server Loaded");
         }
 
-        [Command("load", Description = "Loads a file into any RAM components with the L pin active, does not clear out memory after the end of the file")]
-        public static void load(string file)
+        [Command("loadram", Description = "Loads a file into any RAM components with the L pin active, does not clear out memory after the end of the file")]
+        public static void loadram(string file)
         {
             LineWriter lineWriter = LConsole.BeginLine();
             if (File.Exists(file))

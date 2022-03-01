@@ -92,6 +92,7 @@ namespace CheeseUtilMod.Components
                     memory[i] = filedata[i];
                 }
             }
+            QueueLogicUpdate();
         }
     }
 }
