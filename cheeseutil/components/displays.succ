@@ -16,6 +16,13 @@ SevenSeg4x8:
     prefab: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
 
+SevenSegResizable:
+    column: "Displays"
+    category: "SevenSeg"
+    prefab: dynamic
+    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.SevenSegmentDisplayResizable
+
 Hex1x2:
     column: "Displays"
     category: "Hex"
@@ -33,6 +40,13 @@ Hex4x8:
     category: "Hex"
     prefab: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplay
+
+HexResizable:
+    column: "Displays"
+    category: "Hex"
+    prefab: dynamic
+    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.HexDisplayResizable
 
 TextDisplay:
     column: "Output"

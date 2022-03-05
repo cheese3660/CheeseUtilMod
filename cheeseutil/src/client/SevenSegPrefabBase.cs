@@ -78,13 +78,17 @@ namespace CheeseUtilMod.Client
             List<ComponentInput> inputs = new List<ComponentInput>();
             float currentX = 0.166666666666666666666666f;
             float currentY = 0.166666666666666666666666f;
+            float lengthStart = 0.4f;
+            float lengthEnd = 0.7f;
+            float lengthStep = (lengthEnd - lengthStart) / identifier.InputCount;
+            float length = lengthStart;
             for (int i = 0; i < identifier.InputCount; i++)
             {
                 inputs.Add(new ComponentInput
                 {
                     Position = new Vector3(currentX - (scale/2f), currentY, 0f),
                     Rotation = new Vector3(90f, 0f, 0f),
-                    Length = 0.5f
+                    Length = length
                 });
                 currentX += 0.33333333333333333333f;
                 if (currentX >= scale)
@@ -92,6 +96,7 @@ namespace CheeseUtilMod.Client
                     currentX = 0.16666666666666666f;
                     currentY += 0.3333333333333333f;
                 }
+                length += lengthStep;
             }
 
             return new ComponentVariant

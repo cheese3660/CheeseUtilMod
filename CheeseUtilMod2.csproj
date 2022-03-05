@@ -1896,6 +1896,7 @@
     <Compile Include="cheeseutil\src\client\Hex2x4.cs" />
     <Compile Include="cheeseutil\src\client\Hex4x8.cs" />
     <Compile Include="cheeseutil\src\client\HexDisplay.cs" />
+    <Compile Include="cheeseutil\src\client\HexDisplayResizable.cs" />
     <Compile Include="cheeseutil\src\client\Ram16aX16b.cs" />
     <Compile Include="cheeseutil\src\client\Ram16aX1b.cs" />
     <Compile Include="cheeseutil\src\client\Ram16aX4b.cs" />
@@ -1913,9 +1914,13 @@
     <Compile Include="cheeseutil\src\client\SevenSeg2x4.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg4x8.cs" />
     <Compile Include="cheeseutil\src\client\SevenSegmentDisplay.cs" />
+    <Compile Include="cheeseutil\src\client\SevenSegmentDisplayResizable.cs" />
     <Compile Include="cheeseutil\src\client\SevenSegPrefabBase.cs" />
     <Compile Include="cheeseutil\src\client\TextDisplay.cs" />
     <Compile Include="cheeseutil\src\client\TextDisplayVariantInfo.cs" />
+    <Compile Include="cheeseutil\src\client\ThroughPanelHexDisplayVariantInfo.cs" />
+    <Compile Include="cheeseutil\src\client\ThroughPanelSegmentDisplayVariantInfo.cs" />
+    <Compile Include="cheeseutil\src\client\ThroughPanelSevenSegmentDisplayInfo.cs" />
     <Compile Include="cheeseutil\src\server\BCD16.cs" />
     <Compile Include="cheeseutil\src\server\BCD32.cs" />
     <Compile Include="cheeseutil\src\server\BCD4.cs" />
