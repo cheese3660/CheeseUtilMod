@@ -1,11 +1,17 @@
 ﻿using LICC;
 using LogicAPI.Server.Components;
+using LogicWorld.Server.Circuitry;
 using System;
 using System.Text;
 using CheeseUtilMod.Server;
+using CheeseUtilMod.Shared.CustomData;
+
+using System.Timers;
+using System.IO;
+using System.IO.Compression;
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM16BitBase : LogicComponent, FileLoadable
+    public abstract class RAM16BitBase : LogicComponent<IRamData>, FileLoadable
     {
         public override bool HasPersistentValues
         {
@@ -21,8 +27,10 @@ namespace CheeseUtilMod.Components
         private static int PEG_L = 2;
 
         private ushort[] memory;
+        bool loadfromsave;
         protected override void Initialize()
         {
+            loadfromsave = true;
             memory = new ushort[(1 << addressLines)];
             CheeseUtilServer.fileLoadables.Add(this);
         }
@@ -69,28 +77,7 @@ namespace CheeseUtilMod.Components
                 }
             }
         }
-        protected override byte[] SerializeCustomData()
-        {
-            if (memory != null)
-            {
-                byte[] newData = new byte[memory.Length * 2];
-                Buffer.BlockCopy(memory, 0, newData, 0, memory.Length * 2);
-                return newData;
-            }
-            else
-            {
-                return null;
-            }
-        }
 
-        protected override void DeserializeData(byte[] data)
-        {
-            if (data != null)
-            {
-                memory = new ushort[data.Length / 2];
-                Buffer.BlockCopy(data, 0, memory, 0, data.Length);
-            }
-        }
         public void Load(byte[] filedata, LineWriter writer)
         {
             if (base.Inputs[PEG_L].On)
@@ -105,11 +92,45 @@ namespace CheeseUtilMod.Components
                     ushort lo = filedata[i*2];
                     ushort hi = filedata[i*2+1];
                     ushort val = (ushort)(lo | (hi << 8));
-                    writer.WriteLine($"{i} = {val}");
+                    //writer.WriteLine($"{i} = {val}");
                     memory[i] = val;
                 }
             }
             QueueLogicUpdate();
+        }
+        protected override void OnCustomDataUpdated()
+        {
+
+            if (loadfromsave && Data.Data != null)
+            {
+                MemoryStream stream = new MemoryStream(Data.Data);
+                stream.Position = 0;
+                DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
+                byte[] mem1 = new byte[memory.Length * 2];
+                decompressor.Read(mem1, 0, mem1.Length);
+                Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
+                loadfromsave = false;
+            }
+        }
+        protected override void SetDataDefaultValues()
+        {
+            Data.Data = new byte[0];
+        }
+        protected override void SavePersistentValuesToCustomData()
+        {
+
+            MemoryStream memstream = new MemoryStream();
+            memstream.Position = 0;
+            DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);
+            byte[] mem1 = new byte[memory.Length * 2];
+            Buffer.BlockCopy(memory, 0, mem1, 0, mem1.Length);
+            compressor.Write(mem1,0,mem1.Length);
+            compressor.Flush();
+            int length = (int)memstream.Position;
+            memstream.Position = 0;
+            byte[] bytes = new byte[length];
+            memstream.Read(bytes, 0, length);
+            Data.Data = bytes;
         }
     }
 }

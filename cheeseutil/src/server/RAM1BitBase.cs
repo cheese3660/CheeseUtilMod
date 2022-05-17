@@ -1,11 +1,18 @@
-﻿using LogicAPI.Server.Components;
+﻿using LICC;
+using LogicAPI.Server.Components;
+using LogicWorld.Server.Circuitry;
 using System;
 using System.Text;
 using CheeseUtilMod.Server;
+using CheeseUtilMod.Shared.CustomData;
+
+using System.Timers;
+using System.IO;
+using System.IO.Compression;
 
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM1BitBase : LogicComponent, FileLoadable
+    public abstract class RAM1BitBase : LogicComponent<IRamData>, FileLoadable
     {
         public override bool HasPersistentValues
         {
@@ -20,10 +27,12 @@ namespace CheeseUtilMod.Components
         private static int PEG_W = 1;
         private static int PEG_L = 2;
         private static int PEG_D = 3;
+        private bool loadfromsave;
         private byte[] memory;
         protected override void Initialize()
         {
             memory = new byte[(1 << addressLines)/8];
+            loadfromsave = true;
             CheeseUtilServer.fileLoadables.Add(this);
         }
         public override void Dispose()
@@ -64,16 +73,16 @@ namespace CheeseUtilMod.Components
                 base.Outputs[0].On = false;
             }
         }
-        protected override byte[] SerializeCustomData()
-        {
-            return memory;
-        }
+        //protected override byte[] SerializeCustomData()
+        //{
+        //    return memory;
+        //}
 
-        protected override void DeserializeData(byte[] data)
-        {
-            if (data != null)
-                memory = data;
-        }
+        //protected override void DeserializeData(byte[] data)
+        //{
+        //    if (data != null)
+        //        memory = data;
+        //}
         public void Load(byte[] filedata, LICC.LineWriter writer)
         {
             if (base.Inputs[PEG_L].On)
@@ -89,6 +98,36 @@ namespace CheeseUtilMod.Components
                 }
             }
             QueueLogicUpdate();
+        }
+        protected override void OnCustomDataUpdated()
+        {
+
+            if (loadfromsave && Data.Data != null)
+            {
+                MemoryStream stream = new MemoryStream(Data.Data);
+                stream.Position = 0;
+                DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
+                decompressor.Read(memory, 0, memory.Length);
+                loadfromsave = false;
+            }
+        }
+        protected override void SetDataDefaultValues()
+        {
+            Data.Data = new byte[0];
+        }
+        protected override void SavePersistentValuesToCustomData()
+        {
+
+            MemoryStream memstream = new MemoryStream();
+            memstream.Position = 0;
+            DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);
+            compressor.Write(memory, 0, memory.Length);
+            compressor.Flush();
+            int length = (int)memstream.Position;
+            memstream.Position = 0;
+            byte[] bytes = new byte[length];
+            memstream.Read(bytes, 0, length);
+            Data.Data = bytes;
         }
     }
 

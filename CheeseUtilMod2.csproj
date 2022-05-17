@@ -1878,13 +1878,13 @@
     <None Include="cheeseutil\components\memory.succ" />
     <None Include="cheeseutil\components\utility.succ" />
     <None Include="cheeseutil\languages\English\English_components.succ" />
-    <None Include="cheeseutil\manifest.succ" />
     <None Include="lib\Server.deps.json" />
     <None Include="lib\Server.runtimeconfig.json" />
     <None Include="lib\SOS_README.md" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cheeseutil\shared\IRamData.cs" />
     <Compile Include="cheeseutil\src\client\BCD16.cs" />
     <Compile Include="cheeseutil\src\client\BCD32.cs" />
     <Compile Include="cheeseutil\src\client\BCD4.cs" />

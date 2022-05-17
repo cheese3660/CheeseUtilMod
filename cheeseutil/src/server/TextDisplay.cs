@@ -42,6 +42,7 @@ namespace CheeseUtilMod.Components
         {
             screenupdatetimer.Stop();
             screenupdatetimer.Dispose();
+            WriteScreenToData();
             base.Dispose();
         }
         public void OnTimerElapsed(object source, ElapsedEventArgs args)
@@ -75,7 +76,6 @@ namespace CheeseUtilMod.Components
                 int x = getDataShifted(PEG_X_START, 6);
                 int y = getDataShifted(PEG_Y_START, 6);
                 byte chr = (byte)getDataShifted(PEG_CHAR_START, 8);
-                Logger.Info($"{x},{y} =  {Convert.ToChar(chr%128)} ({chr})");
                 int index = (y * 64) + x;
                 ismemdirty = true;
                 mem[index] = chr;

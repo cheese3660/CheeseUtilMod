@@ -21,15 +21,16 @@ namespace CheeseUtilMod.Client
     public class TextDisplay : ComponentClientCode<ITextConsoleData>, IResizableX, IResizableZ, ICustomCubeArrowHeight, IColorableClientCode
     {
         byte[] mem;
+        byte[] mem2;
         Timer cursorUpdateTimer;
         bool cursorState;
 
         private int previousSizeX;
         public int SizeX { get => Data.SizeX; set => Data.SizeX = value; }
 
-        public int MinX => 4;
+        public int MinX => 8;
 
-        public int MaxX => 64;
+        public int MaxX => 16;
 
         public float GridIntervalX => 1f;
 
@@ -38,14 +39,14 @@ namespace CheeseUtilMod.Client
 
         public int MinZ => 4;
 
-        public int MaxZ => 64;
+        public int MaxZ => 16;
 
         public float GridIntervalZ => 1f;
 
         public float CubeArrowHeight => 355f / (678f * (float)Math.PI);
 
         public Color24 Color { get => Data.color; set => Data.color = value; }
-
+        private Color24 PrevColor;
         public string ColorsFileKey => "TextDisplayColors";
 
         public float MinColorValue => 0.0f;
@@ -53,18 +54,22 @@ namespace CheeseUtilMod.Client
         Texture2D screen;
         int screenWidth;
         int screenHeight;
+        bool fullRefresh;
+        bool firstFrame;
         protected override void Initialize()
         {
             mem = new byte[64 * 64];
-            screenWidth = 64;
-            screenHeight = 64;
+            mem2 = new byte[64 * 64];
+            screenWidth = 512;
+            screenHeight = 256;
             cursorUpdateTimer = new Timer();
             cursorUpdateTimer.Interval = 1000;
             cursorUpdateTimer.Elapsed += new ElapsedEventHandler(cursorSwitch);
             cursorUpdateTimer.AutoReset = true;
             cursorUpdateTimer.Start();
             cursorState = false;
-            
+            firstFrame = true;
+
             if (screen == null)
             {
                 screen = new Texture2D(screenWidth, screenHeight);
@@ -75,11 +80,15 @@ namespace CheeseUtilMod.Client
         protected void cursorSwitch(object source, ElapsedEventArgs e)
         {
             cursorState = !cursorState;
-            QueueFrameUpdate();
+            if (GetInputState(PEG_CURSOR_ENABLED))
+            {
+                fullRefresh = false;
+                QueueFrameUpdate();
+            }
         }
         protected override void SetDataDefaultValues()
         {
-            Data.SizeX = 4;
+            Data.SizeX = 8;
             Data.SizeZ = 4;
             //Data.TextData = null;
             Data.color = Color24.Amber;
@@ -88,9 +97,9 @@ namespace CheeseUtilMod.Client
         }
         protected override void DataUpdate()
         {
-            QueueFrameUpdate();
             if (SizeX != previousSizeX || SizeZ != previousSizeZ)
             {
+                fullRefresh = true;
                 setupInputBlock();
                 // Panel
                 SetBlockScale(0, new Vector3(SizeX, 0.333333343f, SizeZ));
@@ -99,10 +108,16 @@ namespace CheeseUtilMod.Client
                 // Screen
                 SetDecorationPosition(0, new Vector3((SizeX / 2f - 0.5f) * 0.3f, 0.3334f * 0.3f, (SizeZ / 2f - 0.5f) * 0.3f));
                 SetDecorationScale(0, new Vector3(SizeX * 0.3f, SizeZ * 0.3f, 1));
-                screenWidth = SizeX * 16;
-                screenHeight = SizeZ * 16;
+                screenWidth = SizeX * 64;
+                screenHeight = SizeZ * 64;
                 screen.Resize(screenWidth, screenHeight);
             }
+            if (Color != PrevColor)
+            {
+                fullRefresh = true;
+                PrevColor = Color;
+            }
+            QueueFrameUpdate();
             void setupInputBlock()
             {
                 int blocksizex = Math.Min(SizeX, 8);
@@ -130,23 +145,36 @@ namespace CheeseUtilMod.Client
                 MemoryStream stream = new MemoryStream(Data.TextData);
                 stream.Position = 0;
                 DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
-                decompressor.Read(mem, 0, 64 * 64);
-                for (int x = 0; x < SizeX; x++)
+                decompressor.Read(mem2, 0, 64 * 64);
+                bool check_invert = GetInputState(PEG_CURSOR_ENABLED) && cursorState;
+                Color c = new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f);
+                for (int x = 0; x < SizeX * 4; x++)
                 {
-                    for (int y = 0; y < SizeZ; y++)
+                    bool check_cursor = x == Data.CursorX;
+                    for (int y = 0; y < SizeZ * 4; y++)
                     {
-                        bool invert = (GetInputState(PEG_CURSOR_ENABLED) && cursorState) && (x == Data.CursorX && y == Data.CursorY);
+                        bool cursor = check_cursor && y == Data.CursorY;
+                        bool invert = cursor && check_invert;
                         int index = y * 64 + x;
-                        byte chr = mem[index];
-                        Font.SetChar(screen, invert, chr, x, (SizeZ-1)-y, new Color(Color.r/255.0f, Color.g/255.0f, Color.b/255.0f));
+                        byte chr_old = mem[index];
+                        byte chr = mem2[index];
+                        if (chr_old != chr || cursor || fullRefresh || firstFrame)
+                        {
+                            Font.SetChar(screen, invert, chr, x, ((SizeZ * 4) - 1) - y, c);
+                        }
                     }
                 }
                 screen.Apply();
-            } else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX && Data.CursorY < SizeZ)
+                mem = mem2;
+                mem2 = new byte[64*64];
+            }
+            else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX*4 && Data.CursorY < SizeZ*4)
             {
-                Font.SetChar(screen, cursorState, 32, Data.CursorX, (SizeZ - 1)-Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
+                Font.SetChar(screen, cursorState, 32, Data.CursorX, ((SizeZ*4) - 1)-Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
                 screen.Apply();
             }
+            fullRefresh = false;
+            firstFrame = false;
         }
         public override PlacingRules GenerateDynamicPlacingRules()
         {
@@ -168,14 +196,14 @@ namespace CheeseUtilMod.Client
             gameObject.GetComponent<Renderer>().material = material;
             return new Decoration[1]
             {
-            new Decoration
-            {
-                LocalPosition = new Vector3(-0.5f, 0.0f, -0.5f) * 0.3f,
-                LocalRotation = Quaternion.Euler(90f, 0f, 0f),
-                DecorationObject = gameObject,
-                AutoSetupColliders = true,
-                IncludeInModels = true
-            }
+                new Decoration
+                {
+                    LocalPosition = new Vector3(-0.5f, 0.0f, -0.5f) * 0.3f,
+                    LocalRotation = Quaternion.Euler(90f, 0f, 0f),
+                    DecorationObject = gameObject,
+                    AutoSetupColliders = true,
+                    IncludeInModels = true
+                }
             };
         }
     }
