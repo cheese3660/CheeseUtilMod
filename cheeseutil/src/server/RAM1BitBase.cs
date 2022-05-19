@@ -112,7 +112,6 @@ namespace CheeseUtilMod.Components
                     decompressor.Read(memory, 0, memory.Length);
                 } catch
                 {
-                    Buffer.BlockCopy(Data.Data,0, memory, 0, Data.Data.Length);
                 }
                 loadfromsave = false;
             }

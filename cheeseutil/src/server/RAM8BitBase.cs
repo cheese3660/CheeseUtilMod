@@ -106,7 +106,6 @@ namespace CheeseUtilMod.Components
                 }
                 catch
                 {
-                    Buffer.BlockCopy(Data.Data, 0, memory, 0, Data.Data.Length);
                 }
                 loadfromsave = false;
             }
