@@ -1875,6 +1875,7 @@
     <None Include=".vs\UtilMod\v16\.suo" />
     <None Include=".vs\VSWorkspaceState.json" />
     <None Include="cheeseutil\components\displays.succ" />
+    <None Include="cheeseutil\components\input.succ" />
     <None Include="cheeseutil\components\memory.succ" />
     <None Include="cheeseutil\components\utility.succ" />
     <None Include="cheeseutil\languages\English\English_components.succ" />
@@ -1928,6 +1929,7 @@
     <Compile Include="cheeseutil\src\server\Bin2BCDBase.cs" />
     <Compile Include="cheeseutil\src\server\CheeseUtilServer.cs" />
     <Compile Include="cheeseutil\src\server\FileLoadable.cs" />
+    <Compile Include="cheeseutil\src\server\KeyboardDecoder.cs" />
     <Compile Include="cheeseutil\src\server\Ram16ax16b.cs" />
     <Compile Include="cheeseutil\src\server\Ram16aX1b.cs" />
     <Compile Include="cheeseutil\src\server\Ram16aX4b.cs" />

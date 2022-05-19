@@ -105,9 +105,15 @@ namespace CheeseUtilMod.Components
             {
                 MemoryStream stream = new MemoryStream(Data.Data);
                 stream.Position = 0;
-                DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
                 byte[] mem1 = new byte[memory.Length * 2];
-                decompressor.Read(mem1, 0, mem1.Length);
+                try
+                {
+                    DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
+                    decompressor.Read(mem1, 0, mem1.Length);
+                } catch
+                {
+                    mem1 = Data.Data;
+                }
                 Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 loadfromsave = false;
             }

@@ -1,0 +1,667 @@
+﻿KeyboardDecoder:
+    column: Input
+    category: null
+    prefab:
+        blocks:
+            -
+                color:
+                    r: 0
+                    g: 0
+                    b: 0
+                scale:
+                    x: 14
+                    y: 5
+                    z: 1
+                mesh: Cube
+                meshType: Cube
+                position:
+                    x: 0
+                    y: 2.5
+                    z: 0
+                rotation:
+                    x: 0
+                    y: 0
+                    z: 0
+        inputs:
+            -
+                length: 0.6
+                position:
+                    x: 6.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 5.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 4.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 3.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 2.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 1.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 0.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -0.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -1.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -2.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -3.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -4.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -5.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 4.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 6.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 5.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 4.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 3.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 2.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 1.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 0.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -0.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -1.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -2.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -3.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -4.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -5.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 3.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 5.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 4.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 3.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 2.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 1.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 0.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -0.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -1.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -2.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -3.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -4.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 2.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 5.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 4.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 3.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 2.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 1.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 0.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -0.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -1.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -2.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -3.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 1.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: 0.5
+                    y: 0.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 0.5
+                    z: 0.5
+                rotation:
+                    x: 89.98022
+                    y: -0.000001533959
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 90
+                    y: 180.0076
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -6.5
+                    y: 3.75
+                    z: -0.5
+                rotation:
+                    x: 90
+                    y: 180.0076
+                    z: 0
+            -
+                length: 0.6
+                position:
+                    x: -7
+                    y: 4.5
+                    z: 0
+                rotation:
+                    x: 90
+                    y: 270.0076
+                    z: 0
+        outputs:
+            -
+                startOn: false
+                position:
+                    x: 6.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 5.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 4.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155187
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 3.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 2.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 1.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: 0.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+            -
+                startOn: false
+                position:
+                    x: -1.5
+                    y: 4.5
+                    z: -0.5
+                rotation:
+                    x: 270.0198
+                    y: 0.00001155347
+                    z: 0
+    logicCode: CheeseUtilMod.Components.KeyboardDecoder
