@@ -48,8 +48,8 @@ namespace CheeseUtilMod.Client
                     ushort val = (ushort)(lo | (hi << 8));
                     memory[i] = val;
                 }
+                SendDataToServer();
             }
-            SendDataToServer();
         }
         static byte[] Compress(byte[] data)
         {

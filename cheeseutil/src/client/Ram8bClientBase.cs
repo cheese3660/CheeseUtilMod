@@ -45,8 +45,8 @@ namespace CheeseUtilMod.Client
                 {
                     memory[i] = filedata[i];
                 }
+                SendDataToServer();
             }
-            SendDataToServer();
         }
         static byte[] Compress(byte[] data)
         {
