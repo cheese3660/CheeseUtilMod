@@ -12,7 +12,7 @@ using System.IO.Compression;
 
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM8BitBase : LogicComponent<IRamData>, FileLoadable
+    public abstract class RAM8BitBase : LogicComponent<IRamData>
     {
         public override bool HasPersistentValues
         {
@@ -32,11 +32,9 @@ namespace CheeseUtilMod.Components
         {
             loadfromsave = true;
             memory = new byte[(1 << addressLines)];
-            CheeseUtilServer.fileLoadables.Add(this);
         }
         public override void Dispose()
         {
-            CheeseUtilServer.fileLoadables.Remove(this);
         }
  
         private int getPegShifted(int peg, int shift)
@@ -76,28 +74,18 @@ namespace CheeseUtilMod.Components
                 }
             }
         }
-        public void Load(byte[] filedata, LICC.LineWriter writer)
-        {
-            if (base.Inputs[PEG_L].On)
-            {
-                var max_index = (1 << addressLines);
-                if (filedata.Length < max_index)
-                {
-                    max_index = filedata.Length;
-                }
-                for (int i = 0; i < max_index; i++)
-                {
-                    memory[i] = filedata[i];
-                }
-            }
-            QueueLogicUpdate();
-        }
         protected override void OnCustomDataUpdated()
         {
 
-            if (loadfromsave && Data.Data != null)
+            if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
             {
-                MemoryStream stream = new MemoryStream(Data.Data);
+                var to_load_from = Data.Data;
+                if (Data.state == 1)
+                {
+                    Logger.Info("Loading data from client");
+                    to_load_from = Data.ClientIncomingData;
+                }
+                MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
                 try
                 {
@@ -108,11 +96,19 @@ namespace CheeseUtilMod.Components
                 {
                 }
                 loadfromsave = false;
+                if (Data.state == 1)
+                {
+                    Data.state = 0;
+                    Data.ClientIncomingData = new byte[0];
+                }
+                QueueLogicUpdate();
             }
         }
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
+            Data.state = 0;
+            Data.ClientIncomingData = new byte[0];
         }
         protected override void SavePersistentValuesToCustomData()
         {

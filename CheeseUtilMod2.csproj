@@ -1892,6 +1892,7 @@
     <Compile Include="cheeseutil\src\client\BCD8.cs" />
     <Compile Include="cheeseutil\src\client\Bin2BCDPrefabBase.cs" />
     <Compile Include="cheeseutil\src\client\CheeseUtilClient.cs" />
+    <Compile Include="cheeseutil\src\client\ClientRam.cs" />
     <Compile Include="cheeseutil\src\client\Font.cs" />
     <Compile Include="cheeseutil\src\client\Hex1x2.cs" />
     <Compile Include="cheeseutil\src\client\Hex2x4.cs" />
@@ -1902,14 +1903,18 @@
     <Compile Include="cheeseutil\src\client\Ram16aX1b.cs" />
     <Compile Include="cheeseutil\src\client\Ram16aX4b.cs" />
     <Compile Include="cheeseutil\src\client\Ram16aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram16bClientBase.cs" />
+    <Compile Include="cheeseutil\src\client\Ram1bClientBase.cs" />
     <Compile Include="cheeseutil\src\client\Ram4aX16b.cs" />
     <Compile Include="cheeseutil\src\client\Ram4aX1b.cs" />
     <Compile Include="cheeseutil\src\client\Ram4aX4b.cs" />
     <Compile Include="cheeseutil\src\client\Ram4aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram4bClientBase.cs" />
     <Compile Include="cheeseutil\src\client\Ram8aX16b.cs" />
     <Compile Include="cheeseutil\src\client\Ram8aX1b.cs" />
     <Compile Include="cheeseutil\src\client\Ram8aX4b.cs" />
     <Compile Include="cheeseutil\src\client\Ram8aX8b.cs" />
+    <Compile Include="cheeseutil\src\client\Ram8bClientBase.cs" />
     <Compile Include="cheeseutil\src\client\RamPrefabBase.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg1x2.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg2x4.cs" />
@@ -1928,7 +1933,7 @@
     <Compile Include="cheeseutil\src\server\BCD8.cs" />
     <Compile Include="cheeseutil\src\server\Bin2BCDBase.cs" />
     <Compile Include="cheeseutil\src\server\CheeseUtilServer.cs" />
-    <Compile Include="cheeseutil\src\server\FileLoadable.cs" />
+    <Compile Include="cheeseutil\src\client\FileLoadable.cs" />
     <Compile Include="cheeseutil\src\server\KeyboardDecoder.cs" />
     <Compile Include="cheeseutil\src\server\Ram16ax16b.cs" />
     <Compile Include="cheeseutil\src\server\Ram16aX1b.cs" />

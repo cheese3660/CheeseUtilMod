@@ -11,7 +11,7 @@ using System.IO;
 using System.IO.Compression;
 namespace CheeseUtilMod.Components
 {
-    public abstract class RAM16BitBase : LogicComponent<IRamData>, FileLoadable
+    public abstract class RAM16BitBase : LogicComponent<IRamData>
     {
         public override bool HasPersistentValues
         {
@@ -32,11 +32,9 @@ namespace CheeseUtilMod.Components
         {
             loadfromsave = true;
             memory = new ushort[(1 << addressLines)];
-            CheeseUtilServer.fileLoadables.Add(this);
         }
         public override void Dispose()
         {
-            CheeseUtilServer.fileLoadables.Remove(this);
         }
         private int getPegShifted(int peg, int shift)
         {
@@ -77,33 +75,18 @@ namespace CheeseUtilMod.Components
                 }
             }
         }
-
-        public void Load(byte[] filedata, LineWriter writer)
-        {
-            if (base.Inputs[PEG_L].On)
-            {
-                var max_index = (1 << addressLines);
-                if (filedata.Length/2 < max_index)
-                {
-                    max_index = filedata.Length/2;
-                }
-                for (int i = 0; i < max_index; i++)
-                {
-                    ushort lo = filedata[i*2];
-                    ushort hi = filedata[i*2+1];
-                    ushort val = (ushort)(lo | (hi << 8));
-                    //writer.WriteLine($"{i} = {val}");
-                    memory[i] = val;
-                }
-            }
-            QueueLogicUpdate();
-        }
         protected override void OnCustomDataUpdated()
         {
 
-            if (loadfromsave && Data.Data != null)
+            if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
             {
-                MemoryStream stream = new MemoryStream(Data.Data);
+                var to_load_from = Data.Data;
+                if (Data.state == 1)
+                {
+                    Logger.Info("Loading data from client");
+                    to_load_from = Data.ClientIncomingData;
+                }
+                MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
                 byte[] mem1 = new byte[memory.Length * 2];
                 try
@@ -111,21 +94,27 @@ namespace CheeseUtilMod.Components
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
                     decompressor.Read(mem1, 0, mem1.Length);
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
-
                 }
                 catch
                 {
                 }
                 loadfromsave = false;
+                if (Data.state == 1)
+                {
+                    Data.state = 0;
+                    Data.ClientIncomingData = new byte[0];
+                }
+                QueueLogicUpdate();
             }
         }
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
+            Data.state = 0;
+            Data.ClientIncomingData = new byte[0];
         }
         protected override void SavePersistentValuesToCustomData()
         {
-
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);

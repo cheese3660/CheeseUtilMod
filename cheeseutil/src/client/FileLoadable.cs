@@ -1,6 +1,6 @@
 ﻿using LICC;
 
-namespace CheeseUtilMod.Server
+namespace CheeseUtilMod.Client
 {
     public interface FileLoadable 
     {
