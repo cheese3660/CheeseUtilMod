@@ -32,9 +32,9 @@ namespace CheeseUtilMod.Client
         {
             CheeseUtilClient.fileLoadables.Remove(this);
         }
-        public void Load(byte[] filedata, LineWriter writer)
+        public void Load(byte[] filedata, LineWriter writer, bool force)
         {
-            if (GetInputState(PEG_L))
+            if (force || GetInputState(PEG_L))
             {
                 var max_index = (1 << addressLines / 8);
                 if (filedata.Length*8 < max_index)

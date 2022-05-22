@@ -1,0 +1,9 @@
+﻿ID: cheeserammenu
+Name: CheeseRamMenu
+Author: Cheese
+Version: 1.0
+Priority: -1
+ClientOnly: True
+Dependencies:
+    - cheesemenu
+    - CheeseUtilMod

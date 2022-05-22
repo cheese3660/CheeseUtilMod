@@ -24,7 +24,7 @@ namespace CheeseUtilMod {
             if (File.Exists(file))
             {
                 var bs = File.ReadAllBytes(file);
-                foreach (var item in fileLoadables) item.Load(bs, lineWriter);
+                foreach (var item in fileLoadables) item.Load(bs, lineWriter,false);
             }
             else
             {

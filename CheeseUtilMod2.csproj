@@ -36,6 +36,9 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\lwharmony\0Harmony.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -1874,17 +1877,28 @@
     <None Include=".vs\slnx.sqlite" />
     <None Include=".vs\UtilMod\v16\.suo" />
     <None Include=".vs\VSWorkspaceState.json" />
+    <None Include="cheesemenu\manifest.succ" />
+    <None Include="cheeserammenu\languages\English\English_gui.succ" />
+    <None Include="cheeserammenu\manifest.succ" />
     <None Include="cheeseutil\components\displays.succ" />
     <None Include="cheeseutil\components\input.succ" />
     <None Include="cheeseutil\components\memory.succ" />
     <None Include="cheeseutil\components\utility.succ" />
     <None Include="cheeseutil\languages\English\English_components.succ" />
+    <None Include="cheeseutil\README.md" />
+    <None Include="ecconia_lib\manifest.succ" />
     <None Include="lib\Server.deps.json" />
     <None Include="lib\Server.runtimeconfig.json" />
     <None Include="lib\SOS_README.md" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cheesemenu\src\client\CheeseMenu.cs" />
+    <Compile Include="cheesemenu\src\client\ICheeseMenu.cs" />
+    <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
+    <Compile Include="cheeserammenu\src\client\prefabs\Button.cs" />
+    <Compile Include="cheeserammenu\src\client\prefabs\TextInput.cs" />
+    <Compile Include="cheeserammenu\src\client\RamMenu.cs" />
     <Compile Include="cheeseutil\shared\IRamData.cs" />
     <Compile Include="cheeseutil\src\client\BCD16.cs" />
     <Compile Include="cheeseutil\src\client\BCD32.cs" />
@@ -1952,6 +1966,19 @@
     <Compile Include="cheeseutil\src\server\Ram8aX8b.cs" />
     <Compile Include="cheeseutil\src\server\RAM8BitBase.cs" />
     <Compile Include="cheeseutil\src\server\TextDisplay.cs" />
+    <Compile Include="ecconia_lib\src\client\experimental\LWDebugger.cs" />
+    <Compile Include="ecconia_lib\src\client\experimental\SerializeFieldInjector.cs" />
+    <Compile Include="ecconia_lib\src\client\InjectionUtils.cs" />
+    <Compile Include="ecconia_lib\src\client\MenuBackgroundClosesWindow.cs" />
+    <Compile Include="ecconia_lib\src\client\ModClass.cs" />
+    <Compile Include="ecconia_lib\src\client\prefabs\InputSliderPrefab.cs" />
+    <Compile Include="ecconia_lib\src\client\prefabs\SliderPrefab.cs" />
+    <Compile Include="ecconia_lib\src\client\prefabs\TitleBar.cs" />
+    <Compile Include="ecconia_lib\src\client\prefabs\TogglePrefab.cs" />
+    <Compile Include="ecconia_lib\src\client\prefabs\WindowSettingsEntryPrefab.cs" />
+    <Compile Include="ecconia_lib\src\client\WindowBuilder.cs" />
+    <Compile Include="ecconia_lib\src\client\WindowController.cs" />
+    <Compile Include="ecconia_lib\src\client\WindowHelper.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="cheeseutil\shared\ITextConsoleData.cs" />
   </ItemGroup>
@@ -2448,6 +2475,10 @@
   <PropertyGroup>
     <PreBuildEvent>rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil"
 Xcopy $(ProjectDir)\cheeseutil "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil" /E/H/C/I
+rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu"
+Xcopy $(ProjectDir)\cheeserammenu "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu" /E/H/C/I
+rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu"
+Xcopy $(ProjectDir)\cheesemenu "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu" /E/H/C/I
 "C:\Program Files (x86)\Steam\steamapps\common\Logic World\Logic_World.exe"</PreBuildEvent>
   </PropertyGroup>
 </Project>
