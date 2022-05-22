@@ -93,3 +93,11 @@ Ram16aX16b:
     logicCode: CheeseUtilMod.Components.Ram16aX16b
     clientCode: CheeseUtilMod.Client.Ram16aX16bClient
     placingRules: dynamic
+
+RamResizable:
+    column: "Memory"
+    category: "Resizable"
+    prefab: dynamic
+    logicCode: CheeseUtilMod.Components.RamResizable
+    clientCode: CheeseUtilMod.Client.RamResizableClient
+    placingRules: dynamic

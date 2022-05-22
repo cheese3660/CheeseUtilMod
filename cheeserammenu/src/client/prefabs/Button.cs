@@ -56,7 +56,7 @@ namespace CheeseRamMenu.Client.Prefabs
 			gameObject.AddComponent<CanvasRenderer>();
 			TextMeshProUGUI txt = WindowHelper.addTMP(gameObject);
 
-			gameObject.addLocalizedTextMesh().SetLocalizationKey("cheeserammenu.FileLoad");
+			gameObject.addLocalizedTextMesh().SetLocalizationKey("CRM.FileLoad");
 			gameObject.addPaletteGraphic(PaletteColor.Text_Primary);
 
 			gameObject.SetActive(true);

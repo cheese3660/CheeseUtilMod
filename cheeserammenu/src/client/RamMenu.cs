@@ -31,6 +31,7 @@ using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
+using LogicWorld.BuildingManagement;
 
 namespace CheeseRamMenu.Client
 {
@@ -39,18 +40,20 @@ namespace CheeseRamMenu.Client
     {
         public static TMP_InputField inputField;
         public static HoverButton hbutton;
-
+        public static GameObject contentPlane;
+        public static GameObject addressPegSliderTransform;
+        public static GameObject widthPegSliderTransform;
+        public static InputSlider addressPegSlider;
+        public static InputSlider widthPegSlider;
         public static void init()
         {
-            GameObject contentPlane = constructContent();
+            contentPlane = constructContent();
             WindowBuilder wb = new WindowBuilder
             {
                 x = 0,
                 y = 100,
-                w = 300,
-                h = 200,
-                isResizableX = true,
-                isResizableY = true,
+                w = 1000,
+                h = 400,
                 rootName = "CheeseRamMenu",
                 titleKey = "CheeseRamMenu.EditRamMenu",
                 contentPlane = contentPlane,
@@ -103,15 +106,69 @@ namespace CheeseRamMenu.Client
             var button = Prefabs.Button.generateButton();
             hbutton = button.GetComponent<HoverButton>();
             gameObject.addChild(button);
+            //Add both the sliders
+            addressPegSliderTransform = Prefabs.NamedSliderPrefab.generateNamedSlider("CRM.AddressLines",930,400,495,1, out addressPegSlider);
+            addressPegSlider.SliderInterval = 1f;
+            addressPegSlider.Min = 4f;
+            addressPegSlider.Max = 24f;
+            gameObject.addChild(addressPegSliderTransform);
+            widthPegSliderTransform = Prefabs.NamedSliderPrefab.generateNamedSlider("CRM.BitWidth", 930, 400, 495, 1, out widthPegSlider);
+            widthPegSlider.SliderInterval = 1f;
+            widthPegSlider.Min = 1f;
+            widthPegSlider.Max = 64f;
+            gameObject.addChild(widthPegSliderTransform);
             gameObject.SetActive(true);
             return gameObject;
         }
     }
     public class RamMenu : EditComponentMenu
     {
+        bool is_resizable = false;
+        protected override void OnStartEditing()
+        {
+            if (FirstComponentBeingEdited.ClientCode is RamResizableClient)
+            {
+                var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
+                var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
+                var num_bits = num_outputs;
+                var num_addrs = num_inputs - 3 - num_outputs;
+                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify((float)num_addrs);
+                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify((float)num_bits);
+                is_resizable = true;
+            } else
+            {
+                var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
+                var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
+                var num_bits = num_outputs;
+                var num_addrs = num_inputs - 3 - num_outputs;
+                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify((float)num_addrs);
+                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify((float)num_bits);
+                is_resizable = false;
+            }
+            base.OnStartEditing();
+        }
         public void SetupListener()
         {
             RamMenuSingleton.hbutton.OnClickEnd += Hbutton_OnClickEnd;
+            RamMenuSingleton.addressPegSlider.OnValueChangedInt += AddressPegSlider_OnValueChangedInt;
+            RamMenuSingleton.widthPegSlider.OnValueChangedInt += WidthPegSlider_OnValueChangedInt;
+        }
+
+        private void WidthPegSlider_OnValueChangedInt(int obj)
+        {
+            if (!is_resizable) return;
+            var total_inputs = obj + 3 + (int)RamMenuSingleton.addressPegSlider.Value;
+            var total_outputs = obj;
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address,total_inputs,total_outputs),null);
+        }
+
+        private void AddressPegSlider_OnValueChangedInt(int obj)
+        {
+            if (!is_resizable) return;
+            var total_inputs = obj + 3 + (int)RamMenuSingleton.widthPegSlider.Value;
+            var total_outputs = (int)RamMenuSingleton.widthPegSlider.Value;
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address, total_inputs, total_outputs), null);
+
         }
 
         private void Hbutton_OnClickEnd()
@@ -145,6 +202,7 @@ namespace CheeseRamMenu.Client
                 "CheeseUtilMod.Ram4aX16b",
                 "CheeseUtilMod.Ram8aX16b",
                 "CheeseUtilMod.Ram16aX16b",
+                "CheeseUtilMod.RamResizable",
             };
         }
     }

@@ -1897,9 +1897,11 @@
     <Compile Include="cheesemenu\src\client\ICheeseMenu.cs" />
     <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
     <Compile Include="cheeserammenu\src\client\prefabs\Button.cs" />
+    <Compile Include="cheeserammenu\src\client\prefabs\NamedSliderPrefab.cs" />
     <Compile Include="cheeserammenu\src\client\prefabs\TextInput.cs" />
     <Compile Include="cheeserammenu\src\client\RamMenu.cs" />
     <Compile Include="cheeseutil\shared\IRamData.cs" />
+    <Compile Include="cheeseutil\shared\IRamResizeableData.cs" />
     <Compile Include="cheeseutil\src\client\BCD16.cs" />
     <Compile Include="cheeseutil\src\client\BCD32.cs" />
     <Compile Include="cheeseutil\src\client\BCD4.cs" />
@@ -1930,6 +1932,8 @@
     <Compile Include="cheeseutil\src\client\Ram8aX8b.cs" />
     <Compile Include="cheeseutil\src\client\Ram8bClientBase.cs" />
     <Compile Include="cheeseutil\src\client\RamPrefabBase.cs" />
+    <Compile Include="cheeseutil\src\client\RamResizableClient.cs" />
+    <Compile Include="cheeseutil\src\client\RamResizablePrefab.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg1x2.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg2x4.cs" />
     <Compile Include="cheeseutil\src\client\SevenSeg4x8.cs" />
@@ -1965,6 +1969,7 @@
     <Compile Include="cheeseutil\src\server\Ram8aX4b.cs" />
     <Compile Include="cheeseutil\src\server\Ram8aX8b.cs" />
     <Compile Include="cheeseutil\src\server\RAM8BitBase.cs" />
+    <Compile Include="cheeseutil\src\server\RamResizable.cs" />
     <Compile Include="cheeseutil\src\server\TextDisplay.cs" />
     <Compile Include="ecconia_lib\src\client\experimental\LWDebugger.cs" />
     <Compile Include="ecconia_lib\src\client\experimental\SerializeFieldInjector.cs" />

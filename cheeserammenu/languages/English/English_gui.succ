@@ -1,1 +1,3 @@
-cheeserammenu.FileLoad: "Load File"
+CRM.FileLoad: "Load File"
+CRM.AddressLines: "Address Lines"
+CRM.BitWidth: "Bit Width"

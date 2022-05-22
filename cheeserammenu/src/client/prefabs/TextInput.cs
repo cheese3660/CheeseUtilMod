@@ -1,5 +1,4 @@
-﻿using LogicUI.MenuParts.Toggles;
-using LogicUI.Palettes;
+﻿using LogicUI.Palettes;
 using ThisOtherThing.UI;
 using ThisOtherThing.UI.Shapes;
 using ThisOtherThing.UI.ShapeUtils;
