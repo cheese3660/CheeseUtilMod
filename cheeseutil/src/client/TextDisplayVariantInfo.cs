@@ -74,8 +74,8 @@ namespace CheeseUtilMod.Client
                     {
                         Transform = new ColliderTransform
                         {
-                            Scale = new Vector3(1f, 0.4f, 1f),
-                            Position = new Vector3(0f, 0.6f, 0f)
+                            LocalScale = new Vector3(1f, 0.4f, 1f),
+                            LocalPosition = new Vector3(0f, 0.6f, 0f)
                         }
                     }
                 }

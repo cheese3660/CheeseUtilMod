@@ -5,6 +5,7 @@ using LogicWorld.ClientCode.Resizing;
 using LogicWorld.SharedCode.Components;
 using UnityEngine;
 using System;
+using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
@@ -89,13 +90,15 @@ namespace CheeseUtilMod.Client
         }
         protected override void FrameUpdate()
         {
+            GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
+            GpuColor black = GpuColorConversionExtensions.ToGpuColor(Color24.Black);
             int index = GetInputState(0) ? 1 : 0;
             index |= GetInputState(1) ? 2 : 0;
             index |= GetInputState(2) ? 4 : 0;
             index |= GetInputState(3) ? 8 : 0;
             for (int i = 0; i < 7; i++)
             {
-                SetBlockColor(numbers[index][i] ? Data.color : Color24.Black, i);
+                SetBlockColor(numbers[index][i] ? col : black, i);
             }
         }
         public override PlacingRules GenerateDynamicPlacingRules()

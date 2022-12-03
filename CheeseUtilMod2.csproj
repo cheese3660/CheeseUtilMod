@@ -1900,8 +1900,8 @@
     <Compile Include="cheeserammenu\src\client\prefabs\NamedSliderPrefab.cs" />
     <Compile Include="cheeserammenu\src\client\prefabs\TextInput.cs" />
     <Compile Include="cheeserammenu\src\client\RamMenu.cs" />
-    <Compile Include="cheeseutil\shared\IRamData.cs" />
-    <Compile Include="cheeseutil\shared\IRamResizeableData.cs" />
+    <Compile Include="cheeseutil\src\shared\IRamData.cs" />
+    <Compile Include="cheeseutil\src\shared\IRamResizeableData.cs" />
     <Compile Include="cheeseutil\src\client\BCD16.cs" />
     <Compile Include="cheeseutil\src\client\BCD32.cs" />
     <Compile Include="cheeseutil\src\client\BCD4.cs" />
@@ -1972,6 +1972,7 @@
     <Compile Include="cheeseutil\src\server\RamResizable.cs" />
     <Compile Include="cheeseutil\src\server\TextDisplay.cs" />
     <Compile Include="ecconia_lib\src\client\experimental\LWDebugger.cs" />
+    <Compile Include="ecconia_lib\src\client\experimental\SceneDebugger.cs" />
     <Compile Include="ecconia_lib\src\client\experimental\SerializeFieldInjector.cs" />
     <Compile Include="ecconia_lib\src\client\InjectionUtils.cs" />
     <Compile Include="ecconia_lib\src\client\MenuBackgroundClosesWindow.cs" />
@@ -1985,7 +1986,7 @@
     <Compile Include="ecconia_lib\src\client\WindowController.cs" />
     <Compile Include="ecconia_lib\src\client\WindowHelper.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
-    <Compile Include="cheeseutil\shared\ITextConsoleData.cs" />
+    <Compile Include="cheeseutil\src\shared\ITextConsoleData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -2478,12 +2479,12 @@
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
   <PropertyGroup>
-    <PreBuildEvent>rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil"
-Xcopy $(ProjectDir)\cheeseutil "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil" /E/H/C/I
-rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu"
-Xcopy $(ProjectDir)\cheeserammenu "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu" /E/H/C/I
-rmdir /s /q "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu"
-Xcopy $(ProjectDir)\cheesemenu "C:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu" /E/H/C/I
-"C:\Program Files (x86)\Steam\steamapps\common\Logic World\Logic_World.exe"</PreBuildEvent>
+    <PreBuildEvent>rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil"
+Xcopy $(ProjectDir)\cheeseutil "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil" /E/H/C/I
+rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu"
+Xcopy $(ProjectDir)\cheeserammenu "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu" /E/H/C/I
+rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu"
+Xcopy $(ProjectDir)\cheesemenu "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu" /E/H/C/I
+"D:\Program Files (x86)\Steam\steamapps\common\Logic World\Logic_World.exe"</PreBuildEvent>
   </PropertyGroup>
 </Project>
