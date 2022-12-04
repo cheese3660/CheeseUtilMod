@@ -1893,6 +1893,7 @@
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="cheeseloader\src\server\CheeseLoader.cs" />
     <Compile Include="cheesemenu\src\client\CheeseMenu.cs" />
     <Compile Include="cheesemenu\src\client\ICheeseMenu.cs" />
     <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
@@ -1990,6 +1991,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
+    <None Include="cheeseloader\manifest.succ" />
     <Content Include="genreference.py" />
     <Content Include="lib\Accessibility.dll" />
     <Content Include="lib\AgileObjects.NetStandardPolyfills.dll" />
