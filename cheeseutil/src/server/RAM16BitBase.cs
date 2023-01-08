@@ -92,7 +92,12 @@ namespace CheeseUtilMod.Components
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
-                    decompressor.Read(mem1, 0, mem1.Length);
+                    int bytesRead;
+					int nextStartIndex = 0;
+					while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
+						Logger.Info($"{bytesRead} bytes read.");
+						nextStartIndex += bytesRead;
+					}
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
                 catch
