@@ -120,6 +120,7 @@ namespace CheeseUtilMod.Components
                 }
                 MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
+				byte[] mem1 = new byte[memory.Length * 2];
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
