@@ -105,8 +105,9 @@ namespace CheeseUtilMod.Components
 					}
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
-				catch
+				catch(Exception ex)
                 {
+					Logger.Error("[CheeseUtilmod] Loading data from client failed with exception: "+ex.ToString());
                 }
                 loadfromsave = false;
                 if (Data.state == 1)
