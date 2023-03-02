@@ -27,7 +27,7 @@ namespace CheeseUtilMod.Components
         private static int PEG_L = 2;
 
         private ushort[] memory;
-        bool loadfromsave;
+        private bool loadfromsave;
         protected override void Initialize()
         {
             loadfromsave = true;
