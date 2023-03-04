@@ -96,13 +96,20 @@ namespace CheeseUtilMod.Components
                 }
                 MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
+				byte[] mem1 = new byte[memory.Length];
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
-                    decompressor.Read(memory, 0, memory.Length);
+                    int bytesRead;
+					int nextStartIndex = 0;
+					while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
+						nextStartIndex += bytesRead;
+					}
+                    Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
-                catch
+                catch(Exception ex)
                 {
+					Logger.Error("[CheeseUtilmod] Loading data from client failed with exception: "+ex.ToString());
                 }
                 loadfromsave = false;
                 if (Data.state == 1)
