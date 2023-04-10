@@ -5,6 +5,7 @@ using LogicWorld.ClientCode.Resizing;
 using LogicWorld.SharedCode.Components;
 using UnityEngine;
 using System;
+using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
@@ -70,16 +71,18 @@ namespace CheeseUtilMod.Client
         }
         protected override void FrameUpdate()
         {
+            GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
+            GpuColor black = GpuColorConversionExtensions.ToGpuColor(Color24.Black);
             for (int i = 0; i < 7; i++)
             {
                 bool set = GetInputState(i);
                 if (set)
                 {
-                    SetBlockColor(Data.color, i);
+                    SetBlockColor(col, i);
                 }
                 else
                 {
-                    SetBlockColor(Color24.Black, i);
+                    SetBlockColor(black, i);
                 }
             }
             base.FrameUpdate();

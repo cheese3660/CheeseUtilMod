@@ -1,12 +1,14 @@
 ﻿using LogicWorld.Rendering.Components;
 using JimmysUnityUtilities;
 using LogicWorld.ClientCode;
-
+using LogicAPI.Data;
 namespace CheeseUtilMod.Client
 {
     class SevenSegmentDisplay : ComponentClientCode<SevenSegmentDisplay.IData>, IColorableClientCode
     {
         public Color24 Color { get => Data.color; set => Data.color = value; }
+
+
 
         public string ColorsFileKey => "SevenSegments";
 
@@ -19,15 +21,17 @@ namespace CheeseUtilMod.Client
         }
         protected override void FrameUpdate()
         {
+            GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
+            GpuColor black = GpuColorConversionExtensions.ToGpuColor(Color24.Black);
             for (int i = 0; i < 7; i++)
             {
                 bool set = GetInputState(i);
                 if (set)
                 {
-                    SetBlockColor(Data.color, i);
+                    SetBlockColor(col, i);
                 } else
                 {
-                    SetBlockColor(Color24.Black, i);
+                    SetBlockColor(black, i);
                 }
             }
             base.FrameUpdate();

@@ -1,9 +1,9 @@
-﻿ID: cheesemenu
+ID: cheesemenu
 Name: CheeseMenu
 Author: Cheese
 Version: 1.0
-Priority: 89
+Priority: 80
 ClientOnly: True
 Dependencies:
     - EccsWindowHelper
-    - lwharmony
+    - HarmonyForLogicWorld
