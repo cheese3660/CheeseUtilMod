@@ -6,4 +6,4 @@ Priority: 80
 ClientOnly: True
 Dependencies:
     - EccsWindowHelper
-    - lwharmony
+    - HarmonyForLogicWorld
