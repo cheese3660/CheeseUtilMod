@@ -13,6 +13,7 @@ namespace CheeseUtilMod.Components
         bool timertick = false;
         bool ismemdirty = false;
         bool loadfromsave = false;
+        bool hasBeenDeleted = false;
         byte[] mem;
         static int PEG_X_START = 0;
         static int PEG_Y_START = 6;
@@ -40,6 +41,7 @@ namespace CheeseUtilMod.Components
         }
         public override void Dispose()
         {
+            hasBeenDeleted = true;
             screenupdatetimer.Stop();
             screenupdatetimer.Dispose();
             WriteScreenToData();
@@ -181,9 +183,11 @@ namespace CheeseUtilMod.Components
             memstream.Position = 0;
             byte[] bytes = new byte[length];
             memstream.Read(bytes, 0, length);
-            Data.TextData = bytes;
-            Data.CursorX = cursorX;
-            Data.CursorY = cursorY;
+            if(!hasBeenDeleted){
+                Data.TextData = bytes;
+                Data.CursorX = cursorX;
+                Data.CursorY = cursorY;
+            }
         }
     }
 }
