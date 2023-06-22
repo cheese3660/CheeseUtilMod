@@ -9,7 +9,7 @@ namespace CheeseMenu.Client
 {
     public class CheeseMenu : ClientMod
     {
-		public static ILogicLogger logger;
+        public static ILogicLogger logger;
         public static List<ICheeseMenu> allmenus = new List<ICheeseMenu>();
 
         public static void RegisterMenu(ICheeseMenu menu)
@@ -17,9 +17,9 @@ namespace CheeseMenu.Client
             allmenus.Add(menu);
         }
 
-		protected override void Initialize()
-		{
-			logger = Logger;
+        protected override void Initialize()
+        {
+            logger = Logger;
             var type = typeof(ChairMenu).Assembly.GetType("LogicWorld.UI.ComponentMenusManager");
             var meth = type.GetMethod("Reset", BindingFlags.Static | BindingFlags.NonPublic);
             var postfix = new HarmonyMethod(typeof(CheeseMenu).GetMethod("ReinitializeMenus", BindingFlags.Static | BindingFlags.Public));
@@ -35,5 +35,5 @@ namespace CheeseMenu.Client
                 menu.gameObject.GetComponent<EditComponentMenu>().Initialize();
             }
         }
-	}
+    }
 }
