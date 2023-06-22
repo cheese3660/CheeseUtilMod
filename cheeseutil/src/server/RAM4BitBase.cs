@@ -28,19 +28,23 @@ namespace CheeseUtilMod.Components
         private bool loadfromsave;
 
         private byte[] memory;
+
         protected override void Initialize()
         {
             memory = new byte[(1 << addressLines) / 2];
             loadfromsave = true;
         }
+
         public override void Dispose()
         {
         }
+
         private int getPegShifted(int peg, int shift)
         {
             int bas = base.Inputs[peg].On ? 1 : 0;
             return bas << shift;
         }
+
         protected override void DoLogicUpdate()
         {
             int address = 0;
@@ -80,7 +84,6 @@ namespace CheeseUtilMod.Components
 
         protected override void OnCustomDataUpdated()
         {
-
             if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
             {
                 var to_load_from = Data.Data;
@@ -115,15 +118,16 @@ namespace CheeseUtilMod.Components
                 QueueLogicUpdate();
             }
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
             Data.state = 0;
             Data.ClientIncomingData = new byte[0];
         }
+
         protected override void SavePersistentValuesToCustomData()
         {
-
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);

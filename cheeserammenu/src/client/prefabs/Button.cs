@@ -34,12 +34,13 @@ namespace CheeseRamMenu.Client.Prefabs
 			};
 
 			gameObject.addPaletteRectangleOutline(PaletteColor.Tertiary);
-			
+
 			gameObject.addHoverButton().SetPaletteColor(PaletteColor.Accent);
 			generateText(gameObject);
 			gameObject.SetActive(true);
             return gameObject;
         }
+
 		static void generateText(GameObject parent)
         {
 			GameObject gameObject = WindowHelper.makeGameObject("CRM: Button Text");

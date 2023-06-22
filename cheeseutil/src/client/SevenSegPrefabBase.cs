@@ -44,7 +44,6 @@ namespace CheeseUtilMod.Client
             new Vector2[]{new Vector2(0.00f, 0.90f), new Vector2(segmentHeight, 0.2f) }, //7
         };
 
-
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
             PlacingRules placingRules = new PlacingRules();

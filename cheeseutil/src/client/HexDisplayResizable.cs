@@ -88,6 +88,7 @@ namespace CheeseUtilMod.Client
             }
             QueueFrameUpdate();
         }
+
         protected override void FrameUpdate()
         {
             GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
@@ -101,6 +102,7 @@ namespace CheeseUtilMod.Client
                 SetBlockColor(numbers[index][i] ? col : black, i);
             }
         }
+
         public override PlacingRules GenerateDynamicPlacingRules()
         {
             return PlacingRules.FlippablePanelOfSize(SizeX, SizeX * 2);

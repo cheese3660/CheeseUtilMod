@@ -6,6 +6,7 @@ namespace CheeseUtilMod.Components
     {
         public abstract int bits { get; }
         private int digits;
+
         public static int digitsFromBits(int bits)
         {
             ulong maxNum = (1ul << bits) - 1ul;
@@ -22,6 +23,7 @@ namespace CheeseUtilMod.Components
         {
             digits = digitsFromBits(bits);
         }
+
         private ulong getPegShifted(int peg, int shift)
         {
             ulong bas = base.Inputs[peg].On ? 1ul : 0ul;

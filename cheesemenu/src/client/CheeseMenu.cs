@@ -4,6 +4,7 @@ using LogicWorld.UI;
 using System.Collections.Generic;
 using HarmonyLib;
 using System.Reflection;
+
 namespace CheeseMenu.Client
 {
     public class CheeseMenu : ClientMod
@@ -34,6 +35,5 @@ namespace CheeseMenu.Client
                 menu.gameObject.GetComponent<EditComponentMenu>().Initialize();
             }
         }
-
 	}
 }

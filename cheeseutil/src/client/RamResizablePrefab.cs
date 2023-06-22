@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using JimmysUnityUtilities;
 
-
 namespace CheeseUtilMod.Client
 {
     public class RamResizablePrefab : PrefabVariantInfo
@@ -18,6 +17,7 @@ namespace CheeseUtilMod.Client
         {
             return new PrefabVariantIdentifier(3 + 1 + 1, 2);
         }
+
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
             var dataSize = identifier.OutputCount;

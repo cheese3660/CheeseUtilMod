@@ -4,6 +4,7 @@ using CheeseUtilMod.Shared.CustomData;
 
 using System.IO;
 using System.IO.Compression;
+
 namespace CheeseUtilMod.Components
 {
     public abstract class RAM16BitBase : LogicComponent<IRamData>
@@ -23,19 +24,23 @@ namespace CheeseUtilMod.Components
 
         private ushort[] memory;
         private bool loadfromsave;
+
         protected override void Initialize()
         {
             loadfromsave = true;
             memory = new ushort[(1 << addressLines)];
         }
+
         public override void Dispose()
         {
         }
+
         private int getPegShifted(int peg, int shift)
         {
             int bas = base.Inputs[peg].On ? 1 : 0;
             return bas << shift;
         }
+
         protected override void DoLogicUpdate()
         {
             int address = 0;
@@ -70,9 +75,9 @@ namespace CheeseUtilMod.Components
                 }
             }
         }
+
         protected override void OnCustomDataUpdated()
         {
-
             if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
             {
                 var to_load_from = Data.Data;
@@ -107,12 +112,14 @@ namespace CheeseUtilMod.Components
                 QueueLogicUpdate();
             }
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
             Data.state = 0;
             Data.ClientIncomingData = new byte[0];
         }
+
         protected override void SavePersistentValuesToCustomData()
         {
             MemoryStream memstream = new MemoryStream();

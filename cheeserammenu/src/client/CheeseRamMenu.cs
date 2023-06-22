@@ -1,5 +1,6 @@
 ﻿using LogicAPI.Client;
 using LogicLog;
+
 namespace CheeseRamMenu.Client
 {
     public class CheeseRamMenu : ClientMod
@@ -10,6 +11,5 @@ namespace CheeseRamMenu.Client
         {
             RamMenuSingleton.init();
         }
-
     }
 }

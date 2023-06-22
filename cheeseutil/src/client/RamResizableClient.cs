@@ -4,11 +4,13 @@ using System.IO.Compression;
 
 using CheeseUtilMod.Shared.CustomData;
 using LICC;
+
 namespace CheeseUtilMod.Client
 {
     public class RamResizableClient : ComponentClientCode<IRamResizableData>, FileLoadable
     {
         private static int PEG_L = 2;
+
         public void Load(byte[] filedata, LineWriter writer, bool force)
         {
             if (force || GetInputState(PEG_L) == true)
@@ -17,6 +19,7 @@ namespace CheeseUtilMod.Client
                 Data.state = 1;
             }
         }
+
         static byte[] Compress(byte[] data)
         {
             MemoryStream output = new MemoryStream();
@@ -26,6 +29,7 @@ namespace CheeseUtilMod.Client
             }
             return output.ToArray();
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.addressWidth = 1;

@@ -24,12 +24,14 @@ namespace CheeseUtilMod.Components
         private static int addressWidth;
         private bool loadfromsave;
         private byte[] memory;
+
         private static int widthToBytes(int width)
         {
             int bas = width / 8;
             int mod = (width % 8) > 0 ? 1 : 0;
             return bas+mod;
         }
+
         protected override void Initialize()
         {
             bitWidth = Outputs.Count;
@@ -39,6 +41,7 @@ namespace CheeseUtilMod.Components
             loadfromsave = true;
             memory = new byte[(1 << addressWidth) * widthToBytes(bitWidth)];
         }
+
         public override void Dispose()
         {
         }
@@ -48,6 +51,7 @@ namespace CheeseUtilMod.Components
             ulong bas = base.Inputs[peg].On ? 1ul : 0ul;
             return bas << shift;
         }
+
         protected override void DoLogicUpdate()
         {
             var newBitWidth = Outputs.Count;
@@ -102,9 +106,9 @@ namespace CheeseUtilMod.Components
                 }
             }
         }
+
         protected override void OnCustomDataUpdated()
         {
-
             if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
             {
                 var to_load_from = Data.Data;
@@ -138,7 +142,8 @@ namespace CheeseUtilMod.Components
                 }
                 QueueLogicUpdate();
             }
-         }
+        }
+
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
@@ -147,6 +152,7 @@ namespace CheeseUtilMod.Components
             Data.bitWidth = 1;
             Data.addressWidth = 1;
         }
+
         protected override void SavePersistentValuesToCustomData()
         {
 

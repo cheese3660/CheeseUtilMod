@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using CheeseMenu.Client;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,6 +26,7 @@ namespace CheeseRamMenu.Client
         public static GameObject widthPegSliderTransform;
         public static InputSlider addressPegSlider;
         public static InputSlider widthPegSlider;
+
         public static void init()
         {
             contentPlane = constructContent();
@@ -46,6 +47,7 @@ namespace CheeseRamMenu.Client
             CheeseMenu.Client.CheeseMenu.RegisterMenu(Instance);
             OnMenuHidden += GameStateManager.TransitionBackToBuildingState;
         }
+
         private static GameObject constructContent()
         {
             GameObject gameObject = WindowHelper.makeGameObject("CRM: ContentPlane");
@@ -102,9 +104,11 @@ namespace CheeseRamMenu.Client
             return gameObject;
         }
     }
+
     public class RamMenu : EditComponentMenu
     {
         bool is_resizable = false;
+
         protected override void OnStartEditing()
         {
             if (FirstComponentBeingEdited.ClientCode is RamResizableClient)
@@ -128,6 +132,7 @@ namespace CheeseRamMenu.Client
             }
             base.OnStartEditing();
         }
+
         public void SetupListener()
         {
             RamMenuSingleton.hbutton.OnClickEnd += Hbutton_OnClickEnd;
@@ -149,7 +154,6 @@ namespace CheeseRamMenu.Client
             var total_inputs = obj + 3 + (int)RamMenuSingleton.widthPegSlider.Value;
             var total_outputs = (int)RamMenuSingleton.widthPegSlider.Value;
             BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address, total_inputs, total_outputs), null);
-
         }
 
         private void Hbutton_OnClickEnd()

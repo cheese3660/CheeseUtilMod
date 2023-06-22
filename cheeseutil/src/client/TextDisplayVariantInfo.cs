@@ -5,7 +5,6 @@ using LogicWorld.SharedCode.Components;
 using System;
 using UnityEngine;
 
-
 namespace CheeseUtilMod.Client
 {
     //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/client/Output.cs
@@ -16,7 +15,6 @@ namespace CheeseUtilMod.Client
 
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
-
             if (identifier.OutputCount != 0)
             {
                 throw new Exception("Text Displays cannot have any outputs");

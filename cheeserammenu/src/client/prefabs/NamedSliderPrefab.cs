@@ -1,4 +1,4 @@
-﻿using TMPro;
+using TMPro;
 using UnityEngine;
 using EccsWindowHelper.Client;
 using LogicUI.MenuParts;
@@ -30,6 +30,7 @@ namespace CheeseRamMenu.Client.Prefabs
 			gameObject.SetActive(true);
 			return gameObject;
 		}
+
 		private static void constructSettingsTitle(GameObject parent, int width, string key)
 		{
 			GameObject gameObject = WindowHelper.makeGameObject("CRM: Named Slider Title");

@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using JimmysUnityUtilities;
 
-
 namespace CheeseUtilMod.Client
 {
     public abstract class RamPrefabBase : PrefabVariantInfo
@@ -14,10 +13,12 @@ namespace CheeseUtilMod.Client
         public abstract int addressSize { get; }
         public abstract int dataSize { get; }
         private static Color24 blockColor = new Color24(127, 127, 127);
+
         public override PrefabVariantIdentifier GetDefaultComponentVariant()
         {
             return new PrefabVariantIdentifier(3+addressSize+dataSize, dataSize);
         }
+
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
             PlacingRules placingRules = new PlacingRules();

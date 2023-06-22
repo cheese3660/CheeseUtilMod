@@ -23,6 +23,7 @@ namespace CheeseUtilMod.Client
             }
             return numDigits;
         }
+
         public override PrefabVariantIdentifier GetDefaultComponentVariant()
         {
             return new PrefabVariantIdentifier(bits, digitsFromBits(bits)*4);

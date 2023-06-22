@@ -7,12 +7,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using EccsWindowHelper.Client;
 
-
 namespace CheeseRamMenu.Client.Prefabs
 {
     public static class TextInput
     {
-
 		public static GameObject constructTextInput()
 		{
 			GameObject gameObject = WindowHelper.makeGameObject("CRM: Text Field");

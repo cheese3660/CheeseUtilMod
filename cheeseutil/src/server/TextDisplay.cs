@@ -3,6 +3,7 @@ using LogicWorld.Server.Circuitry;
 using System.Timers;
 using System.IO;
 using System.IO.Compression;
+
 namespace CheeseUtilMod.Components
 {
     //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/server/Output.cs
@@ -28,6 +29,7 @@ namespace CheeseUtilMod.Components
         byte cursorX;
         byte cursorY;
         MemoryStream memstream;
+
         protected override void Initialize()
         {
             memstream = new MemoryStream();
@@ -38,6 +40,7 @@ namespace CheeseUtilMod.Components
             screenupdatetimer.Start();
             loadfromsave = true;
         }
+
         public override void Dispose()
         {
             hasBeenDeleted = true;
@@ -46,6 +49,7 @@ namespace CheeseUtilMod.Components
             WriteScreenToData();
             base.Dispose();
         }
+
         public void OnTimerElapsed(object source, ElapsedEventArgs args)
         {
             if (ismemdirty)
@@ -53,6 +57,7 @@ namespace CheeseUtilMod.Components
                 timertick = true;
             }
         }
+
         public int getDataShifted(int start_peg, int num_bits)
         {
             int value = 0;
@@ -62,6 +67,7 @@ namespace CheeseUtilMod.Components
             }
             return value;
         }
+
         protected override void DoLogicUpdate()
         {
             if (Inputs[PEG_CLEAR].On)
@@ -151,7 +157,9 @@ namespace CheeseUtilMod.Components
                 ismemdirty = false;
             }
         }
+
         public override bool InputAtIndexShouldTriggerComponentLogicUpdates(int inputIndex) => inputIndex >= PEG_CLEAR && inputIndex != PEG_CURSOR_ENABLED;
+
         protected override void SetDataDefaultValues()
         {
             Data.SizeX = 4;
@@ -161,6 +169,7 @@ namespace CheeseUtilMod.Components
             Data.CursorX = 0;
             Data.CursorY = 0;
         }
+
         protected override void OnCustomDataUpdated()
         {
             if (loadfromsave && Data.TextData != null)
@@ -172,6 +181,7 @@ namespace CheeseUtilMod.Components
                 loadfromsave = false;
             }
         }
+
         private void WriteScreenToData()
         {
             memstream.Position = 0;

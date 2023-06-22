@@ -11,8 +11,8 @@ namespace CheeseUtilMod.Client
 
         public string ColorsFileKey => "SevenSegments";
 
-
         public float MinColorValue => 0.0f;
+
         private static bool[][] numbers = new bool[][]
         {
             new bool[] {true, true, true, true, true, true, false}, //0
@@ -32,10 +32,12 @@ namespace CheeseUtilMod.Client
             new bool[] {true, false, false, true, true, true, true }, //E
             new bool[] {true, false, false, false, true, true, true }, //F
         };
+
         protected override void DataUpdate()
         {
             QueueFrameUpdate();
         }
+
         protected override void FrameUpdate()
         {
             GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
@@ -50,6 +52,7 @@ namespace CheeseUtilMod.Client
                 SetBlockColor(numbers[index][i] ? col : black, i);
             }
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.color = Color24.Amber;

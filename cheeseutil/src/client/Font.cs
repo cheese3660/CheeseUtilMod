@@ -105,6 +105,7 @@ namespace CheeseUtilMod.Client
 			{0, 24579, 24579, 24579, 28679, 16254, 8188, 448, 128, 0, 0},                      // '}' 125
 			{16, 24, 12, 4, 12, 24, 16, 24, 12, 4, 0}                                         // '~' 126
         };
+
         public static ushort[] GetFontCharacter(byte chr)
         {
             if (chr < first || chr >= last)
@@ -121,6 +122,7 @@ namespace CheeseUtilMod.Client
                 return result;
             }
         }
+
         public static void SetChar(Texture2D tex, bool invert, byte chr, int x, int y, Color onColor)
         {
             x *= 16;

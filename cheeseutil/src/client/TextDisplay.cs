@@ -55,6 +55,7 @@ namespace CheeseUtilMod.Client
         int screenHeight;
         bool fullRefresh;
         bool firstFrame;
+
         protected override void Initialize()
         {
             mem = new byte[64 * 64];
@@ -75,7 +76,9 @@ namespace CheeseUtilMod.Client
                 screen.filterMode = FilterMode.Point;
             }
         }
+
         static int PEG_CURSOR_ENABLED = 23;
+
         protected void cursorSwitch(object source, ElapsedEventArgs e)
         {
             cursorState = !cursorState;
@@ -85,6 +88,7 @@ namespace CheeseUtilMod.Client
                 QueueFrameUpdate();
             }
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.SizeX = 8;
@@ -94,6 +98,7 @@ namespace CheeseUtilMod.Client
             Data.CursorX = 0;
             Data.CursorY = 0;
         }
+
         protected override void DataUpdate()
         {
             if (SizeX != previousSizeX || SizeZ != previousSizeZ)
@@ -117,6 +122,7 @@ namespace CheeseUtilMod.Client
                 PrevColor = Color;
             }
             QueueFrameUpdate();
+
             void setupInputBlock()
             {
                 int blocksizex = Math.Min(SizeX, 8);
@@ -175,10 +181,12 @@ namespace CheeseUtilMod.Client
             fullRefresh = false;
             firstFrame = false;
         }
+
         public override PlacingRules GenerateDynamicPlacingRules()
         {
             return PlacingRules.FlippablePanelOfSize(SizeX, SizeZ);
         }
+
         protected override IList<IDecoration> GenerateDecorations()
         {
             if (screen == null)

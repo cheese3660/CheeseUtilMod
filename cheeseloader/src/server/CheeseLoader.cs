@@ -1,10 +1,9 @@
-using LogicAPI.Server;
+﻿using LogicAPI.Server;
 using System.IO;
 using System.Reflection;
 
 namespace CheeseLoader.Server
 {
-
     public class CheeseLoader : ServerMod
     {
         protected override void Initialize()
@@ -15,8 +14,6 @@ namespace CheeseLoader.Server
             var directory = System.IO.Path.GetDirectoryName(location);
             foreach (var path in System.IO.Directory.GetFiles(directory))
             {
-
-
                 if (path.EndsWith(".dll"))
                 {
                     var asm_name = System.IO.Path.GetFileNameWithoutExtension(path);

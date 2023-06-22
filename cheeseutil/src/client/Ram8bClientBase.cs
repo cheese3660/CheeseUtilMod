@@ -12,16 +12,19 @@ namespace CheeseUtilMod.Client
         public abstract int addressLines { get; }
         public byte[] memory;
         private static int PEG_L = 2;
+
         protected override void Initialize()
         {
             memory = new byte[(1 << addressLines)];
             CheeseUtilClient.fileLoadables.Add(this);
         }
+
         protected override void OnComponentDestroyed()
         {
             CheeseUtilClient.fileLoadables.Remove(this);
         }
-        public void Load( byte[] filedata, LineWriter writer, bool force)
+
+        public void Load(byte[] filedata, LineWriter writer, bool force)
         {
             if (force || GetInputState(PEG_L))
             {
@@ -37,6 +40,7 @@ namespace CheeseUtilMod.Client
                 SendDataToServer();
             }
         }
+
         static byte[] Compress(byte[] data)
         {
             MemoryStream output = new MemoryStream();
@@ -46,6 +50,7 @@ namespace CheeseUtilMod.Client
             }
             return output.ToArray();
         }
+
         protected void SendDataToServer()
         {
             Data.ClientIncomingData = Compress(memory);
