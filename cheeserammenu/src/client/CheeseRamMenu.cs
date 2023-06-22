@@ -1,7 +1,5 @@
 ﻿using LogicAPI.Client;
 using LogicLog;
-using HarmonyLib;
-using System.Reflection;
 namespace CheeseRamMenu.Client
 {
     public class CheeseRamMenu : ClientMod

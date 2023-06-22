@@ -1,7 +1,6 @@
 ﻿using LogicWorld.Rendering.Components;
 using JimmysUnityUtilities;
 using LogicWorld.ClientCode;
-using System.Collections;
 using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client

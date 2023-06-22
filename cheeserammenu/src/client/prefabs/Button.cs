@@ -1,11 +1,9 @@
-﻿using LogicUI.MenuParts.Toggles;
-using LogicUI.Palettes;
+﻿using LogicUI.Palettes;
 using ThisOtherThing.UI;
 using ThisOtherThing.UI.Shapes;
 using ThisOtherThing.UI.ShapeUtils;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using EccsWindowHelper.Client;
 
 namespace CheeseRamMenu.Client.Prefabs

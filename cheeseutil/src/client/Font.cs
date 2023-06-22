@@ -1,5 +1,4 @@
-﻿using JimmysUnityUtilities;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace CheeseUtilMod.Client
 {

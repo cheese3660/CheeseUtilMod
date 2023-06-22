@@ -1,9 +1,5 @@
-﻿using ThisOtherThing.UI;
-using ThisOtherThing.UI.Shapes;
-using ThisOtherThing.UI.ShapeUtils;
-using TMPro;
+﻿using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 using EccsWindowHelper.Client;
 using LogicUI.MenuParts;
 using EccsWindowHelper.Client.Prefabs;
