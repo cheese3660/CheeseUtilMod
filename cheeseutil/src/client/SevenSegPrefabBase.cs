@@ -9,7 +9,7 @@ namespace CheeseUtilMod.Client
 {
     public abstract class SevenSegPrefabBase : PrefabVariantInfo
     {
-        public override abstract string ComponentTextID { get; }
+        public abstract override string ComponentTextID { get; }
         public abstract int scale { get; } //This is 1, 2, or 4
         public abstract bool hex { get; }
 
@@ -61,8 +61,8 @@ namespace CheeseUtilMod.Client
                     new Block
                     {
                         RawColor = Color24.Black,
-                        Position = new Vector3(x,y,-0.5f+0.125f),
-                        Scale = new Vector3(w,h,0.25f)
+                        Position = new Vector3(x, y,-0.5f + 0.125f),
+                        Scale = new Vector3(w, h, 0.25f)
                     }
                 );
             }
@@ -85,7 +85,7 @@ namespace CheeseUtilMod.Client
             {
                 inputs.Add(new ComponentInput
                 {
-                    Position = new Vector3(currentX - (scale/2f), currentY, 0f),
+                    Position = new Vector3(currentX - scale / 2f, currentY, 0f),
                     Rotation = new Vector3(90f, 0f, 0f),
                     Length = length
                 });

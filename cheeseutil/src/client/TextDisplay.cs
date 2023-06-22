@@ -64,7 +64,7 @@ namespace CheeseUtilMod.Client
             screenHeight = 256;
             cursorUpdateTimer = new Timer();
             cursorUpdateTimer.Interval = 1000;
-            cursorUpdateTimer.Elapsed += new ElapsedEventHandler(cursorSwitch);
+            cursorUpdateTimer.Elapsed += cursorSwitch;
             cursorUpdateTimer.AutoReset = true;
             cursorUpdateTimer.Start();
             cursorState = false;
@@ -165,7 +165,7 @@ namespace CheeseUtilMod.Client
                         byte chr = mem2[index];
                         if (chr_old != chr || cursor || fullRefresh || firstFrame)
                         {
-                            Font.SetChar(screen, invert, chr, x, ((SizeZ * 4) - 1) - y, c);
+                            Font.SetChar(screen, invert, chr, x, SizeZ * 4 - 1 - y, c);
                         }
                     }
                 }
@@ -173,9 +173,9 @@ namespace CheeseUtilMod.Client
                 mem = mem2;
                 mem2 = new byte[64*64];
             }
-            else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX*4 && Data.CursorY < SizeZ*4)
+            else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX * 4 && Data.CursorY < SizeZ * 4)
             {
-                Font.SetChar(screen, cursorState, 32, Data.CursorX, ((SizeZ*4) - 1)-Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
+                Font.SetChar(screen, cursorState, 32, Data.CursorX, SizeZ * 4 - 1 - Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
                 screen.Apply();
             }
             fullRefresh = false;
@@ -201,7 +201,7 @@ namespace CheeseUtilMod.Client
             GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Quad);
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             gameObject.GetComponent<Renderer>().material = material;
-            return new Decoration[1]
+            return new Decoration[]
             {
                 new Decoration
                 {

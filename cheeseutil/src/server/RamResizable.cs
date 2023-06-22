@@ -9,13 +9,7 @@ namespace CheeseUtilMod.Components
 {
     public class RamResizable : LogicComponent<IRamResizableData>
     {
-        public override bool HasPersistentValues
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool HasPersistentValues => true;
 
         private static int PEG_CS = 0;
         private static int PEG_W = 1;
@@ -28,14 +22,14 @@ namespace CheeseUtilMod.Components
         private static int widthToBytes(int width)
         {
             int bas = width / 8;
-            int mod = (width % 8) > 0 ? 1 : 0;
+            int mod = width % 8 > 0 ? 1 : 0;
             return bas+mod;
         }
 
         protected override void Initialize()
         {
             bitWidth = Outputs.Count;
-            addressWidth = (Inputs.Count - 3) - Outputs.Count;
+            addressWidth = Inputs.Count - 3 - Outputs.Count;
             Data.bitWidth = 1;
             Data.addressWidth = 1;
             loadfromsave = true;
@@ -48,7 +42,7 @@ namespace CheeseUtilMod.Components
 
         private ulong getPegShifted(int peg, int shift)
         {
-            ulong bas = base.Inputs[peg].On ? 1ul : 0ul;
+            ulong bas = Inputs[peg].On ? 1ul : 0ul;
             return bas << shift;
         }
 
@@ -68,8 +62,8 @@ namespace CheeseUtilMod.Components
             {
                 address |= getPegShifted(i + 3 + bitWidth, i);
             }
-            address *= (ulong)bytes;
-            if (base.Inputs[PEG_W].On)
+            address *= bytes;
+            if (Inputs[PEG_W].On)
             {
                 ulong data = 0;
                 for (int i = 0; i < bitWidth; i++)
@@ -82,19 +76,19 @@ namespace CheeseUtilMod.Components
                     data >>= 8;
                 }
             }
-            if (base.Inputs[PEG_CS].On)
+            if (Inputs[PEG_CS].On)
             {
                 //int data = memory[address];
                 ulong data = 0;
                 for (ulong i = 0; i < bytes; i++)
                 {
-                    var i2 = (bytes-1) - i;
+                    var i2 = bytes - 1 - i;
                     data <<= 8;
                     data |= memory[address + i2];
                 }
                 for (int i = 0; i < bitWidth; i++)
                 {
-                    base.Outputs[i].On = (data & 1) == 1;
+                    Outputs[i].On = (data & 1) == 1;
                     data >>= 1;
                 }
             }
@@ -102,14 +96,14 @@ namespace CheeseUtilMod.Components
             {
                 for (int i = 0; i < bitWidth; i++)
                 {
-                    base.Outputs[i].On = false;
+                    Outputs[i].On = false;
                 }
             }
         }
 
         protected override void OnCustomDataUpdated()
         {
-            if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
+            if (loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null)
             {
                 var to_load_from = Data.Data;
                 if (Data.state == 1)
@@ -119,20 +113,20 @@ namespace CheeseUtilMod.Components
                 }
                 MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
-				byte[] mem1 = new byte[memory.Length];
+                byte[] mem1 = new byte[memory.Length];
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
                     int bytesRead;
-					int nextStartIndex = 0;
-					while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
-						nextStartIndex += bytesRead;
-					}
+                    int nextStartIndex = 0;
+                    while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length - nextStartIndex)) > 0){
+                        nextStartIndex += bytesRead;
+                    }
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
                 catch(Exception ex)
                 {
-					Logger.Error("[CheeseUtilmod] Loading data from client failed with exception: "+ex.ToString());
+                    Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
                 }
                 loadfromsave = false;
                 if (Data.state == 1)
@@ -155,7 +149,6 @@ namespace CheeseUtilMod.Components
 
         protected override void SavePersistentValuesToCustomData()
         {
-
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);

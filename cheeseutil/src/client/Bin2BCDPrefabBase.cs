@@ -9,12 +9,12 @@ namespace CheeseUtilMod.Client
 {
     public abstract class Bin2BCDPrefabBase : PrefabVariantInfo
     {
-        public override abstract string ComponentTextID { get; }
+        public abstract override string ComponentTextID { get; }
         public abstract int bits { get; }
 
         public static int digitsFromBits(int bits)
         {
-            ulong maxNum = (1ul << bits)-1ul;
+            ulong maxNum = (1ul << bits) - 1ul;
             int numDigits = 1;
             while (maxNum > 10ul)
             {
@@ -49,7 +49,7 @@ namespace CheeseUtilMod.Client
             {
                 offset = 0.5f;
             }
-            for (int i = 0; i < identifier.OutputCount; i+=4)
+            for (int i = 0; i < identifier.OutputCount; i += 4)
             {
                 float outputPositionY = 0.5f;
                 for (int j = 0; j < 4; j++)
@@ -70,7 +70,7 @@ namespace CheeseUtilMod.Client
             {
                 inputs.Add(new ComponentInput
                 {
-                    Position = new Vector3(currentX-(w2/2f)- offset, currentY, -0.5f),
+                    Position = new Vector3(currentX - (w2 / 2f) - offset, currentY, -0.5f),
                     Rotation = new Vector3(-90f, 0f, 0f),
                     Length = 0.5f
                 });

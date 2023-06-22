@@ -12,7 +12,7 @@ namespace CheeseRamMenu.Client.Prefabs
         {
             GameObject otherContent = InputSliderPrefab.generateInputSlider();
             slider = otherContent.GetComponent<InputSlider>();
-            GameObject gameObject = WindowHelper.makeGameObject("CRM Named Sldier");
+            GameObject gameObject = WindowHelper.makeGameObject("CRM Named Slider");
             RectTransform rectTransform = gameObject.AddComponent<RectTransform>();
             {
                 rectTransform.anchorMin = new Vector2(0, 0);
@@ -70,6 +70,5 @@ namespace CheeseRamMenu.Client.Prefabs
             gameObject.SetActive(true);
             gameObject.setParent(parent);
         }
-
     }
 }

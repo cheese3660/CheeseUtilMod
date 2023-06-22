@@ -11,7 +11,6 @@ namespace CheeseUtilMod.Client
     public class TextDisplayVariantInfo : PrefabVariantInfo
     {
         public override string ComponentTextID => "CheeseUtilMod.TextDisplay";
-        public static LogicLog.ILogicLogger Logger = LogicLog.LogicLogger.For("CheeseUtilModTextDisplay");
 
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
@@ -51,26 +50,26 @@ namespace CheeseUtilMod.Client
             {
                 Blocks = new Block[2]
                 {
-                new Block
-                {
-                    Position = new Vector3(-0.5f, 0f, -0.5f),
-                    MeshName = "OriginCube",
-                    RawColor = Color24.Black
-                },
-                new Block
-                {
-                    Position = new Vector3(-0.45f, 0f, -0.45f),
-                    Rotation = new Vector3(180f, 270f, 0f),
-                    MeshName = "OriginCube_OpenBottom",
-                    ColliderData = new ColliderData
+                    new Block
                     {
-                        Transform = new ColliderTransform
+                        Position = new Vector3(-0.5f, 0f, -0.5f),
+                        MeshName = "OriginCube",
+                        RawColor = Color24.Black
+                    },
+                    new Block
+                    {
+                        Position = new Vector3(-0.45f, 0f, -0.45f),
+                        Rotation = new Vector3(180f, 270f, 0f),
+                        MeshName = "OriginCube_OpenBottom",
+                        ColliderData = new ColliderData
                         {
-                            LocalScale = new Vector3(1f, 0.4f, 1f),
-                            LocalPosition = new Vector3(0f, 0.6f, 0f)
+                            Transform = new ColliderTransform
+                            {
+                                LocalScale = new Vector3(1f, 0.4f, 1f),
+                                LocalPosition = new Vector3(0f, 0.6f, 0f)
+                            }
                         }
                     }
-                }
                 },
                 Inputs = array
             };

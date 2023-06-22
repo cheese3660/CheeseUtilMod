@@ -249,13 +249,15 @@ namespace CheeseUtilMod.Components
             {
                 if (buffer_read_pos < buffer_write_pos) buffer_read_pos += 1;
                 UpdateBufferPins();
-            } else if (curr_on[CLEAR_BUFFER] && !prev_on[CLEAR_BUFFER])
+            }
+            else if (curr_on[CLEAR_BUFFER] && !prev_on[CLEAR_BUFFER])
             {
                 kb_buffer = new byte[256];
                 buffer_write_pos = 0;
                 buffer_read_pos = 0;
                 UpdateBufferPins();
-            } else if (Inputs[55].On)
+            }
+            else if (Inputs[55].On)
             {
                 bool has_new_key = false;
                 int new_key = 0;

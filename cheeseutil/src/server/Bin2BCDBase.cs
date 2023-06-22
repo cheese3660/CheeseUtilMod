@@ -26,7 +26,7 @@ namespace CheeseUtilMod.Components
 
         private ulong getPegShifted(int peg, int shift)
         {
-            ulong bas = base.Inputs[peg].On ? 1ul : 0ul;
+            ulong bas = Inputs[peg].On ? 1ul : 0ul;
             return bas << shift;
         }
 

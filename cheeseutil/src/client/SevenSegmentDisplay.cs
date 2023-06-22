@@ -20,15 +20,16 @@ namespace CheeseUtilMod.Client
 
         protected override void FrameUpdate()
         {
-            GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
-            GpuColor black = GpuColorConversionExtensions.ToGpuColor(Color24.Black);
+            GpuColor col = Data.color.ToGpuColor();
+            GpuColor black = Color24.Black.ToGpuColor();
             for (int i = 0; i < 7; i++)
             {
                 bool set = GetInputState(i);
                 if (set)
                 {
                     SetBlockColor(col, i);
-                } else
+                }
+                else
                 {
                     SetBlockColor(black, i);
                 }

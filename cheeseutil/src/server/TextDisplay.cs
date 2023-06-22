@@ -33,9 +33,9 @@ namespace CheeseUtilMod.Components
         protected override void Initialize()
         {
             memstream = new MemoryStream();
-            mem = new byte[64*64];
+            mem = new byte[64 * 64];
             screenupdatetimer = new Timer(500); //Do 2 text updates per second
-            screenupdatetimer.Elapsed += new ElapsedEventHandler(OnTimerElapsed);
+            screenupdatetimer.Elapsed += OnTimerElapsed;
             screenupdatetimer.AutoReset = true;
             screenupdatetimer.Start();
             loadfromsave = true;
@@ -63,7 +63,7 @@ namespace CheeseUtilMod.Components
             int value = 0;
             for (int shift = 0; shift < num_bits; shift++)
             {
-                if (Inputs[start_peg+shift].On) value |= 1 << shift;
+                if (Inputs[start_peg + shift].On) value |= 1 << shift;
             }
             return value;
         }
@@ -101,8 +101,8 @@ namespace CheeseUtilMod.Components
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        int idx0  = (y * 64) + x;
-                        int idx1 = ((y-1) * 64) + x;
+                        int idx0  = y * 64 + x;
+                        int idx1 = (y-1) * 64 + x;
                         mem[idx1] = mem[idx0];
                         mem[idx0] = 0;
                     }
@@ -115,9 +115,8 @@ namespace CheeseUtilMod.Components
                 {
                     for (int x = 0; x < 64; x++)
                     {
-
-                        int idx0 = (y * 64) + x;
-                        int idx1 = ((y + 1) * 64) + x;
+                        int idx0 = y * 64 + x;
+                        int idx1 = (y + 1) * 64 + x;
                         mem[idx1] = mem[idx0];
                         mem[idx0] = 0;
                     }

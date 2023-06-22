@@ -29,7 +29,6 @@ namespace CheeseMenu.Client
         public static void ReinitializeMenus()
         {
             logger.Info("REINITIALIZING MENUS");
-            var type = typeof(ICheeseMenu);
             foreach (var menu in allmenus)
             {
                 menu.gameObject.GetComponent<EditComponentMenu>().Initialize();

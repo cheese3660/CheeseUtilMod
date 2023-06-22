@@ -4,7 +4,8 @@ using CheeseUtilMod.Client;
 using LICC;
 using System.IO;
 
-namespace CheeseUtilMod {
+namespace CheeseUtilMod
+{
     public class CheeseUtilClient : ClientMod
     {
         public static List<FileLoadable> fileLoadables = new List<FileLoadable>();
@@ -12,7 +13,8 @@ namespace CheeseUtilMod {
         static CheeseUtilClient() {
         }
         
-        protected override void Initialize() {
+        protected override void Initialize()
+        {
             Logger.Info("Cheese Util Mod - Client Loaded");
         }
         
@@ -23,7 +25,7 @@ namespace CheeseUtilMod {
             if (File.Exists(file))
             {
                 var bs = File.ReadAllBytes(file);
-                foreach (var item in fileLoadables) item.Load(bs, lineWriter,false);
+                foreach (var item in fileLoadables) item.Load(bs, lineWriter, false);
             }
             else
             {

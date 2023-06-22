@@ -9,13 +9,7 @@ namespace CheeseUtilMod.Components
 {
     public abstract class RAM1BitBase : LogicComponent<IRamData>
     {
-        public override bool HasPersistentValues
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool HasPersistentValues => true;
 
         public abstract int addressLines { get; }
         private static int PEG_CS = 0;
@@ -27,7 +21,7 @@ namespace CheeseUtilMod.Components
 
         protected override void Initialize()
         {
-            memory = new byte[(1 << addressLines)/8];
+            memory = new byte[(1 << addressLines) / 8];
             loadfromsave = true;
         }
 
@@ -37,7 +31,7 @@ namespace CheeseUtilMod.Components
 
         private int getPegShifted(int peg, int shift)
         {
-            int bas = base.Inputs[peg].On ? 1 : 0;
+            int bas = Inputs[peg].On ? 1 : 0;
             return bas << shift;
         }
 
@@ -51,9 +45,9 @@ namespace CheeseUtilMod.Components
             int byteAddress = address / 8;
             int bitIndex = address % 8;
             byte mask = (byte)(1 << bitIndex);
-            if (base.Inputs[PEG_W].On)
+            if (Inputs[PEG_W].On)
             {
-                if (base.Inputs[PEG_D].On)
+                if (Inputs[PEG_D].On)
                 {
                     memory[byteAddress] |= mask;
                 }
@@ -62,12 +56,13 @@ namespace CheeseUtilMod.Components
                     memory[byteAddress] &= (byte)~mask;
                 }
             }
-            if (base.Inputs[PEG_CS].On)
+            if (Inputs[PEG_CS].On)
             {
-                base.Outputs[0].On = (memory[byteAddress] & mask) != 0;
-            } else
+                Outputs[0].On = (memory[byteAddress] & mask) != 0;
+            }
+            else
             {
-                base.Outputs[0].On = false;
+                Outputs[0].On = false;
             }
         }
 
@@ -85,7 +80,7 @@ namespace CheeseUtilMod.Components
         protected override void OnCustomDataUpdated()
         {
 
-            if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
+            if (loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null)
             {
                 var to_load_from = Data.Data;
                 if (Data.state == 1)
@@ -95,20 +90,20 @@ namespace CheeseUtilMod.Components
                 }
                 MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
-				byte[] mem1 = new byte[memory.Length];
+                byte[] mem1 = new byte[memory.Length];
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
                     int bytesRead;
-					int nextStartIndex = 0;
-					while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
-						nextStartIndex += bytesRead;
-					}
+                    int nextStartIndex = 0;
+                    while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length - nextStartIndex)) > 0){
+                        nextStartIndex += bytesRead;
+                    }
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
-				catch(Exception ex)
+                catch(Exception ex)
                 {
-					Logger.Error("[CheeseUtilmod] Loading data from client failed with exception: "+ex.ToString());
+                    Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
                 }
                 loadfromsave = false;
                 if (Data.state == 1)
@@ -129,7 +124,6 @@ namespace CheeseUtilMod.Components
 
         protected override void SavePersistentValuesToCustomData()
         {
-
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);

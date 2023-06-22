@@ -11,21 +11,22 @@ namespace CheeseLoader.Server
             Logger.Info("Cheese Loader Mod - Server Loaded");
             var location = Assembly.GetEntryAssembly().Location;
             Logger.Info("Found server at - " + location);
-            var directory = System.IO.Path.GetDirectoryName(location);
-            foreach (var path in System.IO.Directory.GetFiles(directory))
+            var directory = Path.GetDirectoryName(location);
+            foreach (var path in Directory.GetFiles(directory))
             {
                 if (path.EndsWith(".dll"))
                 {
-                    var asm_name = System.IO.Path.GetFileNameWithoutExtension(path);
+                    var asm_name = Path.GetFileNameWithoutExtension(path);
                     Logger.Trace("work - " + asm_name);
                     try
                     {
                         Assembly.Load(asm_name);
-                    } catch (FileLoadException fle)
+                    }
+                    catch (FileLoadException)
                     {
                         Logger.Trace("nope");
                     }
-                    catch (FileNotFoundException fle)
+                    catch (FileNotFoundException)
                     {
                         Logger.Trace("nope");
                     }

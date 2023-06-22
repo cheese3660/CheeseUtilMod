@@ -2,7 +2,6 @@
 using ThisOtherThing.UI;
 using ThisOtherThing.UI.Shapes;
 using ThisOtherThing.UI.ShapeUtils;
-using TMPro;
 using UnityEngine;
 using EccsWindowHelper.Client;
 
@@ -53,7 +52,7 @@ namespace CheeseRamMenu.Client.Prefabs
                 rectTransform.sizeDelta = new Vector2(0f, 0f);
             }
             gameObject.AddComponent<CanvasRenderer>();
-            TextMeshProUGUI txt = WindowHelper.addTMP(gameObject);
+            WindowHelper.addTMP(gameObject);
 
             gameObject.addLocalizedTextMesh().SetLocalizationKey("CRM.FileLoad");
             gameObject.addPaletteGraphic(PaletteColor.Text_Primary);

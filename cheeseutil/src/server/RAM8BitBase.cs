@@ -9,13 +9,7 @@ namespace CheeseUtilMod.Components
 {
     public abstract class RAM8BitBase : LogicComponent<IRamData>
     {
-        public override bool HasPersistentValues
-        {
-            get
-            {
-                return true;
-            }
-        }
+        public override bool HasPersistentValues => true;
 
         public abstract int addressLines { get; }
         private static int PEG_CS = 0;
@@ -27,7 +21,7 @@ namespace CheeseUtilMod.Components
         protected override void Initialize()
         {
             loadfromsave = true;
-            memory = new byte[(1 << addressLines)];
+            memory = new byte[1 << addressLines];
         }
 
         public override void Dispose()
@@ -36,7 +30,7 @@ namespace CheeseUtilMod.Components
  
         private int getPegShifted(int peg, int shift)
         {
-            int bas = base.Inputs[peg].On ? 1 : 0;
+            int bas = Inputs[peg].On ? 1 : 0;
             return bas << shift;
         }
 
@@ -47,7 +41,7 @@ namespace CheeseUtilMod.Components
             {
                 address |= getPegShifted(i + 3 + 8, i);
             }
-            if (base.Inputs[PEG_W].On)
+            if (Inputs[PEG_W].On)
             {
                 int data = 0;
                 for (int i = 0; i < 8; i++)
@@ -56,26 +50,27 @@ namespace CheeseUtilMod.Components
                 }
                 memory[address] = (byte)data;
             }
-            if (base.Inputs[PEG_CS].On)
+            if (Inputs[PEG_CS].On)
             {
                 int data = memory[address];
                 for (int i = 0; i < 8; i++)
                 {
-                    base.Outputs[i].On = (data & 1) == 1;
+                    Outputs[i].On = (data & 1) == 1;
                     data >>= 1;
                 }
-            } else
+            }
+            else
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    base.Outputs[i].On = false;
+                    Outputs[i].On = false;
                 }
             }
         }
 
         protected override void OnCustomDataUpdated()
         {
-            if ((loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null))
+            if (loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null)
             {
                 var to_load_from = Data.Data;
                 if (Data.state == 1)
@@ -85,20 +80,20 @@ namespace CheeseUtilMod.Components
                 }
                 MemoryStream stream = new MemoryStream(to_load_from);
                 stream.Position = 0;
-				byte[] mem1 = new byte[memory.Length];
+                byte[] mem1 = new byte[memory.Length];
                 try
                 {
                     DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
                     int bytesRead;
-					int nextStartIndex = 0;
-					while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
-						nextStartIndex += bytesRead;
-					}
+                    int nextStartIndex = 0;
+                    while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
+                        nextStartIndex += bytesRead;
+                    }
                     Buffer.BlockCopy(mem1, 0, memory, 0, mem1.Length);
                 }
                 catch(Exception ex)
                 {
-					Logger.Error("[CheeseUtilmod] Loading data from client failed with exception: "+ex.ToString());
+                    Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
                 }
                 loadfromsave = false;
                 if (Data.state == 1)
@@ -119,7 +114,6 @@ namespace CheeseUtilMod.Components
 
         protected override void SavePersistentValuesToCustomData()
         {
-
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);

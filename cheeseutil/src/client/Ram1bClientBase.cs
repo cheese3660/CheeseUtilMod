@@ -29,9 +29,9 @@ namespace CheeseUtilMod.Client
             if (force || GetInputState(PEG_L))
             {
                 var max_index = (1 << addressLines / 8);
-                if (filedata.Length*8 < max_index)
+                if (filedata.Length * 8 < max_index)
                 {
-                    max_index = filedata.Length*8;
+                    max_index = filedata.Length * 8;
                 }
                 for (int i = 0; i < max_index; i++)
                 {
@@ -44,7 +44,7 @@ namespace CheeseUtilMod.Client
         static byte[] Compress(byte[] data)
         {
             MemoryStream output = new MemoryStream();
-            using (DeflateStream dstream = new DeflateStream(output, System.IO.Compression.CompressionLevel.Optimal))
+            using (DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal))
             {
                 dstream.Write(data, 0, data.Length);
             }

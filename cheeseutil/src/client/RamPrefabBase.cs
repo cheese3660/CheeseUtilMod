@@ -9,14 +9,14 @@ namespace CheeseUtilMod.Client
 {
     public abstract class RamPrefabBase : PrefabVariantInfo
     {
-        public override abstract string ComponentTextID { get; }
+        public abstract override string ComponentTextID { get; }
         public abstract int addressSize { get; }
         public abstract int dataSize { get; }
         private static Color24 blockColor = new Color24(127, 127, 127);
 
         public override PrefabVariantIdentifier GetDefaultComponentVariant()
         {
-            return new PrefabVariantIdentifier(3+addressSize+dataSize, dataSize);
+            return new PrefabVariantIdentifier(3 + addressSize + dataSize, dataSize);
         }
 
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
@@ -25,7 +25,7 @@ namespace CheeseUtilMod.Client
             placingRules.AllowFineRotation = false;
             var prefabBlock = new Block
             {
-                RawColor = RamPrefabBase.blockColor
+                RawColor = blockColor
             };
             List<ComponentOutput> outputs = new List<ComponentOutput>();
             float current_width = dataSize;
@@ -33,7 +33,7 @@ namespace CheeseUtilMod.Client
             {
                 current_width = addressSize;
             }
-            float baseOutputX = (-current_width / 2f) + 1f;
+            float baseOutputX = -current_width / 2f + 1f;
             //Generate all the outputs
             for (int i = 0; i < dataSize; i++)
             {
@@ -68,7 +68,7 @@ namespace CheeseUtilMod.Client
                 Length = 0.4f
             });
             //Data input pins
-            float baseInputX = (-current_width / 2f) + 1f;
+            float baseInputX = -current_width / 2f + 1f;
             //Make the inputs different lengths to signal endianness
             //Start with the smallest length one being little endian
             float start_length = 0.2f;
@@ -87,7 +87,7 @@ namespace CheeseUtilMod.Client
                 length += step_length;
             }
             //Address pins
-            baseInputX = (-current_width / 2f) + 1f;
+            baseInputX = -current_width / 2f + 1f;
             step_length = (end_length - start_length) / addressSize;
             length = start_length;
             for (int i = 0; i < addressSize; i++)

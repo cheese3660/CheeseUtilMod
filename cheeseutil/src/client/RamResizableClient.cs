@@ -13,7 +13,7 @@ namespace CheeseUtilMod.Client
 
         public void Load(byte[] filedata, LineWriter writer, bool force)
         {
-            if (force || GetInputState(PEG_L) == true)
+            if (force || GetInputState(PEG_L))
             {
                 Data.ClientIncomingData = Compress(filedata);
                 Data.state = 1;
@@ -23,7 +23,7 @@ namespace CheeseUtilMod.Client
         static byte[] Compress(byte[] data)
         {
             MemoryStream output = new MemoryStream();
-            using (DeflateStream dstream = new DeflateStream(output, System.IO.Compression.CompressionLevel.Optimal))
+            using (DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal))
             {
                 dstream.Write(data, 0, data.Length);
             }

@@ -158,11 +158,12 @@ namespace CheeseUtilMod.Client
                         }
                         column >>= 1;
                     }
-                } else
+                }
+                else
                 {
-					for (int row = 0; row < 16; row++)
+                    for (int row = 0; row < 16; row++)
                     {
-						tex.SetPixel(x + col, y - row, Color.black);
+                        tex.SetPixel(x + col, y - row, Color.black);
                     }
                 }
             }

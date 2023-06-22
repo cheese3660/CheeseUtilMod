@@ -21,12 +21,12 @@ namespace CheeseUtilMod.Client
         public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
         {
             var dataSize = identifier.OutputCount;
-            var addressSize = (identifier.InputCount - 3) - dataSize;
+            var addressSize = identifier.InputCount - 3 - dataSize;
             PlacingRules placingRules = new PlacingRules();
             placingRules.AllowFineRotation = false;
             var prefabBlock = new Block
             {
-                RawColor = RamResizablePrefab.blockColor
+                RawColor = blockColor
             };
             List<ComponentOutput> outputs = new List<ComponentOutput>();
             float current_width = dataSize;
@@ -34,7 +34,7 @@ namespace CheeseUtilMod.Client
             {
                 current_width = addressSize;
             }
-            float baseOutputX = (-current_width / 2f) + 1f;
+            float baseOutputX = -current_width / 2f + 1f;
             //Generate all the outputs
             for (int i = 0; i < dataSize; i++)
             {
@@ -88,7 +88,7 @@ namespace CheeseUtilMod.Client
                 length += step_length;
             }
             //Address pins
-            baseInputX = (-current_width / 2f) + 1f;
+            baseInputX = -current_width / 2f + 1f;
             step_length = (end_length - start_length) / addressSize;
             length = start_length;
             for (int i = 0; i < addressSize; i++)

@@ -72,7 +72,7 @@ namespace CheeseUtilMod.Client
                     var w = locAndScale[1].x;
                     var h = locAndScale[1].y;
                     SetBlockPosition(i, new Vector3(x * newScale + offset, 0.25f, y * newScale + offset));
-                    SetBlockScale(i,new Vector3(w*newScale, 0.25f, h*newScale));
+                    SetBlockScale(i, new Vector3(w * newScale, 0.25f, h * newScale));
                 }
                 SetBlockScale(7, new Vector3(newScale, 0.25f, 2 * newScale));
                 SetBlockPosition(7, new Vector3(offset, 0, offset*2 + 0.5f));

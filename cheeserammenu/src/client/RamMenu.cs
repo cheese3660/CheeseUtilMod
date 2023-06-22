@@ -41,7 +41,7 @@ namespace CheeseRamMenu.Client
                 contentPlane = contentPlane,
                 singletonClass = typeof(RamMenuSingleton),
             };
-            var controller = wb.build();
+            wb.build();
             WindowBuilder.updateContentPlane(contentPlane);
             Instance.gameObject.AddComponent<RamMenu>().SetupListener();
             CheeseMenu.Client.CheeseMenu.RegisterMenu(Instance);
@@ -117,8 +117,8 @@ namespace CheeseRamMenu.Client
                 var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
                 var num_bits = num_outputs;
                 var num_addrs = num_inputs - 3 - num_outputs;
-                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify((float)num_addrs);
-                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify((float)num_bits);
+                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify(num_addrs);
+                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify(num_bits);
                 is_resizable = true;
             } else
             {
@@ -126,8 +126,8 @@ namespace CheeseRamMenu.Client
                 var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
                 var num_bits = num_outputs;
                 var num_addrs = num_inputs - 3 - num_outputs;
-                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify((float)num_addrs);
-                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify((float)num_bits);
+                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify(num_addrs);
+                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify(num_bits);
                 is_resizable = false;
             }
             base.OnStartEditing();
@@ -145,7 +145,7 @@ namespace CheeseRamMenu.Client
             if (!is_resizable) return;
             var total_inputs = obj + 3 + (int)RamMenuSingleton.addressPegSlider.Value;
             var total_outputs = obj;
-            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address,total_inputs,total_outputs),null);
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address,total_inputs,total_outputs));
         }
 
         private void AddressPegSlider_OnValueChangedInt(int obj)
@@ -153,7 +153,7 @@ namespace CheeseRamMenu.Client
             if (!is_resizable) return;
             var total_inputs = obj + 3 + (int)RamMenuSingleton.widthPegSlider.Value;
             var total_outputs = (int)RamMenuSingleton.widthPegSlider.Value;
-            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address, total_inputs, total_outputs), null);
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address, total_inputs, total_outputs));
         }
 
         private void Hbutton_OnClickEnd()
@@ -166,7 +166,8 @@ namespace CheeseRamMenu.Client
                 var lw = LConsole.BeginLine();
                 loadable.Load(bs, lw, true);
                 lw.End();
-            } else
+            }
+            else
             {
                 LConsole.WriteLine($"Unable to load file {file} as it does not exist");
             }

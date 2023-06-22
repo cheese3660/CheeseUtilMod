@@ -15,7 +15,7 @@ namespace CheeseUtilMod.Client
 
         protected override void Initialize()
         {
-            memory = new byte[(1 << addressLines/2)];
+            memory = new byte[1 << addressLines / 2];
             CheeseUtilClient.fileLoadables.Add(this);
         }
 
@@ -28,10 +28,10 @@ namespace CheeseUtilMod.Client
         {
             if (force | GetInputState(PEG_L))
             {
-                var max_index = (1 << addressLines/2);
-                if (filedata.Length*2 < max_index)
+                var max_index = (1 << addressLines / 2);
+                if (filedata.Length * 2 < max_index)
                 {
-                    max_index = filedata.Length*2;
+                    max_index = filedata.Length * 2;
                 }
                 for (int i = 0; i < max_index; i++)
                 {
@@ -44,7 +44,7 @@ namespace CheeseUtilMod.Client
         static byte[] Compress(byte[] data)
         {
             MemoryStream output = new MemoryStream();
-            using (DeflateStream dstream = new DeflateStream(output, System.IO.Compression.CompressionLevel.Optimal))
+            using (DeflateStream dstream = new DeflateStream(output, CompressionLevel.Optimal))
             {
                 dstream.Write(data, 0, data.Length);
             }
