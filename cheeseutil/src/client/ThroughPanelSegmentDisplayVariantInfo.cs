@@ -3,10 +3,6 @@ using LogicWorld.Interfaces;
 using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CheeseUtilMod.Client
@@ -14,7 +10,7 @@ namespace CheeseUtilMod.Client
     public abstract class ThroughPanelSegmentDisplayVariantInfo : PrefabVariantInfo
     {
         public abstract bool Hex { get; }
-        public override abstract string ComponentTextID { get; }
+        public abstract override string ComponentTextID { get; }
         //Generate with a default size of 1x2
 
         private static float segmentWidth = 0.15f; //0.17 at a normal 1x2 scale
@@ -76,7 +72,7 @@ namespace CheeseUtilMod.Client
                 var length = i / Convert.ToSingle(inputs.Length) * 0.6f + 0.4f;
                 inputs[i] = new ComponentInput
                 {
-                    Position = new Vector3((col-1)/3f + 0.0416666667f, -1f, (row-1)/ 3f + 0.0416666667f),
+                    Position = new Vector3((col - 1) / 3f + 0.0416666667f, -1f, (row - 1) / 3f + 0.0416666667f),
                     Rotation = new Vector3(180f, 0f, 0f),
                     Length = length
                 };

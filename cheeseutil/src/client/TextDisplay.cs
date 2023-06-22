@@ -4,7 +4,6 @@ using LogicWorld.Interfaces;
 using LogicWorld.Rendering.Chunks;
 using LogicWorld.Rendering.Components;
 using LogicWorld.ClientCode;
-using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System;
 using System.Collections.Generic;
@@ -56,6 +55,7 @@ namespace CheeseUtilMod.Client
         int screenHeight;
         bool fullRefresh;
         bool firstFrame;
+
         protected override void Initialize()
         {
             mem = new byte[64 * 64];
@@ -64,7 +64,7 @@ namespace CheeseUtilMod.Client
             screenHeight = 256;
             cursorUpdateTimer = new Timer();
             cursorUpdateTimer.Interval = 1000;
-            cursorUpdateTimer.Elapsed += new ElapsedEventHandler(cursorSwitch);
+            cursorUpdateTimer.Elapsed += cursorSwitch;
             cursorUpdateTimer.AutoReset = true;
             cursorUpdateTimer.Start();
             cursorState = false;
@@ -76,7 +76,9 @@ namespace CheeseUtilMod.Client
                 screen.filterMode = FilterMode.Point;
             }
         }
+
         static int PEG_CURSOR_ENABLED = 23;
+
         protected void cursorSwitch(object source, ElapsedEventArgs e)
         {
             cursorState = !cursorState;
@@ -86,6 +88,7 @@ namespace CheeseUtilMod.Client
                 QueueFrameUpdate();
             }
         }
+
         protected override void SetDataDefaultValues()
         {
             Data.SizeX = 8;
@@ -95,6 +98,7 @@ namespace CheeseUtilMod.Client
             Data.CursorX = 0;
             Data.CursorY = 0;
         }
+
         protected override void DataUpdate()
         {
             if (SizeX != previousSizeX || SizeZ != previousSizeZ)
@@ -118,6 +122,7 @@ namespace CheeseUtilMod.Client
                 PrevColor = Color;
             }
             QueueFrameUpdate();
+
             void setupInputBlock()
             {
                 int blocksizex = Math.Min(SizeX, 8);
@@ -160,7 +165,7 @@ namespace CheeseUtilMod.Client
                         byte chr = mem2[index];
                         if (chr_old != chr || cursor || fullRefresh || firstFrame)
                         {
-                            Font.SetChar(screen, invert, chr, x, ((SizeZ * 4) - 1) - y, c);
+                            Font.SetChar(screen, invert, chr, x, SizeZ * 4 - 1 - y, c);
                         }
                     }
                 }
@@ -168,18 +173,20 @@ namespace CheeseUtilMod.Client
                 mem = mem2;
                 mem2 = new byte[64*64];
             }
-            else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX*4 && Data.CursorY < SizeZ*4)
+            else if (GetInputState(PEG_CURSOR_ENABLED) && Data.CursorX < SizeX * 4 && Data.CursorY < SizeZ * 4)
             {
-                Font.SetChar(screen, cursorState, 32, Data.CursorX, ((SizeZ*4) - 1)-Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
+                Font.SetChar(screen, cursorState, 32, Data.CursorX, SizeZ * 4 - 1 - Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
                 screen.Apply();
             }
             fullRefresh = false;
             firstFrame = false;
         }
+
         public override PlacingRules GenerateDynamicPlacingRules()
         {
             return PlacingRules.FlippablePanelOfSize(SizeX, SizeZ);
         }
+
         protected override IList<IDecoration> GenerateDecorations()
         {
             if (screen == null)
@@ -194,7 +201,7 @@ namespace CheeseUtilMod.Client
             GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Quad);
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             gameObject.GetComponent<Renderer>().material = material;
-            return new Decoration[1]
+            return new Decoration[]
             {
                 new Decoration
                 {

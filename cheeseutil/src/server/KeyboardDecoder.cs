@@ -1,10 +1,4 @@
-﻿using CheeseUtilMod.Shared.CustomData;
-using LogicWorld.Server.Circuitry;
-using LogicAPI.Server.Components;
-using System;
-using System.Timers;
-using System.IO;
-using System.IO.Compression;
+﻿using LogicAPI.Server.Components;
 
 namespace CheeseUtilMod.Components
 {
@@ -71,6 +65,7 @@ namespace CheeseUtilMod.Components
         static byte[] ASCII_NORMAL;
         static byte[] ASCII_SHIFT;
         static byte[] ASCII_CONTROL;
+
         static KeyboardDecoder()
         {
             ASCII_NORMAL = new byte[55];
@@ -223,12 +218,14 @@ namespace CheeseUtilMod.Components
         byte[] kb_buffer; //0 == no character
         bool[] prev_on;
         bool[] curr_on;
+
         protected override void Initialize()
         {
             kb_buffer = new byte[256];
             prev_on = new bool[55];
             curr_on = new bool[55];
         }
+
         private void UpdateBufferPins()
         {
             byte current_key = kb_buffer[buffer_read_pos];
@@ -240,8 +237,8 @@ namespace CheeseUtilMod.Components
             Outputs[ASCII_4].On = (current_key & 0b0010000) != 0;
             Outputs[ASCII_5].On = (current_key & 0b0100000) != 0;
             Outputs[ASCII_6].On = (current_key & 0b1000000) != 0;
-
         }
+
         protected override void DoLogicUpdate()
         {
             for (int i = 0; i < 55; i++)
@@ -252,13 +249,15 @@ namespace CheeseUtilMod.Components
             {
                 if (buffer_read_pos < buffer_write_pos) buffer_read_pos += 1;
                 UpdateBufferPins();
-            } else if (curr_on[CLEAR_BUFFER] && !prev_on[CLEAR_BUFFER])
+            }
+            else if (curr_on[CLEAR_BUFFER] && !prev_on[CLEAR_BUFFER])
             {
                 kb_buffer = new byte[256];
                 buffer_write_pos = 0;
                 buffer_read_pos = 0;
                 UpdateBufferPins();
-            } else if (Inputs[55].On)
+            }
+            else if (Inputs[55].On)
             {
                 bool has_new_key = false;
                 int new_key = 0;

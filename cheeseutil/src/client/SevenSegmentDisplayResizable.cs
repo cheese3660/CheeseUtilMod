@@ -15,7 +15,6 @@ namespace CheeseUtilMod.Client
 
         public string ColorsFileKey => "SevenSegments";
 
-
         public float MinColorValue => 0.0f;
 
         public int SizeX { get => Data.size; set => Data.size = value; }
@@ -39,6 +38,7 @@ namespace CheeseUtilMod.Client
             new Vector2[]{new Vector2(-(segmentHeight / 2 + segmentWidth / 2), segmentMiddle + (segmentHeight + segmentWidth) / 2), new Vector2(segmentWidth, segmentHeight) }, //6
             new Vector2[]{new Vector2(0.00f, segmentMiddle), new Vector2(segmentHeight, segmentWidth) }, //7
         };
+
         protected override void DataUpdate()
         {
             if (SizeX != prevSize)
@@ -69,10 +69,11 @@ namespace CheeseUtilMod.Client
             }
             QueueFrameUpdate();
         }
+
         protected override void FrameUpdate()
         {
-            GpuColor col = GpuColorConversionExtensions.ToGpuColor(Data.color);
-            GpuColor black = GpuColorConversionExtensions.ToGpuColor(Color24.Black);
+            GpuColor col = Data.color.ToGpuColor();
+            GpuColor black = Color24.Black.ToGpuColor();
             for (int i = 0; i < 7; i++)
             {
                 bool set = GetInputState(i);
@@ -87,6 +88,7 @@ namespace CheeseUtilMod.Client
             }
             base.FrameUpdate();
         }
+
         public override PlacingRules GenerateDynamicPlacingRules()
         {
             return PlacingRules.FlippablePanelOfSize(SizeX, SizeX*2);

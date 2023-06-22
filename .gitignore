@@ -8,3 +8,6 @@ ecconia_lib/
 **references.txt
 **bin
 .vs/
+
+# JetBrains IDE:
+/.idea/

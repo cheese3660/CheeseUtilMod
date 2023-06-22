@@ -1,4 +1,5 @@
 ﻿using JimmysUnityUtilities;
+
 namespace CheeseUtilMod.Shared.CustomData
 {
     public interface ITextConsoleData
@@ -12,6 +13,7 @@ namespace CheeseUtilMod.Shared.CustomData
         Color24 color { get; set; } //The color of set pixels on the screen, unset pixels are black
     }
 }
+
 //What all inputs do I want for the text display
 //6 bit X
 //6 bit Y

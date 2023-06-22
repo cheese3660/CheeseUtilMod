@@ -1,9 +1,9 @@
 ﻿using CheeseUtilMod.Shared.CustomData;
 using LogicWorld.Server.Circuitry;
-using System;
 using System.Timers;
 using System.IO;
 using System.IO.Compression;
+
 namespace CheeseUtilMod.Components
 {
     //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/server/Output.cs
@@ -29,16 +29,18 @@ namespace CheeseUtilMod.Components
         byte cursorX;
         byte cursorY;
         MemoryStream memstream;
+
         protected override void Initialize()
         {
             memstream = new MemoryStream();
-            mem = new byte[64*64];
+            mem = new byte[64 * 64];
             screenupdatetimer = new Timer(500); //Do 2 text updates per second
-            screenupdatetimer.Elapsed += new ElapsedEventHandler(OnTimerElapsed);
+            screenupdatetimer.Elapsed += OnTimerElapsed;
             screenupdatetimer.AutoReset = true;
             screenupdatetimer.Start();
             loadfromsave = true;
         }
+
         public override void Dispose()
         {
             hasBeenDeleted = true;
@@ -47,6 +49,7 @@ namespace CheeseUtilMod.Components
             WriteScreenToData();
             base.Dispose();
         }
+
         public void OnTimerElapsed(object source, ElapsedEventArgs args)
         {
             if (ismemdirty)
@@ -54,15 +57,17 @@ namespace CheeseUtilMod.Components
                 timertick = true;
             }
         }
+
         public int getDataShifted(int start_peg, int num_bits)
         {
             int value = 0;
             for (int shift = 0; shift < num_bits; shift++)
             {
-                if (Inputs[start_peg+shift].On) value |= 1 << shift;
+                if (Inputs[start_peg + shift].On) value |= 1 << shift;
             }
             return value;
         }
+
         protected override void DoLogicUpdate()
         {
             if (Inputs[PEG_CLEAR].On)
@@ -96,8 +101,8 @@ namespace CheeseUtilMod.Components
                 {
                     for (int x = 0; x < 64; x++)
                     {
-                        int idx0  = (y * 64) + x;
-                        int idx1 = ((y-1) * 64) + x;
+                        int idx0  = y * 64 + x;
+                        int idx1 = (y-1) * 64 + x;
                         mem[idx1] = mem[idx0];
                         mem[idx0] = 0;
                     }
@@ -110,9 +115,8 @@ namespace CheeseUtilMod.Components
                 {
                     for (int x = 0; x < 64; x++)
                     {
-
-                        int idx0 = (y * 64) + x;
-                        int idx1 = ((y + 1) * 64) + x;
+                        int idx0 = y * 64 + x;
+                        int idx1 = (y + 1) * 64 + x;
                         mem[idx1] = mem[idx0];
                         mem[idx0] = 0;
                     }
@@ -152,7 +156,9 @@ namespace CheeseUtilMod.Components
                 ismemdirty = false;
             }
         }
+
         public override bool InputAtIndexShouldTriggerComponentLogicUpdates(int inputIndex) => inputIndex >= PEG_CLEAR && inputIndex != PEG_CURSOR_ENABLED;
+
         protected override void SetDataDefaultValues()
         {
             Data.SizeX = 4;
@@ -162,6 +168,7 @@ namespace CheeseUtilMod.Components
             Data.CursorX = 0;
             Data.CursorY = 0;
         }
+
         protected override void OnCustomDataUpdated()
         {
             if (loadfromsave && Data.TextData != null)
@@ -173,6 +180,7 @@ namespace CheeseUtilMod.Components
                 loadfromsave = false;
             }
         }
+
         private void WriteScreenToData()
         {
             memstream.Position = 0;
