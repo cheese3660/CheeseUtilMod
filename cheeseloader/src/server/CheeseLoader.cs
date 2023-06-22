@@ -1,8 +1,8 @@
-﻿using LogicAPI.Server;
+using LogicAPI.Server;
 using System.IO;
 using System.Reflection;
 
-namespace CheeseLoader.Client
+namespace CheeseLoader.Server
 {
 
     public class CheeseLoader : ServerMod
