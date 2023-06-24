@@ -1,175 +1,181 @@
 using System.Collections.Generic;
-using CheeseMenu.Client;
 using UnityEngine;
-using UnityEngine.UI;
 using LogicWorld.UI;
 using LICC;
 using LogicAPI.Data.BuildingRequests;
-using EccsWindowHelper.Client;
-using LogicUI.MenuTypes;
-using LogicWorld.GameStates;
 using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
+using EccsGuiBuilder.Client.Layouts.Controller;
+using EccsGuiBuilder.Client.Layouts.Elements;
+using EccsGuiBuilder.Client.Wrappers;
+using EccsGuiBuilder.Client.Wrappers.AutoAssign;
 using LogicWorld.BuildingManagement;
 
 namespace CheeseRamMenu.Client
 {
-    //Based off of: https://github.com/Ecconia/Ecconia-LogicWorld-Mods
-    public class RamMenuSingleton : ToggleableSingletonMenu<RamMenuSingleton>, ICheeseMenu
+    public class RamMenu : EditComponentMenu, IAssignMyFields
     {
-        public static TMP_InputField inputField;
-        public static HoverButton hbutton;
-        public static GameObject contentPlane;
-        public static GameObject addressPegSliderTransform;
-        public static GameObject widthPegSliderTransform;
-        public static InputSlider addressPegSlider;
-        public static InputSlider widthPegSlider;
-
         public static void init()
         {
-            contentPlane = constructContent();
-            WindowBuilder wb = new WindowBuilder
-            {
-                x = 0,
-                y = 100,
-                w = 1000,
-                h = 400,
-                rootName = "CheeseRamMenu",
-                titleKey = "CheeseRamMenu.EditRamMenu",
-                contentPlane = contentPlane,
-                singletonClass = typeof(RamMenuSingleton),
-            };
-            wb.build();
-            WindowBuilder.updateContentPlane(contentPlane);
-            Instance.gameObject.AddComponent<RamMenu>().SetupListener();
-            CheeseMenu.Client.CheeseMenu.RegisterMenu(Instance);
-            OnMenuHidden += GameStateManager.TransitionBackToBuildingState;
+            WS.window("CheeseRamMenu")
+                .configureContent(content => content
+                    .vertical(20f, new RectOffset(20, 20, 20, 20), expandHorizontal: true)
+                    .add(WS.inputField
+                        .injectionKey(nameof(filePathInputField))
+                        .fixedSize(1000, 80)
+                        .setPlaceholderLocalizationKey("CheeseRamMenu.FileFieldHint")
+                        .disableRichText()
+                    )
+                    .add(WS.textLine
+                        .setLocalizationKey("CheeseRamMenu.FileNotFound")
+                        .injectionKey(nameof(errorText))
+                    )
+                    .add(WS.button.setLocalizationKey("CheeseRamMenu.FileLoad")
+                        .injectionKey(nameof(loadButton))
+                        .add<ButtonLayout>()
+                    )
+                    .addContainer("BottomBox", bottomBox => bottomBox
+                        .injectionKey(nameof(bottomSection))
+                        .vertical(anchor: TextAnchor.UpperCenter)
+                        .addContainer("BottomInnerBox", innerBox => innerBox
+                            .addAndConfigure<GapListLayout>(layout => {
+                                layout.layoutAlignment = RectTransform.Axis.Vertical;
+                                layout.childAlignment = TextAnchor.UpperCenter;
+                                layout.elementsUntilGap = 0;
+                                layout.countElementsFromFront = false;
+                                layout.spacing = 20;
+                                layout.expandChildThickness = true;
+                            })
+                            .addContainer("BottomBox1", container => container
+                                .addAndConfigure<GapListLayout>(layout => {
+                                    layout.layoutAlignment = RectTransform.Axis.Horizontal;
+                                    layout.childAlignment = TextAnchor.MiddleCenter;
+                                    layout.elementsUntilGap = 0;
+                                    layout.spacing = 20;
+                                })
+                                .add(WS.textLine.setLocalizationKey("CheeseRamMenu.AddressLines"))
+                                .add(WS.slider
+                                    .injectionKey(nameof(addressPegSlider))
+                                    .fixedSize(500, 45)
+                                    .setInterval(1)
+                                    .setMin(4)
+                                    .setMax(24)
+                                )
+                            )
+                            .addContainer("BottomBox2", container => container
+                                .addAndConfigure<GapListLayout>(layout => {
+                                    layout.layoutAlignment = RectTransform.Axis.Horizontal;
+                                    layout.childAlignment = TextAnchor.MiddleCenter;
+                                    layout.elementsUntilGap = 0;
+                                    layout.spacing = 20;
+                                })
+                                .add(WS.textLine.setLocalizationKey("CheeseRamMenu.BitWidth"))
+                                .add(WS.slider
+                                    .injectionKey(nameof(widthPegSlider))
+                                    .fixedSize(500, 45)
+                                    .setInterval(1)
+                                    .setMin(1)
+                                    .setMax(64)
+                                )
+                            )
+                        )
+                    )
+                )
+                .add<RamMenu>()
+                .build();
         }
 
-        private static GameObject constructContent()
-        {
-            GameObject gameObject = WindowHelper.makeGameObject("CRM: ContentPlane");
-            RectTransform rectTransform = gameObject.AddComponent<RectTransform>();
-            {
-                rectTransform.anchorMin = new Vector2(0.5f, 0.5f);
-                rectTransform.anchorMax = new Vector2(0.5f, 0.5f);
-                rectTransform.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform.sizeDelta = new Vector2(0, 0);
-                rectTransform.anchoredPosition = new Vector2(0, 0);
-            }
+        [AssignMe]
+        public TMP_InputField filePathInputField;
+        [AssignMe]
+        public HoverButton loadButton;
+        [AssignMe]
+        public InputSlider addressPegSlider;
+        [AssignMe]
+        public InputSlider widthPegSlider;
+        [AssignMe]
+        public GameObject bottomSection;
+        [AssignMe]
+        public GameObject errorText;
 
-            ContentSizeFitter fitter = gameObject.AddComponent<ContentSizeFitter>();
-            fitter.horizontalFit = ContentSizeFitter.FitMode.PreferredSize;
-            fitter.verticalFit = ContentSizeFitter.FitMode.PreferredSize;
-
-            VerticalLayoutGroup verticalLayoutGroup = gameObject.AddComponent<VerticalLayoutGroup>();
-            verticalLayoutGroup.childForceExpandHeight = false;
-            verticalLayoutGroup.childControlHeight = false;
-            verticalLayoutGroup.childForceExpandWidth = false;
-            verticalLayoutGroup.childControlWidth = false;
-            verticalLayoutGroup.spacing = 20;
-            //Now here is where we add the prefab children
-            //Fixed height toggle thing
-            GameObject heightThingy = WindowHelper.makeGameObject("CRM: Toggle Height");
-            RectTransform rectTransform2 = heightThingy.AddComponent<RectTransform>();
-            {
-                rectTransform2.anchorMin = new Vector2(0.5f, 0.5f);
-                rectTransform2.anchorMax = new Vector2(0.5f, 0.5f);
-                rectTransform2.pivot = new Vector2(0.5f, 0.5f);
-                rectTransform2.sizeDelta = new Vector2(100f, 51.9f);
-                rectTransform2.anchoredPosition = new Vector2(0, 0);
-            }
-            var field = Prefabs.TextInput.constructTextInput();
-            inputField = field.GetComponent<TMP_InputField>();
-            heightThingy.addChild(field);
-            heightThingy.SetActive(true);
-            gameObject.addChild(heightThingy);
-            var button = Prefabs.Button.generateButton();
-            hbutton = button.GetComponent<HoverButton>();
-            gameObject.addChild(button);
-            //Add both the sliders
-            addressPegSliderTransform = Prefabs.NamedSliderPrefab.generateNamedSlider("CRM.AddressLines",930,400,495,1, out addressPegSlider);
-            addressPegSlider.SliderInterval = 1f;
-            addressPegSlider.Min = 4f;
-            addressPegSlider.Max = 24f;
-            gameObject.addChild(addressPegSliderTransform);
-            widthPegSliderTransform = Prefabs.NamedSliderPrefab.generateNamedSlider("CRM.BitWidth", 930, 400, 495, 1, out widthPegSlider);
-            widthPegSlider.SliderInterval = 1f;
-            widthPegSlider.Min = 1f;
-            widthPegSlider.Max = 64f;
-            gameObject.addChild(widthPegSliderTransform);
-            gameObject.SetActive(true);
-            return gameObject;
-        }
-    }
-
-    public class RamMenu : EditComponentMenu
-    {
-        bool is_resizable = false;
+        private bool isComponentResizable;
 
         protected override void OnStartEditing()
         {
+            errorText.SetActive(false);
             if (FirstComponentBeingEdited.ClientCode is RamResizableClient)
             {
                 var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
                 var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
-                var num_bits = num_outputs;
-                var num_addrs = num_inputs - 3 - num_outputs;
-                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify(num_addrs);
-                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify(num_bits);
-                is_resizable = true;
-            } else
-            {
-                var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
-                var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
-                var num_bits = num_outputs;
-                var num_addrs = num_inputs - 3 - num_outputs;
-                RamMenuSingleton.addressPegSlider.SetValueWithoutNotify(num_addrs);
-                RamMenuSingleton.widthPegSlider.SetValueWithoutNotify(num_bits);
-                is_resizable = false;
-            }
-            base.OnStartEditing();
-        }
-
-        public void SetupListener()
-        {
-            RamMenuSingleton.hbutton.OnClickEnd += Hbutton_OnClickEnd;
-            RamMenuSingleton.addressPegSlider.OnValueChangedInt += AddressPegSlider_OnValueChangedInt;
-            RamMenuSingleton.widthPegSlider.OnValueChangedInt += WidthPegSlider_OnValueChangedInt;
-        }
-
-        private void WidthPegSlider_OnValueChangedInt(int obj)
-        {
-            if (!is_resizable) return;
-            var total_inputs = obj + 3 + (int)RamMenuSingleton.addressPegSlider.Value;
-            var total_outputs = obj;
-            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address,total_inputs,total_outputs));
-        }
-
-        private void AddressPegSlider_OnValueChangedInt(int obj)
-        {
-            if (!is_resizable) return;
-            var total_inputs = obj + 3 + (int)RamMenuSingleton.widthPegSlider.Value;
-            var total_outputs = (int)RamMenuSingleton.widthPegSlider.Value;
-            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(FirstComponentBeingEdited.Address, total_inputs, total_outputs));
-        }
-
-        private void Hbutton_OnClickEnd()
-        {
-            var loadable = (FileLoadable)(FirstComponentBeingEdited.ClientCode);
-            var file = RamMenuSingleton.inputField.text;
-            if (File.Exists(file))
-            {
-                var bs = File.ReadAllBytes(file);
-                var lw = LConsole.BeginLine();
-                loadable.Load(bs, lw, true);
-                lw.End();
+                addressPegSlider.SetValueWithoutNotify(num_inputs - 3 - num_outputs);
+                widthPegSlider.SetValueWithoutNotify(num_outputs);
+                bottomSection.SetActive(true);
+                isComponentResizable = true;
             }
             else
             {
-                LConsole.WriteLine($"Unable to load file {file} as it does not exist");
+                var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
+                var num_outputs = FirstComponentBeingEdited.Component.Data.OutputCount;
+                addressPegSlider.SetValueWithoutNotify(num_inputs - 3 - num_outputs);
+                widthPegSlider.SetValueWithoutNotify(num_outputs);
+                bottomSection.SetActive(false);
+                isComponentResizable = false;
+            }
+            filePathInputField.text = "";
+        }
+
+        public override void Initialize()
+        {
+            base.Initialize();
+            loadButton.OnClickEnd += loadFile;
+            addressPegSlider.OnValueChangedInt += addressCountChanged;
+            widthPegSlider.OnValueChangedInt += bitwidthChanged;
+            filePathInputField.onValueChanged.AddListener(text => errorText.SetActive(false));
+        }
+
+        private void bitwidthChanged(int newBitwidth)
+        {
+            if(!isComponentResizable)
+            {
+                return;
+            }
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(
+                FirstComponentBeingEdited.Address,
+                newBitwidth + 3 + addressPegSlider.ValueAsInt,
+                newBitwidth
+            ));
+        }
+
+        private void addressCountChanged(int newAddressBitWidth)
+        {
+            if(!isComponentResizable)
+            {
+                return;
+            }
+            BuildRequestManager.SendBuildRequest(new BuildRequest_ChangeDynamicComponentPegCounts(
+                FirstComponentBeingEdited.Address,
+                newAddressBitWidth + 3 + widthPegSlider.ValueAsInt,
+                widthPegSlider.ValueAsInt
+            ));
+        }
+
+        private void loadFile()
+        {
+            var loadable = (FileLoadable) FirstComponentBeingEdited.ClientCode;
+            var filePath = filePathInputField.text;
+            if (File.Exists(filePath))
+            {
+                var bytes = File.ReadAllBytes(filePath);
+                var lineWriter = LConsole.BeginLine();
+                loadable.Load(bytes, lineWriter, true);
+                lineWriter.End();
+            }
+            else
+            {
+                errorText.SetActive(true);
+                LConsole.WriteLine($"Unable to load file rich text <mspace=0.65em>'<noparse>{filePath}</noparse>'</mspace> as it does not exist");
             }
         }
 

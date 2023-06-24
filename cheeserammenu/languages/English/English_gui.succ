@@ -1,3 +1,5 @@
-CRM.FileLoad: "Load File"
-CRM.AddressLines: "Address Lines"
-CRM.BitWidth: "Bit Width"
+CheeseRamMenu.FileLoad: "Load File"
+CheeseRamMenu.FileFieldHint: "Filename here..."
+CheeseRamMenu.FileNotFound: "<color=\#f00>File does not exist!</color>"
+CheeseRamMenu.AddressLines: "Address Lines"
+CheeseRamMenu.BitWidth: "Bit Width"

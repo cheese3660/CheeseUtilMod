@@ -1,4 +1,7 @@
-﻿using LogicAPI.Client;
+﻿using System;
+using EccsLogicWorldAPI.Client.Hooks;
+using LogicAPI.Client;
+using LogicWorld;
 
 namespace CheeseRamMenu.Client
 {
@@ -6,7 +9,17 @@ namespace CheeseRamMenu.Client
     {
         protected override void Initialize()
         {
-            RamMenuSingleton.init();
+            WorldHook.worldLoading += () => {
+                try
+                {
+                    RamMenu.init();
+                }
+                catch(Exception e)
+                {
+                    Logger.Error("Could not initialize CheeseRamMenu");
+                    SceneAndNetworkManager.TriggerErrorScreen(e);
+                }
+            };
         }
     }
 }
