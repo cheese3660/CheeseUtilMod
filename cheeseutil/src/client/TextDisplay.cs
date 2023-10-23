@@ -107,6 +107,7 @@ namespace CheeseUtilMod.Client
                 setupInputBlock();
                 // Panel
                 SetBlockScale(0, new Vector3(SizeX, 0.333333343f, SizeZ));
+                SetBlockPosition(0, new Vector3(-0.5f, 0.333333343f, SizeZ - 0.5f));
                 previousSizeX = SizeX;
                 previousSizeZ = SizeZ;
                 // Screen

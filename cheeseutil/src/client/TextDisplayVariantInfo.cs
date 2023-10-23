@@ -52,8 +52,9 @@ namespace CheeseUtilMod.Client
                 {
                     new Block
                     {
-                        Position = new Vector3(-0.5f, 0f, -0.5f),
-                        MeshName = "OriginCube",
+                        Position = new Vector3(-0.5f, 0.333333343f, -0.5f),
+                        Rotation = new Vector3(0f, 180f, 180f),
+                        MeshName = "OriginCube_OpenBottom",
                         RawColor = Color24.Black
                     },
                     new Block
