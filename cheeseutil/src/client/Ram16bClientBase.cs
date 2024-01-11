@@ -61,13 +61,13 @@ namespace CheeseUtilMod.Client
             byte[] mem1 = new byte[memory.Length * 2];
             Buffer.BlockCopy(memory, 0, mem1, 0, mem1.Length);
             Data.ClientIncomingData = Compress(mem1);
-            Data.state = 1;
+            Data.State = 1;
         }
 
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
-            Data.state = 0;
+            Data.State = 0;
             Data.ClientIncomingData = new byte[0];
         }
     }

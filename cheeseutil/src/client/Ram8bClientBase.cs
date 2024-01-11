@@ -54,13 +54,13 @@ namespace CheeseUtilMod.Client
         protected void SendDataToServer()
         {
             Data.ClientIncomingData = Compress(memory);
-            Data.state = 1;
+            Data.State = 1;
         }
 
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
-            Data.state = 0;
+            Data.State = 0;
             Data.ClientIncomingData = new byte[0];
         }
     }

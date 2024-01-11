@@ -3,7 +3,7 @@
     public interface IRamData
     {
         byte[] Data { get; set; }
-        byte state { get; set; }
+        byte State { get; set; }
         byte[] ClientIncomingData { get; set; }
     }
 }

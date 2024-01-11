@@ -3,9 +3,9 @@
     public interface IRamResizableData
     {
         byte[] Data { get; set; }
-        byte state { get; set; }
+        byte State { get; set; }
         byte[] ClientIncomingData { get; set; }
-        int bitWidth { get; set; }
-        int addressWidth { get; set; }
+        int BitWidth { get; set; }
+        int AddressWidth { get; set; }
     }
 }

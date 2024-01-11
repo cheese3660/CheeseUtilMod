@@ -16,7 +16,7 @@ namespace CheeseUtilMod.Client
             if (force || GetInputState(PEG_L))
             {
                 Data.ClientIncomingData = Compress(filedata);
-                Data.state = 1;
+                Data.State = 1;
             }
         }
 
@@ -32,9 +32,9 @@ namespace CheeseUtilMod.Client
 
         protected override void SetDataDefaultValues()
         {
-            Data.addressWidth = 1;
-            Data.bitWidth = 1;
-            Data.state = 0;
+            Data.AddressWidth = 1;
+            Data.BitWidth = 1;
+            Data.State = 0;
             Data.ClientIncomingData = new byte[0];
             Data.Data = new byte[0];
         }

@@ -44,7 +44,7 @@ namespace CheeseUtilMod.Client
 
         public float CubeArrowHeight => 355f / (678f * (float)Math.PI);
 
-        public Color24 Color { get => Data.color; set => Data.color = value; }
+        public Color24 Color { get => Data.Color; set => Data.Color = value; }
         private Color24 PrevColor;
         public string ColorsFileKey => "TextDisplayColors";
 
@@ -94,7 +94,7 @@ namespace CheeseUtilMod.Client
             Data.SizeX = 8;
             Data.SizeZ = 4;
             //Data.TextData = null;
-            Data.color = Color24.Amber;
+            Data.Color = Color24.Amber;
             Data.CursorX = 0;
             Data.CursorY = 0;
         }

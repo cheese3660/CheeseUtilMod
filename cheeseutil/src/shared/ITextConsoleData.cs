@@ -10,7 +10,7 @@ namespace CheeseUtilMod.Shared.CustomData
         int CursorY { get; set; } //Used for the displayed cursor, between 0 and 63
         byte[] TextData { get; set; }
 
-        Color24 color { get; set; } //The color of set pixels on the screen, unset pixels are black
+        Color24 Color { get; set; } //The color of set pixels on the screen, unset pixels are black
     }
 }
 
