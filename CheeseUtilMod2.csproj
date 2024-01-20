@@ -1,4 +1,4 @@
-﻿<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -1877,7 +1877,6 @@
     <None Include=".vs\slnx.sqlite" />
     <None Include=".vs\UtilMod\v16\.suo" />
     <None Include=".vs\VSWorkspaceState.json" />
-    <None Include="cheesemenu\manifest.succ" />
     <None Include="cheeserammenu\languages\English\English_gui.succ" />
     <None Include="cheeserammenu\manifest.succ" />
     <None Include="cheeseutil\components\displays.succ" />
@@ -1894,8 +1893,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="cheeseloader\src\server\CheeseLoader.cs" />
-    <Compile Include="cheesemenu\src\client\CheeseMenu.cs" />
-    <Compile Include="cheesemenu\src\client\ICheeseMenu.cs" />
     <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
     <Compile Include="cheeserammenu\src\client\prefabs\Button.cs" />
     <Compile Include="cheeserammenu\src\client\prefabs\NamedSliderPrefab.cs" />
@@ -2470,7 +2467,6 @@
     <Content Include="lib\UnityEngine.XRModule.dll" />
     <Content Include="lib\Websocket.Client.dll" />
     <Content Include="lib\WindowsBase.dll" />
-    <Content Include="references.txt" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include=".vs\CheeseUtilMod\v17\" />
