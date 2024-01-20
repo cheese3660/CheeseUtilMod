@@ -164,7 +164,7 @@ namespace CheeseUtilMod.Components
             Data.SizeX = 4;
             Data.SizeZ = 4;
             Data.TextData = null;
-            Data.color = JimmysUnityUtilities.Color24.Amber;
+            Data.Color = JimmysUnityUtilities.Color24.Amber;
             Data.CursorX = 0;
             Data.CursorY = 0;
         }

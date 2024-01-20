@@ -71,10 +71,10 @@ namespace CheeseUtilMod.Components
 
         protected override void OnCustomDataUpdated()
         {
-            if (loadfromsave && Data.Data != null || Data.state == 1 && Data.ClientIncomingData != null)
+            if (loadfromsave && Data.Data != null || Data.State == 1 && Data.ClientIncomingData != null)
             {
                 var to_load_from = Data.Data;
-                if (Data.state == 1)
+                if (Data.State == 1)
                 {
                     Logger.Info("Loading data from client");
                     to_load_from = Data.ClientIncomingData;
@@ -97,9 +97,9 @@ namespace CheeseUtilMod.Components
                     Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
                 }
                 loadfromsave = false;
-                if (Data.state == 1)
+                if (Data.State == 1)
                 {
-                    Data.state = 0;
+                    Data.State = 0;
                     Data.ClientIncomingData = new byte[0];
                 }
                 QueueLogicUpdate();
@@ -109,7 +109,7 @@ namespace CheeseUtilMod.Components
         protected override void SetDataDefaultValues()
         {
             Data.Data = new byte[0];
-            Data.state = 0;
+            Data.State = 0;
             Data.ClientIncomingData = new byte[0];
         }
 
