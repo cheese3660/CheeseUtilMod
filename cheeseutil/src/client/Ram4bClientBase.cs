@@ -59,9 +59,7 @@ namespace CheeseUtilMod.Client
 
         protected override void SetDataDefaultValues()
         {
-            Data.Data = new byte[0];
-            Data.State = 0;
-            Data.ClientIncomingData = new byte[0];
+            Data.initialize();
         }
     }
 }

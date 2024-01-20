@@ -12,6 +12,19 @@ namespace CheeseUtilMod.Shared.CustomData
 
         Color24 Color { get; set; } //The color of set pixels on the screen, unset pixels are black
     }
+
+    public static class TextConsoleDataInit
+    {
+        public static void initialize(this ITextConsoleData data)
+        {
+            data.SizeX = 4;
+            data.SizeZ = 4;
+            data.TextData = null;
+            data.Color = Color24.Amber;
+            data.CursorX = 0;
+            data.CursorY = 0;
+        }
+    }
 }
 
 //What all inputs do I want for the text display

@@ -8,4 +8,16 @@
         int BitWidth { get; set; }
         int AddressWidth { get; set; }
     }
+
+    public static class RamResizableDataInit
+    {
+        public static void initialize(this IRamResizableData data)
+        {
+            data.AddressWidth = 1;
+            data.BitWidth = 1;
+            data.State = 0;
+            data.ClientIncomingData = new byte[0];
+            data.Data = new byte[0];
+        }
+    }
 }

@@ -32,11 +32,7 @@ namespace CheeseUtilMod.Client
 
         protected override void SetDataDefaultValues()
         {
-            Data.AddressWidth = 1;
-            Data.BitWidth = 1;
-            Data.State = 0;
-            Data.ClientIncomingData = new byte[0];
-            Data.Data = new byte[0];
+            Data.initialize();
         }
     }
 }
