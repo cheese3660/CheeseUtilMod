@@ -91,12 +91,7 @@ namespace CheeseUtilMod.Client
 
         protected override void SetDataDefaultValues()
         {
-            Data.SizeX = 8;
-            Data.SizeZ = 4;
-            //Data.TextData = null;
-            Data.Color = Color24.Amber;
-            Data.CursorX = 0;
-            Data.CursorY = 0;
+            Data.initialize();
         }
 
         protected override void DataUpdate()
