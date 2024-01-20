@@ -1,4 +1,4 @@
-﻿using JimmysUnityUtilities;
+using JimmysUnityUtilities;
 using LogicWorld.ClientCode.Resizing;
 using LogicWorld.Interfaces;
 using LogicWorld.Rendering.Chunks;
@@ -188,7 +188,7 @@ namespace CheeseUtilMod.Client
             return PlacingRules.FlippablePanelOfSize(SizeX, SizeZ);
         }
 
-        protected override IList<IDecoration> GenerateDecorations()
+        protected override IDecoration[] GenerateDecorations(Transform parentToCreateDecorationsUnder)
         {
             if (screen == null)
             {
@@ -202,7 +202,8 @@ namespace CheeseUtilMod.Client
             GameObject gameObject = GameObject.CreatePrimitive(PrimitiveType.Quad);
             gameObject.transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
             gameObject.GetComponent<Renderer>().material = material;
-            return new Decoration[]
+            gameObject.transform.SetParent(parentToCreateDecorationsUnder);
+            return new IDecoration[]
             {
                 new Decoration
                 {
