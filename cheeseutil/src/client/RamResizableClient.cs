@@ -12,6 +12,18 @@ namespace CheeseUtilMod.Client
     {
         private static int PEG_L = 2;
 
+        protected override void Initialize()
+        {
+            CheeseUtilClient.fileSavables.Add(this);
+            CheeseUtilClient.fileLoadables.Add(this);
+        }
+
+        protected override void OnComponentDestroyed()
+        {
+            CheeseUtilClient.fileSavables.Remove(this);
+            CheeseUtilClient.fileLoadables.Remove(this);
+        }
+
         public void Load(byte[] filedata, LineWriter writer, bool force)
         {
             if (force || GetInputState(PEG_L))

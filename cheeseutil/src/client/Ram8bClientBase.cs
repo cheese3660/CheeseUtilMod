@@ -18,11 +18,13 @@ namespace CheeseUtilMod.Client
         {
             memory = new byte[1 << addressLines];
             CheeseUtilClient.fileLoadables.Add(this);
+            CheeseUtilClient.fileSavables.Add(this);
         }
 
         protected override void OnComponentDestroyed()
         {
             CheeseUtilClient.fileLoadables.Remove(this);
+            CheeseUtilClient.fileSavables.Remove(this);
         }
 
         public void Load(byte[] filedata, LineWriter writer, bool force)
