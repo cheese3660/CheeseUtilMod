@@ -20,6 +20,7 @@ namespace CheeseRamMenu.Client
                     SceneAndNetworkManager.TriggerErrorScreen(e);
                 }
             };
+            
         }
     }
 }

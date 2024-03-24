@@ -10,7 +10,7 @@ namespace CheeseLoader.Server
         {
             Logger.Info("Cheese Loader Mod - Server Loaded");
             var location = Assembly.GetEntryAssembly().Location;
-            Logger.Info("Found server at - " + location);
+            Logger.Info("Found client at - " + location);
             var directory = Path.GetDirectoryName(location);
             foreach (var path in Directory.GetFiles(directory))
             {

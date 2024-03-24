@@ -1,4 +1,5 @@
-﻿using LogicWorld.Rendering.Components;
+﻿using System;
+using LogicWorld.Rendering.Components;
 using System.IO;
 using System.IO.Compression;
 
@@ -7,7 +8,7 @@ using LICC;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class Ram8bClientBase : ComponentClientCode<IRamData>, FileLoadable
+    public abstract class Ram8bClientBase : ComponentClientCode<IRamData>, FileLoadable, FileSavable
     {
         public abstract int addressLines { get; }
         public byte[] memory;
@@ -60,6 +61,50 @@ namespace CheeseUtilMod.Client
         protected override void SetDataDefaultValues()
         {
             Data.initialize();
+        }
+
+        private Action<byte[]> _lastOnSave = null;
+        public void Save(bool force, Action<byte[]> onSave)
+        {
+
+            if (force || GetInputState(PEG_L))
+            {
+                _lastOnSave = onSave;
+                Data.State = 2;
+            }
+        }
+
+        private byte[] Decompress()
+        {
+            MemoryStream stream = new MemoryStream(Data.Data); // We load from here
+            stream.Position = 0;
+            byte[] mem1 = new byte[memory.Length];
+            try
+            {
+                DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
+                int bytesRead;
+                int nextStartIndex = 0;
+                while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length-nextStartIndex)) > 0){
+                    nextStartIndex += bytesRead;
+                }
+            }
+            catch(Exception ex)
+            {
+                Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
+            }
+            return mem1;
+        }
+
+        protected override void DataUpdate()
+        {
+            if (Data.State == 3)
+            {
+                Logger.Info("Received data from client!");
+                // Now we must decompress all the data as well
+                // We reset the state data
+                if (_lastOnSave != null) _lastOnSave(Decompress());
+                Data.State = 0;
+            }
         }
     }
 }

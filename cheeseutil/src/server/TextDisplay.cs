@@ -6,7 +6,7 @@ using System.IO.Compression;
 
 namespace CheeseUtilMod.Components
 {
-    //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/server/Output.cs
+    //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/client/Output.cs
     public class TextDisplay : LogicComponent<ITextConsoleData>
     {
         Timer screenupdatetimer;

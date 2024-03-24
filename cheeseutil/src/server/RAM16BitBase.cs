@@ -71,6 +71,7 @@ namespace CheeseUtilMod.Components
 
         protected override void OnCustomDataUpdated()
         {
+            if (Data.State == 4) return;
             if (loadfromsave && Data.Data != null || Data.State == 1 && Data.ClientIncomingData != null)
             {
                 var to_load_from = Data.Data;
@@ -104,6 +105,12 @@ namespace CheeseUtilMod.Components
                 }
                 QueueLogicUpdate();
             }
+            
+            if (Data.State != 2) return;
+            Logger.Info("Sending data to client");
+            Data.State = 4;
+            SavePersistentValuesToCustomData();
+            Data.State = 3;
         }
 
         protected override void SetDataDefaultValues()

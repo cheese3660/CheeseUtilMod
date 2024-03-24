@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using LogicWorld.UI;
@@ -7,11 +8,13 @@ using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
+using System.Windows.Forms;
 using EccsGuiBuilder.Client.Layouts.Controller;
 using EccsGuiBuilder.Client.Layouts.Elements;
 using EccsGuiBuilder.Client.Wrappers;
 using EccsGuiBuilder.Client.Wrappers.AutoAssign;
 using LogicWorld.BuildingManagement;
+using Application = UnityEngine.Application;
 
 namespace CheeseRamMenu.Client
 {
@@ -28,14 +31,16 @@ namespace CheeseRamMenu.Client
                         .setPlaceholderLocalizationKey("CheeseRamMenu.FileFieldHint")
                         .disableRichText()
                     )
-                    .add(WS.textLine
-                        .setLocalizationKey("CheeseRamMenu.FileNotFound")
-                        .injectionKey(nameof(errorText))
-                    )
-                    .add(WS.button.setLocalizationKey("CheeseRamMenu.FileLoad")
-                        .injectionKey(nameof(loadButton))
-                        .add<ButtonLayout>()
-                    )
+                    .addContainer("Buttons", buttons => buttons
+                        .injectionKey(nameof(buttonsSection))
+                        .horizontal(anchor: TextAnchor.UpperCenter)
+                        .add(WS.button.setLocalizationKey("CheeseRamMenu.FileSave")
+                            .injectionKey(nameof(saveButton))
+                            .add<ButtonLayout>())
+                        .add(WS.button.setLocalizationKey("CheeseRamMenu.FileLoad")
+                            .injectionKey(nameof(loadButton))
+                            .add<ButtonLayout>()
+                        ))
                     .addContainer("BottomBox", bottomBox => bottomBox
                         .injectionKey(nameof(bottomSection))
                         .vertical(anchor: TextAnchor.UpperCenter)
@@ -92,19 +97,23 @@ namespace CheeseRamMenu.Client
         [AssignMe]
         public HoverButton loadButton;
         [AssignMe]
+        public HoverButton saveButton;
+        [AssignMe]
         public InputSlider addressPegSlider;
         [AssignMe]
         public InputSlider widthPegSlider;
         [AssignMe]
         public GameObject bottomSection;
+        // [AssignMe]
+
         [AssignMe]
-        public GameObject errorText;
+        public GameObject buttonsSection;
 
         private bool isComponentResizable;
 
         protected override void OnStartEditing()
         {
-            errorText.SetActive(false);
+            // errorText.SetActive(false);
             if (FirstComponentBeingEdited.ClientCode is RamResizableClient)
             {
                 var num_inputs = FirstComponentBeingEdited.Component.Data.InputCount;
@@ -123,19 +132,22 @@ namespace CheeseRamMenu.Client
                 bottomSection.SetActive(false);
                 isComponentResizable = false;
             }
-            filePathInputField.text = "";
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            loadButton.OnClickEnd += loadFile;
-            addressPegSlider.OnValueChangedInt += addressCountChanged;
-            widthPegSlider.OnValueChangedInt += bitwidthChanged;
-            filePathInputField.onValueChanged.AddListener(text => errorText.SetActive(false));
+            loadButton.OnClickEnd += LoadFile;
+            saveButton.OnClickEnd += SaveFile;
+            addressPegSlider.OnValueChangedInt += AddressCountChanged;
+            widthPegSlider.OnValueChangedInt += BitwidthChanged;
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                filePathInputField.gameObject.SetActive(false);
+            }
         }
 
-        private void bitwidthChanged(int newBitwidth)
+        private void BitwidthChanged(int newBitwidth)
         {
             if(!isComponentResizable)
             {
@@ -148,7 +160,7 @@ namespace CheeseRamMenu.Client
             ));
         }
 
-        private void addressCountChanged(int newAddressBitWidth)
+        private void AddressCountChanged(int newAddressBitWidth)
         {
             if(!isComponentResizable)
             {
@@ -161,10 +173,31 @@ namespace CheeseRamMenu.Client
             ));
         }
 
-        private void loadFile()
+        private string GetFilePath(bool save)
         {
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                var dialog = save ? (FileDialog)new SaveFileDialog() : new OpenFileDialog();
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    return dialog.FileName;
+                }
+                else
+                {
+                    return "";
+                }
+            }
+            else
+            {
+                return filePathInputField.text;
+            }
+        }
+        
+        private void LoadFile()
+        {
+            var filePath = GetFilePath(true);
+            if (string.IsNullOrEmpty(filePath)) return;
             var loadable = (FileLoadable) FirstComponentBeingEdited.ClientCode;
-            var filePath = filePathInputField.text;
             if (File.Exists(filePath))
             {
                 var bytes = File.ReadAllBytes(filePath);
@@ -174,8 +207,30 @@ namespace CheeseRamMenu.Client
             }
             else
             {
-                errorText.SetActive(true);
+                // errorText.SetActive(true);
                 LConsole.WriteLine($"Unable to load file rich text <mspace=0.65em>'<noparse>{filePath}</noparse>'</mspace> as it does not exist");
+            }
+        }
+
+        private void SaveFile()
+        {
+            var filePath = GetFilePath(true);
+            if (string.IsNullOrEmpty(filePath)) return;
+            var savable = (FileSavable)FirstComponentBeingEdited.ClientCode;
+            savable.Save(true, Save);
+            return;
+
+            void Save(byte[] data)
+            {
+                try
+                {
+                    File.WriteAllBytes(filePath, data);
+                    LConsole.WriteLine("Successfully opened file");
+                }
+                catch (Exception e)
+                {
+                    LConsole.PrintException(e);
+                }
             }
         }
 

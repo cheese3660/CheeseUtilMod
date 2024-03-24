@@ -8,7 +8,7 @@ using LICC;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class Ram16bClientBase : ComponentClientCode<IRamData>, FileLoadable
+    public abstract class Ram16bClientBase : ComponentClientCode<IRamData>, FileLoadable, FileSavable
     {
         public abstract int addressLines { get; }
         public ushort[] memory;
@@ -57,7 +57,7 @@ namespace CheeseUtilMod.Client
 
         protected void SendDataToServer()
         {
-            Logger.Info("Sending data to server");
+            Logger.Info("Sending data to client");
             byte[] mem1 = new byte[memory.Length * 2];
             Buffer.BlockCopy(memory, 0, mem1, 0, mem1.Length);
             Data.ClientIncomingData = Compress(mem1);
@@ -67,6 +67,51 @@ namespace CheeseUtilMod.Client
         protected override void SetDataDefaultValues()
         {
             Data.initialize();
+        }
+
+        private Action<byte[]> _lastOnSave = null;
+        public void Save(bool force, Action<byte[]> onSave)
+        {
+
+            if (force || GetInputState(PEG_L))
+            {
+                _lastOnSave = onSave;
+                Data.State = 2;
+            }
+        }
+        
+        private byte[] Decompress()
+        {
+            MemoryStream stream = new MemoryStream(Data.Data); // We load from here
+            stream.Position = 0;
+            byte[] mem1 = new byte[memory.Length * 2];
+            try
+            {
+                DeflateStream decompressor = new DeflateStream(stream, CompressionMode.Decompress);
+                int bytesRead;
+                int nextStartIndex = 0;
+                while((bytesRead = decompressor.Read(mem1, nextStartIndex, mem1.Length - nextStartIndex)) > 0){
+                    nextStartIndex += bytesRead;
+                }
+            }
+            catch(Exception ex)
+            {
+                Logger.Error("[CheeseUtilMod] Loading data from client failed with exception: " + ex);
+            }
+
+            return mem1;
+        }
+
+        protected override void DataUpdate()
+        {
+            if (Data.State == 3)
+            {
+                Logger.Info("Received data from client!");
+                // Now we must decompress all the data as well
+                // We reset the state data
+                if (_lastOnSave != null) _lastOnSave(Decompress());
+                Data.State = 0;
+            }
         }
     }
 }

@@ -36,8 +36,11 @@
     <RunPostBuildEvent>Always</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\lwharmony\0Harmony.dll</HintPath>
+    <Reference Include="LogicWorld.Subassemblies">
+      <HintPath>..\SteamLibrary\steamapps\common\Logic World\Logic_World_Data\Managed\LogicWorld.Subassemblies.dll</HintPath>
+    </Reference>
+    <Reference Include="LogicWorld.UnityHacksAndExtensions">
+      <HintPath>..\SteamLibrary\steamapps\common\Logic World\Logic_World_Data\Managed\LogicWorld.UnityHacksAndExtensions.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -62,173 +65,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Antlr4.Runtime.dll</HintPath>
     </Reference>
-    <Reference Include="api-ms-win-core-console-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-console-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-datetime-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-datetime-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-debug-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-debug-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-errorhandling-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-errorhandling-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-file-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-file-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-file-l1-2-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-file-l1-2-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-file-l2-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-file-l2-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-handle-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-handle-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-heap-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-heap-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-interlocked-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-interlocked-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-libraryloader-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-libraryloader-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-localization-l1-2-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-localization-l1-2-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-memory-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-memory-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-namedpipe-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-namedpipe-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-processenvironment-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-processenvironment-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-processthreads-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-processthreads-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-processthreads-l1-1-1">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-processthreads-l1-1-1.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-profile-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-profile-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-rtlsupport-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-rtlsupport-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-string-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-string-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-synch-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-synch-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-synch-l1-2-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-synch-l1-2-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-sysinfo-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-sysinfo-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-timezone-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-timezone-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-core-util-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-core-util-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-conio-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-conio-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-convert-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-convert-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-environment-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-environment-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-filesystem-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-filesystem-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-heap-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-heap-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-locale-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-locale-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-math-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-math-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-multibyte-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-multibyte-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-private-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-private-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-process-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-process-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-runtime-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-runtime-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-stdio-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-stdio-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-string-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-string-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-time-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-time-l1-1-0.dll</HintPath>
-    </Reference>
-    <Reference Include="api-ms-win-crt-utility-l1-1-0">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\api-ms-win-crt-utility-l1-1-0.dll</HintPath>
-    </Reference>
     <Reference Include="Ben.Demystifier">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Ben.Demystifier.dll</HintPath>
-    </Reference>
-    <Reference Include="Boo.Lang">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Boo.Lang.dll</HintPath>
     </Reference>
     <Reference Include="BouncyCastle.Crypto">
       <SpecificVersion>False</SpecificVersion>
@@ -238,33 +77,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\ClassImpl.dll</HintPath>
     </Reference>
-    <Reference Include="clrcompression">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\clrcompression.dll</HintPath>
-    </Reference>
-    <Reference Include="clretwrc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\clretwrc.dll</HintPath>
-    </Reference>
-    <Reference Include="clrjit">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\clrjit.dll</HintPath>
-    </Reference>
     <Reference Include="CommandLine">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\CommandLine.dll</HintPath>
     </Reference>
-    <Reference Include="coreclr">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\coreclr.dll</HintPath>
-    </Reference>
     <Reference Include="Dawn.Guard">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Dawn.Guard.dll</HintPath>
-    </Reference>
-    <Reference Include="dbgshim">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\dbgshim.dll</HintPath>
     </Reference>
     <Reference Include="DOTween">
       <SpecificVersion>False</SpecificVersion>
@@ -273,10 +92,6 @@
     <Reference Include="DOTween.Modules">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\DOTween.Modules.dll</HintPath>
-    </Reference>
-    <Reference Include="Facepunch.Steamworks">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Facepunch.Steamworks.dll</HintPath>
     </Reference>
     <Reference Include="FancyInput">
       <SpecificVersion>False</SpecificVersion>
@@ -317,14 +132,6 @@
     <Reference Include="Grpc.Core">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Grpc.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="hostfxr">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\hostfxr.dll</HintPath>
-    </Reference>
-    <Reference Include="hostpolicy">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\hostpolicy.dll</HintPath>
     </Reference>
     <Reference Include="InterSUCC">
       <SpecificVersion>False</SpecificVersion>
@@ -526,10 +333,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\LogicWorld.UI.dll</HintPath>
     </Reference>
-    <Reference Include="LogicWorld.UnityBullshit">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\LogicWorld.UnityBullshit.dll</HintPath>
-    </Reference>
     <Reference Include="LogicWorld.Utilities">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\LogicWorld.Utilities.dll</HintPath>
@@ -613,10 +416,6 @@
     <Reference Include="Microsoft.CSharp">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Microsoft.CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.DiaSymReader.Native.amd64">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Microsoft.DiaSymReader.Native.amd64.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
       <SpecificVersion>False</SpecificVersion>
@@ -754,29 +553,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Mono.WebBrowser.dll</HintPath>
     </Reference>
-    <Reference Include="mscordaccore">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\mscordaccore.dll</HintPath>
-    </Reference>
-    <Reference Include="mscordaccore_amd64_amd64_4.700.21.51404">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\mscordaccore_amd64_amd64_4.700.21.51404.dll</HintPath>
-    </Reference>
-    <Reference Include="mscordbi">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\mscordbi.dll</HintPath>
-    </Reference>
     <Reference Include="mscorlib">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\mscorlib.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorrc.debug">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\mscorrc.debug.dll</HintPath>
-    </Reference>
-    <Reference Include="mscorrc">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\mscorrc.dll</HintPath>
     </Reference>
     <Reference Include="NaughtyAttributes.Core">
       <SpecificVersion>False</SpecificVersion>
@@ -817,10 +596,6 @@
     <Reference Include="sc.stylizedwater2.runtime">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\sc.stylizedwater2.runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="SECCS">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\SECCS.dll</HintPath>
     </Reference>
     <Reference Include="Server">
       <SpecificVersion>False</SpecificVersion>
@@ -1538,10 +1313,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\System.Xml.XPath.XDocument.dll</HintPath>
     </Reference>
-    <Reference Include="ThreadNinja">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\ThreadNinja.dll</HintPath>
-    </Reference>
     <Reference Include="TrueColorConsole">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\TrueColorConsole.dll</HintPath>
@@ -1549,10 +1320,6 @@
     <Reference Include="TypeFinder">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\TypeFinder.dll</HintPath>
-    </Reference>
-    <Reference Include="ucrtbase">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\ucrtbase.dll</HintPath>
     </Reference>
     <Reference Include="UIShapes">
       <SpecificVersion>False</SpecificVersion>
@@ -1885,7 +1652,6 @@
     <None Include="cheeseutil\components\utility.succ" />
     <None Include="cheeseutil\languages\English\English_components.succ" />
     <None Include="cheeseutil\README.md" />
-    <None Include="ecconia_lib\manifest.succ" />
     <None Include="lib\Server.deps.json" />
     <None Include="lib\Server.runtimeconfig.json" />
     <None Include="lib\SOS_README.md" />
@@ -1894,10 +1660,12 @@
   <ItemGroup>
     <Compile Include="cheeseloader\src\server\CheeseLoader.cs" />
     <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
-    <Compile Include="cheeserammenu\src\client\prefabs\Button.cs" />
-    <Compile Include="cheeserammenu\src\client\prefabs\NamedSliderPrefab.cs" />
-    <Compile Include="cheeserammenu\src\client\prefabs\TextInput.cs" />
+    <Compile Include="cheeserammenu\src\client\files\IntPtrExtensions.cs" />
+    <Compile Include="cheeserammenu\src\client\files\OpenFileName.cs" />
+    <Compile Include="cheeserammenu\src\client\files\OpenFileNameFlags.cs" />
+    <Compile Include="cheeserammenu\src\client\files\WindowsFileDialog.cs" />
     <Compile Include="cheeserammenu\src\client\RamMenu.cs" />
+    <Compile Include="cheeseutil\src\client\FileSavable.cs" />
     <Compile Include="cheeseutil\src\shared\IRamData.cs" />
     <Compile Include="cheeseutil\src\shared\IRamResizeableData.cs" />
     <Compile Include="cheeseutil\src\client\BCD16.cs" />
@@ -1969,22 +1737,9 @@
     <Compile Include="cheeseutil\src\server\RAM8BitBase.cs" />
     <Compile Include="cheeseutil\src\server\RamResizable.cs" />
     <Compile Include="cheeseutil\src\server\TextDisplay.cs" />
-    <Compile Include="ecconia_lib\src\client\experimental\LWDebugger.cs" />
-    <Compile Include="ecconia_lib\src\client\experimental\SceneDebugger.cs" />
-    <Compile Include="ecconia_lib\src\client\experimental\SerializeFieldInjector.cs" />
-    <Compile Include="ecconia_lib\src\client\InjectionUtils.cs" />
-    <Compile Include="ecconia_lib\src\client\MenuBackgroundClosesWindow.cs" />
-    <Compile Include="ecconia_lib\src\client\ModClass.cs" />
-    <Compile Include="ecconia_lib\src\client\prefabs\InputSliderPrefab.cs" />
-    <Compile Include="ecconia_lib\src\client\prefabs\SliderPrefab.cs" />
-    <Compile Include="ecconia_lib\src\client\prefabs\TitleBar.cs" />
-    <Compile Include="ecconia_lib\src\client\prefabs\TogglePrefab.cs" />
-    <Compile Include="ecconia_lib\src\client\prefabs\WindowSettingsEntryPrefab.cs" />
-    <Compile Include="ecconia_lib\src\client\WindowBuilder.cs" />
-    <Compile Include="ecconia_lib\src\client\WindowController.cs" />
-    <Compile Include="ecconia_lib\src\client\WindowHelper.cs" />
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="cheeseutil\src\shared\ITextConsoleData.cs" />
+    <Compile Include="ecconia_lib\**\*.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include=".gitignore" />
@@ -2471,18 +2226,37 @@
   <ItemGroup>
     <Folder Include=".vs\CheeseUtilMod\v17\" />
     <Folder Include="bin\Debug\" />
+    <Folder Include="cheeserammenu\assemblies\client\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
     <VisualStudio AllowExistingFolder="true" />
   </ProjectExtensions>
-  <PropertyGroup>
-    <PreBuildEvent>rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil"
-Xcopy $(ProjectDir)\cheeseutil "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeseutil" /E/H/C/I
-rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu"
-Xcopy $(ProjectDir)\cheeserammenu "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheesemenu" /E/H/C/I
-rmdir /s /q "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu"
-Xcopy $(ProjectDir)\cheesemenu "D:\Program Files (x86)\Steam\steamapps\common\Logic World\GameData\cheeserammenu" /E/H/C/I
-"D:\Program Files (x86)\Steam\steamapps\common\Logic World\Logic_World.exe"</PreBuildEvent>
-  </PropertyGroup>
+  <Target Label="Post build events" Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Message Text="Deleting old files"/>
+    <RemoveDir Directories="D:\SteamLibrary\steamapps\common\Logic World\cache"/>
+    <RemoveDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeserammenu"/>
+    <RemoveDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseutil"/>
+    <RemoveDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseloader"/>
+    <Message Text="Copying ram mod folder"/>
+    <MakeDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeserammenu"/>
+    <ItemGroup Label="Mod folder to be copied">
+      <RamModFiles Include="$(ProjectDir)/cheeserammenu/**/*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(RamModFiles)" DestinationFolder="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeserammenu/%(RecursiveDir)"/>
+    <Message Text="Copying util mod folder"/>
+    <MakeDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseutil"/>
+    <ItemGroup Label="Mod folder to be copied">
+      <UtilModFiles Include="$(ProjectDir)/cheeseutil/**/*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(UtilModFiles)" DestinationFolder="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseutil/%(RecursiveDir)"/>
+    <Message Text="Copying loader mod folder"/>
+    <MakeDir Directories="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseloader"/>
+    <ItemGroup Label="Mod folder to be copied">
+      <LoaderModFiles Include="$(ProjectDir)/cheeseloader/**/*.*"/>
+    </ItemGroup>
+    <Copy SourceFiles="@(LoaderModFiles)" DestinationFolder="D:\SteamLibrary\steamapps\common\Logic World\GameData\cheeseloader/%(RecursiveDir)"/>
+    <Message Text="Launching game"/>
+    <Exec Command="&quot;D:\SteamLibrary\steamapps\common\Logic World\Logic_World.exe&quot;"/>
+  </Target>
 </Project>
