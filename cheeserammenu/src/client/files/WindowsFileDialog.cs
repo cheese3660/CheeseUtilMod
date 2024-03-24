@@ -1,14 +1,16 @@
-﻿using System.Runtime.InteropServices;
+﻿using System;
+using System.Runtime.InteropServices;
+using LICC;
 
 namespace CheeseRamMenu.Client.Files
 {
     public static class WindowsFileDialog
     {
-        [DllImport("Comdlg32.dll")]
-        private static extern bool GetOpenFileNameA(ref OpenFileName arg);
+        [DllImport("Comdlg32.dll", CharSet = CharSet.Auto)]
+        private static extern bool GetOpenFileName([In, Out] OpenFileName arg);
         
-        [DllImport("Comdlg32.dll")]
-        private static extern bool GetSaveFileNameA(ref OpenFileName arg);
+        [DllImport("Comdlg32.dll", CharSet = CharSet.Auto)]
+        private static extern bool GetSaveFileName([In, Out]  OpenFileName arg);
 
         [DllImport("Kernel32.dll")]
         private static extern uint GetLastError();
@@ -17,11 +19,11 @@ namespace CheeseRamMenu.Client.Files
             params (string title, string filter)[] filters)
         {
             var box = OpenFileName.GetDefaultOpenFileDialog(title, defaultExtension, filters);
-            var result = GetOpenFileNameA(ref box);
+            var result = GetOpenFileName(box);
             var le = GetLastError();
+            LConsole.WriteLine($"Last error: {le}");
             var filename = "";
             if (result) filename = box.File;
-            box.Free();
             return filename;
         }
         
@@ -29,11 +31,11 @@ namespace CheeseRamMenu.Client.Files
             params (string title, string filter)[] filters) {
             
             var box = OpenFileName.GetDefaultSaveFileDialog(title, defaultExtension, filters);
-            var result = GetSaveFileNameA(ref box);
+            var result = GetSaveFileName(box);
             var le = GetLastError();
+            LConsole.WriteLine($"Last error: {le}");
             var filename = "";
             if (result) filename = box.File;
-            box.Free();
             return filename;
         }
     }

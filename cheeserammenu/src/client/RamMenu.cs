@@ -8,7 +8,7 @@ using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
-using System.Windows.Forms;
+using CheeseRamMenu.Client.Files;
 using EccsGuiBuilder.Client.Layouts.Controller;
 using EccsGuiBuilder.Client.Layouts.Elements;
 using EccsGuiBuilder.Client.Wrappers;
@@ -177,14 +177,13 @@ namespace CheeseRamMenu.Client
         {
             if (Application.platform == RuntimePlatform.WindowsPlayer)
             {
-                var dialog = save ? (FileDialog)new SaveFileDialog() : new OpenFileDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
+                if (save)
                 {
-                    return dialog.FileName;
+                    return WindowsFileDialog.GetSaveFile("Save RAM dump as", "dat", ("All Files", "*.*"));
                 }
                 else
                 {
-                    return "";
+                    return WindowsFileDialog.GetOpenFile("Read RAM from", "dat", ("All Files", "*.*"));
                 }
             }
             else
@@ -195,7 +194,7 @@ namespace CheeseRamMenu.Client
         
         private void LoadFile()
         {
-            var filePath = GetFilePath(true);
+            var filePath = GetFilePath(false);
             if (string.IsNullOrEmpty(filePath)) return;
             var loadable = (FileLoadable) FirstComponentBeingEdited.ClientCode;
             if (File.Exists(filePath))
