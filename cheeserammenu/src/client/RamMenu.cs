@@ -8,7 +8,7 @@ using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
-using System.Windows.Forms;
+using CheeseRamMenu.Client.Files;
 using EccsGuiBuilder.Client.Layouts.Controller;
 using EccsGuiBuilder.Client.Layouts.Elements;
 using EccsGuiBuilder.Client.Wrappers;
@@ -141,6 +141,10 @@ namespace CheeseRamMenu.Client
             saveButton.OnClickEnd += SaveFile;
             addressPegSlider.OnValueChangedInt += AddressCountChanged;
             widthPegSlider.OnValueChangedInt += BitwidthChanged;
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                filePathInputField.gameObject.SetActive(false);
+            }
         }
 
         private void BitwidthChanged(int newBitwidth)
@@ -171,12 +175,26 @@ namespace CheeseRamMenu.Client
 
         private string GetFilePath(bool save)
         {
-            return filePathInputField.text;
+            if (Application.platform == RuntimePlatform.WindowsPlayer)
+            {
+                if (save)
+                {
+                    return WindowsFileDialog.GetSaveFile("Save RAM dump as", "dat", ("All Files", "*.*"));
+                }
+                else
+                {
+                    return WindowsFileDialog.GetOpenFile("Read RAM from", "dat", ("All Files", "*.*"));
+                }
+            }
+            else
+            {
+                return filePathInputField.text;
+            }
         }
         
         private void LoadFile()
         {
-            var filePath = GetFilePath(true);
+            var filePath = GetFilePath(false);
             if (string.IsNullOrEmpty(filePath)) return;
             var loadable = (FileLoadable) FirstComponentBeingEdited.ClientCode;
             if (File.Exists(filePath))
