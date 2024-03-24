@@ -1660,6 +1660,10 @@
   <ItemGroup>
     <Compile Include="cheeseloader\src\server\CheeseLoader.cs" />
     <Compile Include="cheeserammenu\src\client\CheeseRamMenu.cs" />
+    <Compile Include="cheeserammenu\src\client\files\IntPtrExtensions.cs" />
+    <Compile Include="cheeserammenu\src\client\files\OpenFileName.cs" />
+    <Compile Include="cheeserammenu\src\client\files\OpenFileNameFlags.cs" />
+    <Compile Include="cheeserammenu\src\client\files\WindowsFileDialog.cs" />
     <Compile Include="cheeserammenu\src\client\RamMenu.cs" />
     <Compile Include="cheeseutil\src\client\FileSavable.cs" />
     <Compile Include="cheeseutil\src\shared\IRamData.cs" />
@@ -2222,7 +2226,6 @@
   <ItemGroup>
     <Folder Include=".vs\CheeseUtilMod\v17\" />
     <Folder Include="bin\Debug\" />
-    <Folder Include="cheeserammenu\assemblies\client\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSHARP.Targets" />
   <ProjectExtensions>
