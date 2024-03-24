@@ -141,10 +141,6 @@ namespace CheeseRamMenu.Client
             saveButton.OnClickEnd += SaveFile;
             addressPegSlider.OnValueChangedInt += AddressCountChanged;
             widthPegSlider.OnValueChangedInt += BitwidthChanged;
-            if (Application.platform == RuntimePlatform.WindowsPlayer)
-            {
-                filePathInputField.gameObject.SetActive(false);
-            }
         }
 
         private void BitwidthChanged(int newBitwidth)
@@ -175,22 +171,7 @@ namespace CheeseRamMenu.Client
 
         private string GetFilePath(bool save)
         {
-            if (Application.platform == RuntimePlatform.WindowsPlayer)
-            {
-                var dialog = save ? (FileDialog)new SaveFileDialog() : new OpenFileDialog();
-                if (dialog.ShowDialog() == DialogResult.OK)
-                {
-                    return dialog.FileName;
-                }
-                else
-                {
-                    return "";
-                }
-            }
-            else
-            {
-                return filePathInputField.text;
-            }
+            return filePathInputField.text;
         }
         
         private void LoadFile()
