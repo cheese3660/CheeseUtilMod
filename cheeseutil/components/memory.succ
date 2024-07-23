@@ -2,7 +2,7 @@ Ram4aX1b:
     column: "Memory"
     category: "1Bit"
     logicCode: CheeseUtilMod.Components.Ram4aX1b
-    clientCode: CheeseUtilMod.Client.Ram4aX1bClient
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -13,7 +13,7 @@ Ram8aX1b:
     column: "Memory"
     category: "1Bit"
     logicCode: CheeseUtilMod.Components.Ram8aX1b
-    clientCode: CheeseUtilMod.Client.Ram8aX1bClient
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -24,7 +24,7 @@ Ram16aX1b:
     column: "Memory"
     category: "1Bit"
     logicCode: CheeseUtilMod.Components.Ram16aX1b
-    clientCode: CheeseUtilMod.Client.Ram16aX1bClient
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -35,7 +35,7 @@ Ram4aX4b:
     column: "Memory"
     category: "4Bit"
     logicCode: CheeseUtilMod.Components.Ram4aX4b
-    clientCode: CheeseUtilMod.Client.Ram4aX4bClient
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -46,7 +46,7 @@ Ram8aX4b:
     column: "Memory"
     category: "4Bit"
     logicCode: CheeseUtilMod.Components.Ram8aX4b
-    clientCode: CheeseUtilMod.Client.Ram8aX4bClient
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -57,7 +57,7 @@ Ram16aX4b:
     column: "Memory"
     category: "4Bit"
     logicCode: CheeseUtilMod.Components.Ram16aX4b
-    clientCode: CheeseUtilMod.Client.Ram16aX4bClient
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -68,7 +68,7 @@ Ram4aX8b:
     column: "Memory"
     category: "8Bit"
     logicCode: CheeseUtilMod.Components.Ram4aX8b
-    clientCode: CheeseUtilMod.Client.Ram4aX8bClient
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -79,7 +79,7 @@ Ram8aX8b:
     column: "Memory"
     category: "8Bit"
     logicCode: CheeseUtilMod.Components.Ram8aX8b
-    clientCode: CheeseUtilMod.Client.Ram8aX8bClient
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -90,7 +90,7 @@ Ram16aX8b:
     column: "Memory"
     category: "8Bit"
     logicCode: CheeseUtilMod.Components.Ram16aX8b
-    clientCode: CheeseUtilMod.Client.Ram16aX8bClient
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -101,7 +101,7 @@ Ram4aX16b:
     column: "Memory"
     category: "16Bit"
     logicCode: CheeseUtilMod.Components.Ram4aX16b
-    clientCode: CheeseUtilMod.Client.Ram4aX16bClient
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -112,7 +112,7 @@ Ram8aX16b:
     column: "Memory"
     category: "16Bit"
     logicCode: CheeseUtilMod.Components.Ram8aX16b
-    clientCode: CheeseUtilMod.Client.Ram8aX16bClient
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:
@@ -123,7 +123,7 @@ Ram16aX16b:
     column: "Memory"
     category: "16Bit"
     logicCode: CheeseUtilMod.Components.Ram16aX16b
-    clientCode: CheeseUtilMod.Client.Ram16aX16bClient
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
     prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
     placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
     codeInfoInts:

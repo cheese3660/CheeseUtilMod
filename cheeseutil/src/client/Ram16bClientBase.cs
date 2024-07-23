@@ -8,14 +8,15 @@ using LICC;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class Ram16bClientBase : ComponentClientCode<IRamData>, FileLoadable
+    public class Ram16bClientBase : ComponentClientCode<IRamData>, FileLoadable
     {
-        public abstract int addressLines { get; }
+        public int addressLines;
         public ushort[] memory;
         private static int PEG_L = 2;
 
         protected override void Initialize()
         {
+            addressLines = CodeInfoInts[0];
             memory = new ushort[1 << addressLines];
             CheeseUtilClient.fileLoadables.Add(this);
         }
