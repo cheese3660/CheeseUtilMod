@@ -2,14 +2,13 @@
 using JimmysUnityUtilities;
 using LogicWorld.ClientCode;
 using LogicWorld.ClientCode.Resizing;
-using LogicWorld.SharedCode.Components;
 using UnityEngine;
 using System;
 using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
-    class HexDisplayResizable : ComponentClientCode<HexDisplayResizable.IData>, IColorableClientCode, IResizableX
+    class HexDisplayResizable : ComponentClientCode<IThroughPanelSegmentDisplayData>, IColorableClientCode, IResizableX
     {
         public Color24 Color { get => Data.color; set => Data.color = value; }
 
@@ -103,21 +102,9 @@ namespace CheeseUtilMod.Client
             }
         }
 
-        public override PlacingRules GenerateDynamicPlacingRules()
-        {
-            return PlacingRules.FlippablePanelOfSize(SizeX, SizeX * 2);
-        }
-
         protected override void SetDataDefaultValues()
         {
-            Data.color = Color24.Amber;
-            Data.size = 1;
-        }
-
-        public interface IData
-        {
-            Color24 color { get; set; }
-            int size { get; set; }
+            Data.Initialize();
         }
     }
 }
