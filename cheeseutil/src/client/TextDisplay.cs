@@ -178,11 +178,6 @@ namespace CheeseUtilMod.Client
             firstFrame = false;
         }
 
-        public override PlacingRules GenerateDynamicPlacingRules()
-        {
-            return PlacingRules.FlippablePanelOfSize(SizeX, SizeZ);
-        }
-
         protected override IDecoration[] GenerateDecorations(Transform parentToCreateDecorationsUnder)
         {
             if (screen == null)

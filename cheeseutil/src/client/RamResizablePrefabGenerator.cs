@@ -1,29 +1,26 @@
-﻿using LogicWorld.Interfaces;
-using LogicWorld.Rendering.Dynamics;
+﻿using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System.Collections.Generic;
 using UnityEngine;
 using JimmysUnityUtilities;
+using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
-    public class RamResizablePrefab : PrefabVariantInfo
+    public class RamResizablePrefabGenerator : DynamicPrefabGenerator<(int InputCount, int OutputCount)>
     {
         private static Color24 blockColor = new Color24(127, 127, 127);
 
-        public override string ComponentTextID => "CheeseUtilMod.RamResizable";
+        protected override (int InputCount, int OutputCount) GetIdentifierFor(ComponentData componentData)
+            => (componentData.InputCount, componentData.OutputCount);
 
-        public override PrefabVariantIdentifier GetDefaultComponentVariant()
-        {
-            return new PrefabVariantIdentifier(3 + 1 + 1, 2);
-        }
+        public override (int inputCount, int outputCount) GetDefaultPegCounts()
+            => (3 + 1 + 1, 2);
 
-        public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
+        protected override Prefab GeneratePrefabFor((int InputCount, int OutputCount) identifier)
         {
             var dataSize = identifier.OutputCount;
             var addressSize = identifier.InputCount - 3 - dataSize;
-            PlacingRules placingRules = new PlacingRules();
-            placingRules.AllowFineRotation = false;
             var prefabBlock = new Block
             {
                 RawColor = blockColor
@@ -104,16 +101,11 @@ namespace CheeseUtilMod.Client
             }
             prefabBlock.Scale = new Vector3(current_width, 2f, 2f);
             prefabBlock.Position = new Vector3(0.5f, 0f, 0.5f);
-            placingRules.GridPlacingDimensions = new Vector2Int((int)current_width, 2);
-            return new ComponentVariant
+            return new Prefab
             {
-                VariantPlacingRules = placingRules,
-                VariantPrefab = new Prefab
-                {
-                    Blocks = new Block[] { prefabBlock },
-                    Outputs = outputs.ToArray(),
-                    Inputs = inputs.ToArray()
-                }
+                Blocks = new Block[] { prefabBlock },
+                Outputs = outputs.ToArray(),
+                Inputs = inputs.ToArray()
             };
         }
     }

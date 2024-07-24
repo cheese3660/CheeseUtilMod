@@ -15,10 +15,13 @@ namespace CheeseUtilMod.Shared.CustomData
 
     public static class TextConsoleDataInit
     {
+        public const int DefaultSizeX = 4;
+        public const int DefaultSizeZ = 4;
+
         public static void initialize(this ITextConsoleData data)
         {
-            data.SizeX = 4;
-            data.SizeZ = 4;
+            data.SizeX = DefaultSizeX;
+            data.SizeZ = DefaultSizeZ;
             data.TextData = null;
             data.Color = Color24.Amber;
             data.CursorX = 0;

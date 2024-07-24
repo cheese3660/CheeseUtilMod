@@ -1,5 +1,5 @@
 ﻿using JimmysUnityUtilities;
-using LogicWorld.Interfaces;
+using LogicAPI.Data;
 using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System;
@@ -8,11 +8,15 @@ using UnityEngine;
 namespace CheeseUtilMod.Client
 {
     //Modified: https://github.com/ShadowAA55/HMM/blob/main/HMM/src/client/Output.cs
-    public class TextDisplayVariantInfo : PrefabVariantInfo
+    public class TextDisplayPrefabGenerator : DynamicPrefabGenerator<(int InputCount, int OutputCount)>
     {
-        public override string ComponentTextID => "CheeseUtilMod.TextDisplay";
+        protected override (int InputCount, int OutputCount) GetIdentifierFor(ComponentData componentData)
+            => (componentData.InputCount, componentData.OutputCount);
 
-        public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
+        public override (int inputCount, int outputCount) GetDefaultPegCounts()
+            => (28, 0);
+
+        protected override Prefab GeneratePrefabFor((int InputCount, int OutputCount) identifier)
         {
             if (identifier.OutputCount != 0)
             {
@@ -45,8 +49,7 @@ namespace CheeseUtilMod.Client
                     Length = length
                 };
             }
-            ComponentVariant componentVariant = new ComponentVariant();
-            componentVariant.VariantPrefab = new Prefab
+            return new Prefab
             {
                 Blocks = new Block[2]
                 {
@@ -74,12 +77,6 @@ namespace CheeseUtilMod.Client
                 },
                 Inputs = array
             };
-            return componentVariant;
-        }
-
-        public override PrefabVariantIdentifier GetDefaultComponentVariant()
-        {
-            return new PrefabVariantIdentifier(28, 0);
         }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using JimmysUnityUtilities;
-using LogicWorld.Interfaces;
+using LogicAPI.Data;
 using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System;
@@ -7,10 +7,21 @@ using UnityEngine;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class ThroughPanelSegmentDisplayVariantInfo : PrefabVariantInfo
+    public class ThroughPanelSegmentDisplayPrefabGenerator : DynamicPrefabGenerator<int>
     {
-        public abstract bool Hex { get; }
-        public abstract override string ComponentTextID { get; }
+        public bool Hex;
+
+        public override void Setup(ComponentInfo info)
+        {
+            Hex = info.CodeInfoBools[0];
+        }
+
+        protected override int GetIdentifierFor(ComponentData componentData)
+            => componentData.InputCount;
+
+        public override (int inputCount, int outputCount) GetDefaultPegCounts()
+            => (Hex ? 4 : 7, 0);
+
         //Generate with a default size of 1x2
 
         private static float segmentWidth = 0.15f; //0.17 at a normal 1x2 scale
@@ -27,10 +38,10 @@ namespace CheeseUtilMod.Client
             new Vector2[]{new Vector2(0.00f, segmentMiddle), new Vector2(segmentHeight, segmentWidth) }, //7
         };
 
-        public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
+        protected override Prefab GeneratePrefabFor(int inputCount)
         {
             Block[] blocks = new Block[9];
-            ComponentInput[] inputs = new ComponentInput[identifier.InputCount];
+            ComponentInput[] inputs = new ComponentInput[inputCount];
             for (int i = 0; i < 7; i++)
             {
                 var locAndScale = sevenSegSegmentLocationsAndScales[i];
@@ -77,18 +88,11 @@ namespace CheeseUtilMod.Client
                     Length = length
                 };
             }
-            ComponentVariant componentVariant = new ComponentVariant();
-            componentVariant.VariantPrefab = new Prefab
+            return new Prefab
             {
                 Blocks = blocks,
                 Inputs = inputs,
             };
-            return componentVariant;
-        }
-
-        public override PrefabVariantIdentifier GetDefaultComponentVariant()
-        {
-            return new PrefabVariantIdentifier(Hex ? 4 : 7, 0);
         }
     }
 }
