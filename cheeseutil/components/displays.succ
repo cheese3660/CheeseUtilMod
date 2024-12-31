@@ -1,57 +1,92 @@
 ﻿SevenSeg1x2:
     column: "Displays"
     category: "SevenSeg"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 1 # Prefab scale
+    codeInfoBools:
+        - no # Is hexadecimal?
 
 SevenSeg2x4:
     column: "Displays"
     category: "SevenSeg"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 2 # Prefab scale
+    codeInfoBools:
+        - no # Is hexadecimal?
+
 
 SevenSeg4x8:
     column: "Displays"
     category: "SevenSeg"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Prefab scale
+    codeInfoBools:
+        - no # Is hexadecimal?
 
 SevenSegResizable:
     column: "Displays"
     category: "SevenSeg"
-    prefab: dynamic
-    placingRules: dynamic
     clientCode: CheeseUtilMod.Client.SevenSegmentDisplayResizable
+    prefabGenerator: CheeseUtilMod.Client.ThroughPanelSegmentDisplayPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.ThroughPanelSegmentDisplayPlacingRulesGenerator
+    codeInfoBools:
+        - no # Is hexadecimal?
 
 Hex1x2:
     column: "Displays"
     category: "Hex"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 1 # Prefab scale
+    codeInfoBools:
+        - yes # Is hexadecimal?
 
 Hex2x4:
     column: "Displays"
     category: "Hex"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 2 # Prefab scale
+    codeInfoBools:
+        - yes # Is hexadecimal?
 
 Hex4x8:
     column: "Displays"
     category: "Hex"
-    prefab: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplay
+    prefabGenerator: CheeseUtilMod.Client.SevenSegPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.SevenSegPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Prefab scale
+    codeInfoBools:
+        - yes # Is hexadecimal?
 
 HexResizable:
     column: "Displays"
     category: "Hex"
-    prefab: dynamic
-    placingRules: dynamic
     clientCode: CheeseUtilMod.Client.HexDisplayResizable
+    prefabGenerator: CheeseUtilMod.Client.ThroughPanelSegmentDisplayPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.ThroughPanelSegmentDisplayPlacingRulesGenerator
+    codeInfoBools:
+        - yes # Is hexadecimal?
 
 TextDisplay:
     column: "Output"
     category: "Displays"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.TextDisplay
     clientCode: CheeseUtilMod.Client.TextDisplay
-    placingRules: dynamic
+    prefabGenerator: CheeseUtilMod.Client.TextDisplayPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.TextDisplayPlacingRulesGenerator

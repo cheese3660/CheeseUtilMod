@@ -1,103 +1,139 @@
 Ram4aX1b:
     column: "Memory"
     category: "1Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram4aX1b
-    clientCode: CheeseUtilMod.Client.Ram4aX1bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Address size
+        - 1 # Data size
 
 Ram8aX1b:
     column: "Memory"
     category: "1Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram8aX1b
-    clientCode: CheeseUtilMod.Client.Ram8aX1bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 8 # Address size
+        - 1 # Data size
 
 Ram16aX1b:
     column: "Memory"
     category: "1Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram16aX1b
-    clientCode: CheeseUtilMod.Client.Ram16aX1bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram1bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 16 # Address size
+        - 1 # Data size
 
 Ram4aX4b:
     column: "Memory"
     category: "4Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram4aX4b
-    clientCode: CheeseUtilMod.Client.Ram4aX4bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Address size
+        - 4 # Data size
 
 Ram8aX4b:
     column: "Memory"
     category: "4Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram8aX4b
-    clientCode: CheeseUtilMod.Client.Ram8aX4bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 8 # Address size
+        - 4 # Data size
 
 Ram16aX4b:
     column: "Memory"
     category: "4Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram16aX4b
-    clientCode: CheeseUtilMod.Client.Ram16aX4bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram4bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 16 # Address size
+        - 4 # Data size
 
 Ram4aX8b:
     column: "Memory"
     category: "8Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram4aX8b
-    clientCode: CheeseUtilMod.Client.Ram4aX8bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Address size
+        - 8 # Data size
 
 Ram8aX8b:
     column: "Memory"
     category: "8Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram8aX8b
-    clientCode: CheeseUtilMod.Client.Ram8aX8bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 8 # Address size
+        - 8 # Data size
 
 Ram16aX8b:
     column: "Memory"
     category: "8Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram16aX8b
-    clientCode: CheeseUtilMod.Client.Ram16aX8bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram8bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 16 # Address size
+        - 8 # Data size
 
 Ram4aX16b:
     column: "Memory"
     category: "16Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram4aX16b
-    clientCode: CheeseUtilMod.Client.Ram4aX16bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 4 # Address size
+        - 16 # Data size
 
 Ram8aX16b:
     column: "Memory"
     category: "16Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram8aX16b
-    clientCode: CheeseUtilMod.Client.Ram8aX16bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 8 # Address size
+        - 16 # Data size
 
 Ram16aX16b:
     column: "Memory"
     category: "16Bit"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.Ram16aX16b
-    clientCode: CheeseUtilMod.Client.Ram16aX16bClient
-    placingRules: dynamic
+    clientCode: CheeseUtilMod.Client.Ram16bClientBase
+    prefabGenerator: CheeseUtilMod.Client.RamPrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamPlacingRulesGenerator
+    codeInfoInts:
+        - 16 # Address size
+        - 16 # Data size
 
 RamResizable:
     column: "Memory"
     category: "Resizable"
-    prefab: dynamic
     logicCode: CheeseUtilMod.Components.RamResizable
     clientCode: CheeseUtilMod.Client.RamResizableClient
-    placingRules: dynamic
+    prefabGenerator: CheeseUtilMod.Client.RamResizablePrefabGenerator
+    placingRulesGenerator: CheeseUtilMod.Client.RamResizablePlacingRulesGenerator

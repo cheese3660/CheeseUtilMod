@@ -1,16 +1,23 @@
-﻿using LogicWorld.Interfaces;
-using LogicWorld.Rendering.Dynamics;
+﻿using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System.Collections.Generic;
 using UnityEngine;
 using JimmysUnityUtilities;
+using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class Bin2BCDPrefabBase : PrefabVariantInfo
+    public class Bin2BCDPrefabGenerator : DynamicPrefabGenerator<(int InputCount, int OutputCount)>
     {
-        public abstract override string ComponentTextID { get; }
-        public abstract int bits { get; }
+        public int bits;
+
+        public override void Setup(ComponentInfo info)
+        {
+            bits = info.CodeInfoInts[0];
+        }
+
+        protected override (int InputCount, int OutputCount) GetIdentifierFor(ComponentData componentData)
+            => (componentData.InputCount, componentData.OutputCount);
 
         public static int digitsFromBits(int bits)
         {
@@ -24,14 +31,11 @@ namespace CheeseUtilMod.Client
             return numDigits;
         }
 
-        public override PrefabVariantIdentifier GetDefaultComponentVariant()
-        {
-            return new PrefabVariantIdentifier(bits, digitsFromBits(bits)*4);
-        }
+        public override (int inputCount, int outputCount) GetDefaultPegCounts()
+            => (bits, digitsFromBits(bits) * 4);
 
-        public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
+        protected override Prefab GeneratePrefabFor((int InputCount, int OutputCount) identifier)
         {
-            PlacingRules placingRules = new PlacingRules();
             var block = new Block
             {
                 RawColor = new Color24(127, 127, 127),
@@ -81,15 +85,11 @@ namespace CheeseUtilMod.Client
                     currentY += 0.3333333333333333f;
                 }
             }
-            return new ComponentVariant
+            return new Prefab
             {
-                VariantPlacingRules = placingRules,
-                VariantPrefab = new Prefab
-                {
-                    Blocks = new Block[] { block },
-                    Inputs = inputs.ToArray(),
-                    Outputs = outputs.ToArray()
-                }
+                Blocks = new Block[] { block },
+                Inputs = inputs.ToArray(),
+                Outputs = outputs.ToArray()
             };
         }
     }

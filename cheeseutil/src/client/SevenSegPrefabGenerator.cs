@@ -1,22 +1,28 @@
-﻿using LogicWorld.Interfaces;
-using LogicWorld.Rendering.Dynamics;
+﻿using LogicWorld.Rendering.Dynamics;
 using LogicWorld.SharedCode.Components;
 using System.Collections.Generic;
 using UnityEngine;
 using JimmysUnityUtilities;
+using LogicAPI.Data;
 
 namespace CheeseUtilMod.Client
 {
-    public abstract class SevenSegPrefabBase : PrefabVariantInfo
+    public sealed class SevenSegPrefabGenerator : DynamicPrefabGenerator<int>
     {
-        public abstract override string ComponentTextID { get; }
-        public abstract int scale { get; } //This is 1, 2, or 4
-        public abstract bool hex { get; }
+        public int scale; // This is 1, 2, or 4
+        public bool hex;
 
-        public override PrefabVariantIdentifier GetDefaultComponentVariant()
+        public override void Setup(ComponentInfo info)
         {
-            return new PrefabVariantIdentifier(hex ? 4 : 7, 0);
+            scale = info.CodeInfoInts[0];
+            hex = info.CodeInfoBools[0];
         }
+
+        protected override int GetIdentifierFor(ComponentData componentData)
+            => componentData.InputCount;
+
+        public override (int inputCount, int outputCount) GetDefaultPegCounts()
+            => (hex ? 4 : 7, 0);
 
         /* Display Order
          *  111
@@ -44,11 +50,8 @@ namespace CheeseUtilMod.Client
             new Vector2[]{new Vector2(0.00f, 0.90f), new Vector2(segmentHeight, 0.2f) }, //7
         };
 
-        public override ComponentVariant GenerateVariant(PrefabVariantIdentifier identifier)
+        protected override Prefab GeneratePrefabFor(int inputCount)
         {
-            PlacingRules placingRules = new PlacingRules();
-            placingRules.AllowFineRotation = scale == 1;
-            placingRules.CanBeFlipped = false;
             var blocks = new List<Block>();
             for (int i = 0; i < 7; i++)
             {
@@ -79,9 +82,9 @@ namespace CheeseUtilMod.Client
             float currentY = 0.166666666666666666666666f;
             float lengthStart = 0.4f;
             float lengthEnd = 0.7f;
-            float lengthStep = (lengthEnd - lengthStart) / identifier.InputCount;
+            float lengthStep = (lengthEnd - lengthStart) / inputCount;
             float length = lengthStart;
-            for (int i = 0; i < identifier.InputCount; i++)
+            for (int i = 0; i < inputCount; i++)
             {
                 inputs.Add(new ComponentInput
                 {
@@ -98,15 +101,10 @@ namespace CheeseUtilMod.Client
                 length += lengthStep;
             }
 
-            return new ComponentVariant
+            return new Prefab
             {
-                VariantPlacingRules = placingRules,
-                VariantPrefab = new Prefab
-                {
-                    Blocks = blocks.ToArray(),
-                    Inputs = inputs.ToArray(),
-                    Outputs = new ComponentOutput[] { }
-                }
+                Blocks = blocks.ToArray(),
+                Inputs = inputs.ToArray(),
             };
         }
     }
