@@ -14,8 +14,8 @@ namespace CheeseUtilMod.Components
         private static int PEG_CS = 0;
         private static int PEG_W = 1;
         private static int PEG_L = 2;
-        private static int bitWidth;
-        private static int addressWidth;
+        private int bitWidth;
+        private int addressWidth;
         private bool loadfromsave;
         private byte[] memory;
 
