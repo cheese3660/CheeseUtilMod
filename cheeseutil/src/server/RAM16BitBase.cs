@@ -18,11 +18,13 @@ namespace CheeseUtilMod.Components
 
         private ushort[] memory;
         private bool loadfromsave;
+        private bool isdatadirty;
 
         protected override void Initialize()
         {
             loadfromsave = true;
             memory = new ushort[1 << addressLines];
+            isdatadirty = false;
         }
 
         public override void Dispose()
@@ -50,6 +52,7 @@ namespace CheeseUtilMod.Components
                     data |= getPegShifted(i + 3, i);
                 }
                 memory[address] = (ushort)data;
+                isdatadirty = true;
             }
             if (Inputs[PEG_CS].On)
             {
@@ -101,6 +104,7 @@ namespace CheeseUtilMod.Components
                 {
                     Data.State = 0;
                     Data.ClientIncomingData = new byte[0];
+                    isdatadirty = true;
                 }
                 QueueLogicUpdate();
             }
@@ -113,6 +117,9 @@ namespace CheeseUtilMod.Components
 
         protected override void SavePersistentValuesToCustomData()
         {
+            if (!isdatadirty) return;
+            isdatadirty = false;
+            
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);
