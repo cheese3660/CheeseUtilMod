@@ -7,8 +7,8 @@ using TMPro;
 using LogicUI.MenuParts;
 using CheeseUtilMod.Client;
 using System.IO;
-using EccsGuiBuilder.Client.Layouts.Controller;
 using EccsGuiBuilder.Client.Layouts.Elements;
+using EccsGuiBuilder.Client.Layouts.Helper;
 using EccsGuiBuilder.Client.Wrappers;
 using EccsGuiBuilder.Client.Wrappers.AutoAssign;
 using LogicWorld.BuildingManagement;
@@ -20,8 +20,9 @@ namespace CheeseRamMenu.Client
         public static void init()
         {
             WS.window("CheeseRamMenu")
+                .setYPosition(150)
                 .configureContent(content => content
-                    .vertical(20f, new RectOffset(20, 20, 20, 20), expandHorizontal: true)
+                    .layoutVertical()
                     .add(WS.inputField
                         .injectionKey(nameof(filePathInputField))
                         .fixedSize(1000, 80)
@@ -38,23 +39,11 @@ namespace CheeseRamMenu.Client
                     )
                     .addContainer("BottomBox", bottomBox => bottomBox
                         .injectionKey(nameof(bottomSection))
-                        .vertical(anchor: TextAnchor.UpperCenter)
+                        .layoutVerticalInnerCentered()
                         .addContainer("BottomInnerBox", innerBox => innerBox
-                            .addAndConfigure<GapListLayout>(layout => {
-                                layout.layoutAlignment = RectTransform.Axis.Vertical;
-                                layout.childAlignment = TextAnchor.UpperCenter;
-                                layout.elementsUntilGap = 0;
-                                layout.countElementsFromFront = false;
-                                layout.spacing = 20;
-                                layout.expandChildThickness = true;
-                            })
+                            .layoutGrowGapVerticalInner() // Normal vertical layouts try to expand more than they have to...
                             .addContainer("BottomBox1", container => container
-                                .addAndConfigure<GapListLayout>(layout => {
-                                    layout.layoutAlignment = RectTransform.Axis.Horizontal;
-                                    layout.childAlignment = TextAnchor.MiddleCenter;
-                                    layout.elementsUntilGap = 0;
-                                    layout.spacing = 20;
-                                })
+                                .layoutGrowGapHorizontalInnerCentered()
                                 .add(WS.textLine.setLocalizationKey("CheeseRamMenu.AddressLines"))
                                 .add(WS.slider
                                     .injectionKey(nameof(addressPegSlider))
@@ -65,12 +54,7 @@ namespace CheeseRamMenu.Client
                                 )
                             )
                             .addContainer("BottomBox2", container => container
-                                .addAndConfigure<GapListLayout>(layout => {
-                                    layout.layoutAlignment = RectTransform.Axis.Horizontal;
-                                    layout.childAlignment = TextAnchor.MiddleCenter;
-                                    layout.elementsUntilGap = 0;
-                                    layout.spacing = 20;
-                                })
+                                .layoutGrowGapHorizontalInnerCentered()
                                 .add(WS.textLine.setLocalizationKey("CheeseRamMenu.BitWidth"))
                                 .add(WS.slider
                                     .injectionKey(nameof(widthPegSlider))
@@ -124,15 +108,28 @@ namespace CheeseRamMenu.Client
                 isComponentResizable = false;
             }
             filePathInputField.text = "";
+            filePathInputField.ActivateInputField();
         }
 
         public override void Initialize()
         {
             base.Initialize();
-            loadButton.OnClickEnd += loadFile;
             addressPegSlider.OnValueChangedInt += addressCountChanged;
             widthPegSlider.OnValueChangedInt += bitwidthChanged;
-            filePathInputField.onValueChanged.AddListener(text => errorText.SetActive(false));
+            loadButton.OnClickEnd += () =>
+            {
+                loadFile();
+                filePathInputField.ActivateInputField();
+            };
+            filePathInputField.onSubmit.AddListener(text =>
+            {
+                if (!string.IsNullOrWhiteSpace(text))
+                {
+                    loadFile();
+                    filePathInputField.ActivateInputField();
+                }
+            });
+            filePathInputField.onValueChanged.AddListener(_ => errorText.SetActive(false));
         }
 
         private void bitwidthChanged(int newBitwidth)
