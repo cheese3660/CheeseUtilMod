@@ -18,6 +18,7 @@ namespace CheeseUtilMod.Components
         private int addressWidth;
         private bool loadfromsave;
         private byte[] memory;
+        private bool isdatadirty;
 
         private static int widthToBytes(int width)
         {
@@ -34,6 +35,7 @@ namespace CheeseUtilMod.Components
             Data.AddressWidth = 1;
             loadfromsave = true;
             memory = new byte[(1 << addressWidth) * widthToBytes(bitWidth)];
+            isdatadirty = false;
         }
 
         public override void Dispose()
@@ -75,6 +77,7 @@ namespace CheeseUtilMod.Components
                     memory[address + i] = (byte)(data & 0xff);
                     data >>= 8;
                 }
+                isdatadirty = true;
             }
             if (Inputs[PEG_CS].On)
             {
@@ -133,6 +136,7 @@ namespace CheeseUtilMod.Components
                 {
                     Data.State = 0;
                     Data.ClientIncomingData = new byte[0];
+                    isdatadirty = true;
                 }
                 QueueLogicUpdate();
             }
@@ -145,6 +149,9 @@ namespace CheeseUtilMod.Components
 
         protected override void SavePersistentValuesToCustomData()
         {
+            if (!isdatadirty) return;
+            isdatadirty = false;
+            
             MemoryStream memstream = new MemoryStream();
             memstream.Position = 0;
             DeflateStream compressor = new DeflateStream(memstream, CompressionLevel.Optimal, true);
