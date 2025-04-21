@@ -29,7 +29,7 @@ namespace CheeseUtilMod.Client
         {
             if (force | GetInputState(PEG_L))
             {
-                var max_index = (1 << addressLines / 2);
+                var max_index = (1 << addressLines) / 2;
                 if (filedata.Length * 2 < max_index)
                 {
                     max_index = filedata.Length * 2;
