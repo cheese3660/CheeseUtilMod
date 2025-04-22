@@ -27,7 +27,7 @@ namespace CheeseUtilMod.Client
         private int previousSizeX;
         public int SizeX { get => Data.SizeX; set => Data.SizeX = value; }
 
-        public int MinX => 8;
+        public int MinX => 4;
 
         public int MaxX => 16;
 
@@ -55,6 +55,9 @@ namespace CheeseUtilMod.Client
         int screenHeight;
         bool fullRefresh;
         bool firstFrame;
+        
+        int lastCursorX;
+        int lastCursorY;
 
         protected override void Initialize()
         {
@@ -141,6 +144,14 @@ namespace CheeseUtilMod.Client
 
         protected override void FrameUpdate()
         {
+            if (GetInputState(PEG_CURSOR_ENABLED) && lastCursorX != Data.CursorX || lastCursorY != Data.CursorY)
+            {
+                byte charAtCursor = mem[lastCursorY * 64 + lastCursorX];
+                Font.SetChar(screen, false, charAtCursor, lastCursorX, SizeZ * 4 - 1 - lastCursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
+            }
+            lastCursorX = Data.CursorX;
+            lastCursorY = Data.CursorY;
+            
             if (Data.TextData != null)
             {
                 MemoryStream stream = new MemoryStream(Data.TextData);
@@ -174,6 +185,7 @@ namespace CheeseUtilMod.Client
                 Font.SetChar(screen, cursorState, 32, Data.CursorX, SizeZ * 4 - 1 - Data.CursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
                 screen.Apply();
             }
+            
             fullRefresh = false;
             firstFrame = false;
         }

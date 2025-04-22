@@ -131,7 +131,7 @@ namespace CheeseUtilMod.Client
             if (chr > 127)
             {
                 invert = !invert;
-                chr -= 127;
+                chr &= 0x7f; // Mask out MSB of character
             }
             var data = GetFontCharacter(chr);
             if (invert)
