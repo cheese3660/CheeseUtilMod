@@ -148,6 +148,9 @@ namespace CheeseUtilMod.Client
             {
                 byte charAtCursor = mem[lastCursorY * 64 + lastCursorX];
                 Font.SetChar(screen, false, charAtCursor, lastCursorX, SizeZ * 4 - 1 - lastCursorY, new Color(Color.r / 255.0f, Color.g / 255.0f, Color.b / 255.0f));
+                cursorUpdateTimer.Stop();
+                cursorUpdateTimer.Start();
+                cursorState = true;
             }
             lastCursorX = Data.CursorX;
             lastCursorY = Data.CursorY;
