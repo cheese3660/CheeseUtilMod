@@ -1,5 +1,6 @@
-﻿ID: cheeseloader
+ID: cheeseloader
 Name: CheeseLoader
 Author: Cheese
-Version: 1.1
+Version: 1.2
 Priority: 91
+Optional: true
