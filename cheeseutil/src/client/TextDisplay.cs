@@ -84,12 +84,15 @@ namespace CheeseUtilMod.Client
 
         protected void cursorSwitch(object source, ElapsedEventArgs e)
         {
-            cursorState = !cursorState;
-            if (GetInputState(PEG_CURSOR_ENABLED))
-            {
-                fullRefresh = false;
-                QueueFrameUpdate();
+            Dispatcher.InvokeAsync(() => {
+                cursorState = !cursorState;
+                if (GetInputState(PEG_CURSOR_ENABLED))
+                {
+                    fullRefresh = false;
+                    QueueFrameUpdate();
+                }
             }
+            );
         }
 
         protected override void SetDataDefaultValues()
